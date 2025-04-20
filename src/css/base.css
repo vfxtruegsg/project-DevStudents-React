@@ -157,9 +157,10 @@ h2 {
   box-shadow: var(--box-shadow-button);
   border-radius: 20px;
   padding: 13px 58px;
-  width: fit-content;
+  width: 100%;
+  max-width: 280px;
   text-align: center;
-  background-color: var(--background-gradient-button);
+  background: var(--background-gradient-button);
   border: none;
 
   /* transition: background-color var(--animation);
@@ -181,7 +182,8 @@ h2 {
   box-shadow: var(--box-shadow-button);
   border-radius: 20px;
   padding: 13px 58px;
-  width: fit-content;
+  width: 100%;
+  max-width: 280px;
   text-align: center;
   background-color: var(--background-classic-button);
   border: none;
@@ -219,10 +221,12 @@ h2 {
   .btn-gradient {
     padding: 13px 68px;
     color: var(--full-white);
+    max-width: 300px;
   }
 
   .btn-classic {
     padding: 13px 112px;
+    max-width: 300px;
   }
 
   .p-nav {
