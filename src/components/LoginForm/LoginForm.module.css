@@ -1,8 +1,9 @@
 .fields {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 10px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #ffffff66;
   margin-bottom: 40px;
 }
@@ -13,4 +14,31 @@
 
 .svg {
   margin-left: 15px;
+}
+
+.errors {
+  position: absolute;
+  color: var(--error);
+  bottom: -24px;
+  left: 15px;
+}
+
+@media (min-width: 768px) {
+  .login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fields {
+    width: 409px;
+  }
 }

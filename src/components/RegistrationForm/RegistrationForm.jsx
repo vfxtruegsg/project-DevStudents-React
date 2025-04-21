@@ -39,8 +39,12 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ paddingBottom: 20 }}>
+    <div className={css["register-form-container"]}>
+      <form
+        className={css.form}
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ paddingBottom: 20 }}
+      >
         <div className={`${css.fields}`}>
           <label htmlFor={nameFormId}>
             <img
@@ -58,8 +62,7 @@ export const RegistrationForm = () => {
               required: "Name required",
             })}
           />
-
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -73,7 +76,7 @@ export const RegistrationForm = () => {
 
           <input
             className={`${css.input} input`}
-            type="email"
+            // type="email"
             placeholder="E-mail"
             id={emailFormId}
             {...register("email", {
@@ -81,7 +84,7 @@ export const RegistrationForm = () => {
             })}
           />
 
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -99,7 +102,9 @@ export const RegistrationForm = () => {
             })}
           />
 
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className={css.errors}>{errors.password.message}</p>
+          )}
         </div>
 
         <div className={`${css.fields}`}>
@@ -111,13 +116,15 @@ export const RegistrationForm = () => {
             className={`${css.input} input`}
             type="password"
             placeholder="Confirm password"
-            id={passwordFormId}
+            id={passwordConfirmFormId}
             {...register("password", {
               required: "Password required",
             })}
           />
 
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className={css.errors}>{errors.password.message}</p>
+          )}
         </div>
 
         <button className="btn-gradient" type="submit">

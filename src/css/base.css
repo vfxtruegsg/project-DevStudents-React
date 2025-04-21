@@ -15,6 +15,7 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
+  --error: #f00000;
   --background-classic-button: #fcfcfc;
   --box-shadow-button: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -151,14 +152,12 @@ h3 {
 .input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: var(
-    --light-gray
-  ) !important; /* или другой нужный тебе цвет текста */
+  -webkit-text-fill-color: var(--light-gray) !important;
   transition: background-color 9999s ease-out;
 }
 
 .input {
-  font-weight: 400;
+  width: 100%;
   font-size: 18px;
   color: var(--light-gray);
 }
