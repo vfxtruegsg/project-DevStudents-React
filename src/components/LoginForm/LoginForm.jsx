@@ -16,6 +16,10 @@ const schema = yup.object().shape({
 const emailFormId = nanoid();
 const passwordFormId = nanoid();
 
+const toRegistration = () => {
+  <NavLink to="/register" />;
+};
+
 export const LoginForm = () => {
   const {
     register,
@@ -78,12 +82,12 @@ export const LoginForm = () => {
         </div>
 
         <button className="btn-gradient" type="submit">
-          LOG IN
+          log in
         </button>
       </form>
 
-      <button className="btn-classic" type="button">
-        REGISTER
+      <button className="btn-classic" type="button" onClick={toRegistration}>
+        register
       </button>
     </div>
   );

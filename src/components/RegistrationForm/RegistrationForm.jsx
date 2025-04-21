@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { NavLink } from "react-router-dom";
 import css from "./RegistrationForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
@@ -25,6 +26,10 @@ const nameFormId = nanoid();
 const emailFormId = nanoid();
 const passwordFormId = nanoid();
 const passwordConfirmFormId = nanoid();
+
+const toLogIn = () => {
+  <NavLink to="/login" />;
+};
 
 export const RegistrationForm = () => {
   const {
@@ -62,7 +67,7 @@ export const RegistrationForm = () => {
               required: "Name required",
             })}
           />
-          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
+          {errors.email && <p className={css.errors}>{errors.name.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -132,7 +137,7 @@ export const RegistrationForm = () => {
         </button>
       </form>
 
-      <button className="btn-classic" type="button">
+      <button className="btn-classic" type="button" onClick={toLogIn}>
         log in
       </button>
     </div>
