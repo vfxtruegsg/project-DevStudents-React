@@ -1,0 +1,42 @@
+.login-page {
+  background-image: url("../../images/gradients/Gradient_2.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .login-page {
+    background-image: url("../../images/gradients/Gradient_2-2x.png");
+  }
+}
+
+@media (min-width: 768px) {
+  .login-page {
+    background-image: url("../../images/gradients/Gradient_4.png");
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .login-page {
+      background-image: url("../../images/gradients/Gradient_4-2x.png");
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .login-page {
+    background-image: url("../../images/gradients/Gradient_7.png");
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .login-page {
+      background-image: url("../../images/gradients/Gradient_7-2x.png");
+    }
+  }
+}

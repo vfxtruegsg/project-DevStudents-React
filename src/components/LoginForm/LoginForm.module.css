@@ -1,0 +1,16 @@
+.fields {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid #ffffff66;
+  margin-bottom: 40px;
+}
+
+.input {
+  padding-left: 18px;
+}
+
+.svg {
+  margin-left: 15px;
+}

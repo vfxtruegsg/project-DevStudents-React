@@ -73,6 +73,7 @@ body {
   max-width: 360px;
   margin: 0 auto;
   padding: 0 20px;
+  height: 100vh;
   width: 100%;
   box-sizing: border-box;
 }
@@ -81,6 +82,10 @@ textarea:focus,
 select:focus,
 input:focus {
   outline: 0;
+}
+
+button {
+  cursor: pointer;
 }
 
 /* Money Guard */
@@ -142,6 +147,22 @@ h3 {
 }
 
 /* стилі для інпут плейсхолдерів */
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(
+    --light-gray
+  ) !important; /* или другой нужный тебе цвет текста */
+  transition: background-color 9999s ease-out;
+}
+
+.input {
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--light-gray);
+}
+
 .input::placeholder {
   font-weight: 400;
   font-size: 18px;
@@ -152,16 +173,15 @@ h3 {
 .btn-gradient {
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--white);
   box-shadow: var(--box-shadow-button);
   border-radius: 20px;
   padding: 13px 58px;
-  width: fit-content;
+  width: 100%;
   text-align: center;
-  background-color: var(--background-gradient-button);
+  background: var(--background-gradient-button);
   border: none;
 
   /* transition: background-color var(--animation);
@@ -176,14 +196,13 @@ h3 {
 .btn-classic {
   font-weight: 400;
   font-size: 18px;
-  line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-violet);
   box-shadow: var(--box-shadow-button);
   border-radius: 20px;
   padding: 13px 58px;
-  width: fit-content;
+  width: 100%;
   text-align: center;
   background-color: var(--background-classic-button);
   border: none;
@@ -219,10 +238,12 @@ h3 {
   .btn-gradient {
     padding: 13px 68px;
     color: var(--full-white);
+    width: 300px;
   }
 
   .btn-classic {
     padding: 13px 112px;
+    width: 300px;
   }
 
   .p-nav {
