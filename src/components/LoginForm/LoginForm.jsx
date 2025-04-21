@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./LoginForm.module.css";
 import * as yup from "yup";
+import { nanoid } from "nanoid";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email format!").required("Email required"),
@@ -11,6 +12,9 @@ const schema = yup.object().shape({
     .max(12, "Too long!")
     .required("Password required"),
 });
+
+const emailFormId = nanoid();
+const passwordFormId = nanoid();
 
 export const LoginForm = () => {
   const {
@@ -24,41 +28,45 @@ export const LoginForm = () => {
     reset();
   };
 
-  const letterSVG = new URL("../../images/svg/letter.svg", import.meta.url);
-
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} style={{ paddingBottom: 20 }}>
-        <div>
-          <label>
-            <svg className={css.svg} width="24" height="24">
-              <use href={letterSVG}></use>
-            </svg>
-
-            <input
-              type="email"
-              {...register("email", {
-                required: "Email required",
-              })}
+        <div className={`${css.fields}`}>
+          <label htmlFor={emailFormId}>
+            <img
+              className={`${css.svg}`}
+              src="/letter.svg"
+              alt="Letter picture"
             />
           </label>
+
+          <input
+            className={`${css.input} input`}
+            type="email"
+            placeholder="E-mail"
+            id={emailFormId}
+            {...register("email", {
+              required: "Email required",
+            })}
+          />
 
           {errors.email && <p>{errors.email.message}</p>}
         </div>
 
-        <div>
-          <label>
-            <svg className="svg" width="24" height="24">
-              <use href="../../images/svg/lock.svg"></use>
-            </svg>
-
-            <input
-              type="password"
-              {...register("password", {
-                required: "Password required",
-              })}
-            />
+        <div className={`${css.fields}`}>
+          <label htmlFor={passwordFormId}>
+            <img className={`${css.svg}`} src="/lock.svg" alt="Lock picture" />
           </label>
+
+          <input
+            className={`${css.input} input`}
+            type="password"
+            placeholder="Password"
+            id={passwordFormId}
+            {...register("password", {
+              required: "Password required",
+            })}
+          />
 
           {errors.password && <p>{errors.password.message}</p>}
         </div>
