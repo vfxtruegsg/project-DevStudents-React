@@ -146,9 +146,9 @@ h3 {
   }
 }
 
-/* стилі для інпут плейсхолдерів */
+/* стилі для інпутів реєстрації та логіну */
 
-input:-webkit-autofill {
+.input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
   box-shadow: 0 0 0 1000px transparent inset !important;
   -webkit-text-fill-color: var(
