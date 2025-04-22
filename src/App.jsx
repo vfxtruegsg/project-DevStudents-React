@@ -13,7 +13,7 @@ function App() {
     dispatch(refreshThunk());
   }, [dispatch]);
 
-  return isRefreshing ? null : (
+  return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegistrationPage />} />
