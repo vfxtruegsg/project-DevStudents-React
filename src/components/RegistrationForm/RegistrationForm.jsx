@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { NavLink } from "react-router-dom";
 import css from "./RegistrationForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
@@ -26,6 +27,10 @@ const emailFormId = nanoid();
 const passwordFormId = nanoid();
 const passwordConfirmFormId = nanoid();
 
+const toLogIn = () => {
+  <NavLink to="/login" />;
+};
+
 export const RegistrationForm = () => {
   const {
     register,
@@ -39,8 +44,12 @@ export const RegistrationForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ paddingBottom: 20 }}>
+    <div className={css["register-form-container"]}>
+      <form
+        className={css.form}
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ paddingBottom: 20 }}
+      >
         <div className={`${css.fields}`}>
           <label htmlFor={nameFormId}>
             <img
@@ -58,8 +67,7 @@ export const RegistrationForm = () => {
               required: "Name required",
             })}
           />
-
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={css.errors}>{errors.name.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -73,7 +81,7 @@ export const RegistrationForm = () => {
 
           <input
             className={`${css.input} input`}
-            type="email"
+            // type="email"
             placeholder="E-mail"
             id={emailFormId}
             {...register("email", {
@@ -81,7 +89,7 @@ export const RegistrationForm = () => {
             })}
           />
 
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -99,7 +107,9 @@ export const RegistrationForm = () => {
             })}
           />
 
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className={css.errors}>{errors.password.message}</p>
+          )}
         </div>
 
         <div className={`${css.fields}`}>
@@ -111,13 +121,15 @@ export const RegistrationForm = () => {
             className={`${css.input} input`}
             type="password"
             placeholder="Confirm password"
-            id={passwordFormId}
+            id={passwordConfirmFormId}
             {...register("password", {
               required: "Password required",
             })}
           />
 
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className={css.errors}>{errors.password.message}</p>
+          )}
         </div>
 
         <button className="btn-gradient" type="submit">
@@ -125,7 +137,7 @@ export const RegistrationForm = () => {
         </button>
       </form>
 
-      <button className="btn-classic" type="button">
+      <button className="btn-classic" type="button" onClick={toLogIn}>
         log in
       </button>
     </div>

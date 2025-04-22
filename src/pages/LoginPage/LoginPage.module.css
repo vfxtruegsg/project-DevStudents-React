@@ -1,8 +1,25 @@
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.company-logo {
+  margin: 0 auto;
+  margin-bottom: 52px;
+  text-align: center;
+}
+
 .login-page {
   background-image: url("../../images/gradients/Gradient_2.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.logo {
+  width: 25px;
+  height: 25px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -16,6 +33,11 @@
 @media (min-width: 768px) {
   .login-page {
     background-image: url("../../images/gradients/Gradient_4.png");
+  }
+
+  .logo {
+    width: 35px;
+    height: 35px;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2),

@@ -16,6 +16,10 @@ const schema = yup.object().shape({
 const emailFormId = nanoid();
 const passwordFormId = nanoid();
 
+const toRegistration = () => {
+  <NavLink to="/register" />;
+};
+
 export const LoginForm = () => {
   const {
     register,
@@ -29,8 +33,12 @@ export const LoginForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} style={{ paddingBottom: 20 }}>
+    <div className={css["login-form-container"]}>
+      <form
+        className={css.form}
+        onSubmit={handleSubmit(onSubmit)}
+        style={{ paddingBottom: 20 }}
+      >
         <div className={`${css.fields}`}>
           <label htmlFor={emailFormId}>
             <img
@@ -42,7 +50,7 @@ export const LoginForm = () => {
 
           <input
             className={`${css.input} input`}
-            type="email"
+            // type="email"
             placeholder="E-mail"
             id={emailFormId}
             {...register("email", {
@@ -50,7 +58,7 @@ export const LoginForm = () => {
             })}
           />
 
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && <p className={css.errors}>{errors.email.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -68,16 +76,18 @@ export const LoginForm = () => {
             })}
           />
 
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className={css.errors}>{errors.password.message}</p>
+          )}
         </div>
 
         <button className="btn-gradient" type="submit">
-          LOG IN
+          log in
         </button>
       </form>
 
-      <button className="btn-classic" type="button">
-        REGISTER
+      <button className="btn-classic" type="button" onClick={toRegistration}>
+        register
       </button>
     </div>
   );
