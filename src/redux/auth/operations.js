@@ -19,11 +19,11 @@ export const registerThunk = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await backAPI.post("/auth/register", credentials);
-      setAuthHeader(data.accessToken);
-      return data;
+      setAuthHeader(data.data.accessToken);
+      return data.data;
     } catch (error) {
       if (error.status === 409) {
-        showToastErrorMessage("User already exist!");
+        showToastErrorMessage("User already exist! Please log in!");
         return;
       }
 
@@ -38,8 +38,8 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await backAPI.post("/auth/login", credentials);
-      setAuthHeader(data.accessToken);
-      return data;
+      setAuthHeader(data.data.accessToken);
+      return data.data;
     } catch (error) {
       showToastErrorMessage(error.message);
       return thunkApi.rejectWithValue(error.message);
@@ -68,6 +68,27 @@ export const logoutThunk = createAsyncThunk(
       return thunkApi.rejectWithValue(error.message);
     } finally {
       deleteAuthHeader();
+    }
+  }
+);
+
+export const refreshThunk = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkApi) => {
+    const token = thunkApi.getState().auth.accessToken;
+    if (token === null) {
+      return thunkApi.rejectWithValue("Token is not exist");
+    }
+    setAuthHeader(token);
+    try {
+      const { data } = await backAPI.post("/auth/refresh", null, {});
+      console.log("successfully refresh");
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+
+      return thunkApi.rejectWithValue(error.message);
     }
   }
 );
