@@ -4,6 +4,7 @@ import { showToastErrorMessage } from "../../utils/showToastErrorMessage.js";
 
 export const backAPI = axios.create({
   baseURL: "https://project-devstudents-node-js.onrender.com",
+  withCredentials: true,
 });
 
 export const setAuthHeader = (token) => {
@@ -39,6 +40,7 @@ export const loginThunk = createAsyncThunk(
     try {
       const { data } = await backAPI.post("/auth/login", credentials);
       setAuthHeader(data.data.accessToken);
+
       return data.data;
     } catch (error) {
       showToastErrorMessage(error.message);
@@ -75,19 +77,19 @@ export const logoutThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",
   async (_, thunkApi) => {
-    const token = thunkApi.getState().auth.accessToken;
+    const token = thunkApi.getState().auth.token;
+
     if (token === null) {
       return thunkApi.rejectWithValue("Token is not exist");
     }
     setAuthHeader(token);
+
     try {
-      const { data } = await backAPI.post("/auth/refresh", null, {});
+      const { data } = await backAPI.post("/auth/refresh");
       console.log("successfully refresh");
 
       return data;
     } catch (error) {
-      console.log(error.message);
-
       return thunkApi.rejectWithValue(error.message);
     }
   }

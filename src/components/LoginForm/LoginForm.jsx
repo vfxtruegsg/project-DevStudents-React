@@ -54,6 +54,8 @@ export const LoginForm = () => {
             <img
               className={`${css.svg}`}
               src="/letter.svg"
+              width="24"
+              height="24"
               alt="Letter picture"
             />
           </label>
@@ -73,7 +75,13 @@ export const LoginForm = () => {
 
         <div className={`${css.fields}`}>
           <label htmlFor={passwordFormId}>
-            <img className={`${css.svg}`} src="/lock.svg" alt="Lock picture" />
+            <img
+              className={`${css.svg}`}
+              src="/lock.svg"
+              width="24"
+              height="24"
+              alt="Lock picture"
+            />
           </label>
 
           <input
