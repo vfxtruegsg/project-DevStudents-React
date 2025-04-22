@@ -1,0 +1,31 @@
+dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #1e0036, #12002b);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.contentGrid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .contentGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contentGrid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
