@@ -3,6 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./LoginForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginThunk } from "../../redux/auth/operations.js";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email format!").required("Email required"),
@@ -16,10 +19,6 @@ const schema = yup.object().shape({
 const emailFormId = nanoid();
 const passwordFormId = nanoid();
 
-const toRegistration = () => {
-  <NavLink to="/register" />;
-};
-
 export const LoginForm = () => {
   const {
     register,
@@ -28,7 +27,18 @@ export const LoginForm = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (payload) => {
+    const data = {
+      email: payload.email,
+      password: payload.password,
+    };
+
+    dispatch(loginThunk(data));
+
+    // navigate("/dashboard"); доделать через unwrap
+
     reset();
   };
 
@@ -86,9 +96,13 @@ export const LoginForm = () => {
         </button>
       </form>
 
-      <button className="btn-classic" type="button" onClick={toRegistration}>
+      <Link
+        to="/register"
+        className={`btn-classic`}
+        style={{ display: "block" }}
+      >
         register
-      </button>
+      </Link>
     </div>
   );
 };

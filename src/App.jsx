@@ -1,9 +1,9 @@
 // import { useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
-// import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute.jsx";
 import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage/LoginPage.jsx";
 import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage.jsx";
+import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute.jsx";
 function App() {
   // const dispatch = useDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing);
