@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./LoginForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginThunk } from "../../redux/auth/operations.js";
 
@@ -28,14 +28,16 @@ export const LoginForm = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const onSubmit = async (payload) => {
     const data = {
       email: payload.email,
       password: payload.password,
     };
 
-    dispatch(loginThunk(data));
+    dispatch(loginThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
 
     // navigate("/dashboard"); доделать через unwrap
 
