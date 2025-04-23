@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage/LoginPage.jsx";
 import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage.jsx";
-import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute.jsx";
 import { refreshThunk } from "./redux/auth/operations.js";
 import { selectIsRefreshing } from "./redux/auth/selectors.js";
+import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
+
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -15,8 +17,37 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegistrationPage />} />
+      {/* <Route path="/" element={<Header />}>
+        <Route
+          index
+          path={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Route> */}
+
+      <Route
+        path="/login"
+        element={
+          // <PublicRoute>
+          //   <LoginPage />
+          // </PublicRoute>
+          <LoginPage />
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          // <PublicRoute>
+          //   <RegistrationPage />
+          // </PublicRoute>
+          <RegistrationPage />
+        }
+      />
+
+      {/* <Route path="*" element={<NotFound/>}/> */}
     </Routes>
   );
 }
