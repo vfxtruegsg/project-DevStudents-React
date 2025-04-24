@@ -2,7 +2,7 @@
   background: var(--violet-gradient);
   background-color: var(--dark-violet);
   padding: 12px 20px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--light-gray);
   @media (min-width: 768px) {
     padding: 16px 32px;
   }
