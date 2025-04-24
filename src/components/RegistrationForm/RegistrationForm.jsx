@@ -55,11 +55,10 @@ export const RegistrationForm = () => {
       return;
     }
 
-    dispatch(registerThunk(data));
-    // .unwrap()
-    // .then(() => navigate("/"));
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
 
-    // navigate("/dashboard"); доделать через unwrap
     reset();
   };
 

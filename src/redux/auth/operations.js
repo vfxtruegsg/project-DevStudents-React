@@ -20,33 +20,35 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await backAPI.post("/auth/register", credentials);
       setAuthHeader(data.data.accessToken);
-      console.log(data.data);
 
       return data.data;
     } catch (error) {
       if (error.status === 409) {
         showToastErrorMessage("User already exist! Please log in!");
-        return;
+        return thunkApi.rejectWithValue("User already exist! Please log in!");
       }
+
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
-
-// завтра нужно реализовать логинизацию чтоб у нас подтягивались данные пользователя,
-// пока идея при логине глянуть запрос по беку getCurrentUser и пришить его в санку логина
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
   async (credentials, thunkApi) => {
     try {
       const { data } = await backAPI.post("/auth/login", credentials);
+
       setAuthHeader(data.data.accessToken);
 
-      return data.data;
+      const { data: dataUser } = await backAPI.get("/user/current");
+
+      return { ...data.data, ...dataUser.data };
     } catch (error) {
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -70,6 +72,7 @@ export const logoutThunk = createAsyncThunk(
       return data;
     } catch (error) {
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     } finally {
       deleteAuthHeader();
@@ -85,7 +88,6 @@ export const refreshThunk = createAsyncThunk(
     if (token === null) {
       return thunkApi.rejectWithValue("Token is not exist");
     }
-    setAuthHeader(token);
 
     try {
       const { data } = await backAPI.post(
@@ -96,7 +98,9 @@ export const refreshThunk = createAsyncThunk(
         }
       );
 
-      return data;
+      setAuthHeader(data.data.accessToken);
+
+      return data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

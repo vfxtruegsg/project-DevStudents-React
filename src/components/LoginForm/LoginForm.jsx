@@ -35,11 +35,9 @@ export const LoginForm = () => {
       password: payload.password,
     };
 
-    dispatch(loginThunk(data));
-    // .unwrap()
-    // .then(() => navigate("/"));
-
-    // navigate("/dashboard"); доделать через unwrap
+    dispatch(loginThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
 
     reset();
   };

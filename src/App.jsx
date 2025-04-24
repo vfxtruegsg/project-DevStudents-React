@@ -7,6 +7,7 @@ import { refreshThunk } from "./redux/auth/operations.js";
 import { selectIsRefreshing } from "./redux/auth/selectors.js";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
+import Layout from "./components/Layout/Layout.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,16 +18,16 @@ function App() {
 
   return (
     <Routes>
-      {/* <Route path="/" element={<Header />}>
-        <Route
+      <Route path="/" element={<Layout />}>
+        {/* <Route
           index
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
-        />
-      </Route> */}
+        /> */}
+      </Route>
 
       <Route
         path="/login"

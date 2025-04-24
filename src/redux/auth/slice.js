@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   loginThunk,
   logoutThunk,
@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   user: {
-    currentUserId: null,
+    userId: null,
     name: null,
     email: null,
     avatar: null,
@@ -24,32 +24,36 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(registerThunk.fulfilled, (state, action) => {
-        state.user.currentUserId = action.payload.user._id;
-        state.user.name = action.payload.user.name;
-        state.user.email = action.payload.user.email;
-        state.user.avatar = action.payload.user.avatar.url;
-        state.user.balance = action.payload.user.balance;
-        state.isLoggedIn = true;
+      .addCase(refreshThunk.pending, (state, action) => {
+        state.isRefreshing = true;
       })
-      .addCase(loginThunk.fulfilled, (state, action) => {
-        state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
-      })
-      .addCase(logoutThunk.fulfilled, (state, action) => {
-        return initialState;
-      })
+
       .addCase(refreshThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.token = action.payload.accessToken;
         state.isRefreshing = false;
       })
-      .addCase(refreshThunk.pending, (state, action) => {
-        state.isRefreshing = true;
+
+      .addCase(logoutThunk.fulfilled, (state, action) => {
+        return initialState;
       })
+
       .addCase(refreshThunk.rejected, (state, action) => {
         state.isRefreshing = false;
-      });
+      })
+
+      .addMatcher(
+        isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
+        (state, action) => {
+          state.user.userId = action.payload.userId;
+          state.user.name = action.payload.name;
+          state.user.email = action.payload.email;
+          state.user.avatar = action.payload.avatar.url;
+          state.user.balance = action.payload.balance;
+          state.token = action.payload.accessToken;
+          state.isLoggedIn = true;
+        }
+      );
   },
 });
 
