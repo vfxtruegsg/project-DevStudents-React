@@ -1,12 +1,11 @@
-import React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import styles from './DashboardPage.module.css';
+import React from "react";
+import { useMediaQuery } from "react-responsive";
+import styles from "./DashboardPage.module.css";
 
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import Stats from './components/Stats';
-import Chart from './components/Chart';
-import Transactions from './components/Transactions';
+import Sidebar from "./components/Sidebar";
+import Stats from "./components/Stats";
+import Chart from "./components/Chart";
+import Transactions from "./components/Transactions";
 
 const DashboardPage = () => {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
@@ -17,7 +16,6 @@ const DashboardPage = () => {
     <div className={styles["dashboard-container"]}>
       {isDesktop && <Sidebar />}
       <div className={styles["main-content"]}>
-        <Header />
         <div className={styles["content-grid"]}>
           <Stats />
           {isDesktop && <Chart />}

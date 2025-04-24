@@ -66,6 +66,7 @@ export const logoutThunk = createAsyncThunk(
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          withCredentials: true,
         }
       );
 
