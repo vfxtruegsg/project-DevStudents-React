@@ -20,13 +20,16 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await backAPI.post("/auth/register", credentials);
       setAuthHeader(data.data.accessToken);
+
       return data.data;
     } catch (error) {
       if (error.status === 409) {
         showToastErrorMessage("User already exist! Please log in!");
-        return;
+        return thunkApi.rejectWithValue("User already exist! Please log in!");
       }
+
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -37,11 +40,15 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await backAPI.post("/auth/login", credentials);
+
       setAuthHeader(data.data.accessToken);
 
-      return data.data;
+      const { data: dataUser } = await backAPI.get("/user/current");
+
+      return { ...data.data, ...dataUser.data };
     } catch (error) {
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -65,6 +72,7 @@ export const logoutThunk = createAsyncThunk(
       return data;
     } catch (error) {
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     } finally {
       deleteAuthHeader();
@@ -75,12 +83,11 @@ export const logoutThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",
   async (_, thunkApi) => {
-    // const token = thunkApi.getState().auth.token;
+    const token = thunkApi.getState().auth.token;
 
-    // if (token === null) {
-    //   return thunkApi.rejectWithValue("Token is not exist");
-    // }
-    // setAuthHeader(token);
+    if (token === null) {
+      return thunkApi.rejectWithValue("Token is not exist");
+    }
 
     try {
       const { data } = await backAPI.post(
@@ -91,7 +98,9 @@ export const refreshThunk = createAsyncThunk(
         }
       );
 
-      return data;
+      setAuthHeader(data.data.accessToken);
+
+      return data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

@@ -39,8 +39,6 @@ export const LoginForm = () => {
       .unwrap()
       .then(() => navigate("/"));
 
-    // navigate("/dashboard"); доделать через unwrap
-
     reset();
   };
 

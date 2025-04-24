@@ -59,7 +59,6 @@ export const RegistrationForm = () => {
       .unwrap()
       .then(() => navigate("/"));
 
-    // navigate("/dashboard"); доделать через unwrap
     reset();
   };
 

@@ -1,8 +1,8 @@
 .wrapper {
-  background: linear-gradient(270.02deg, #2e1746 3.2%, #2e225f 99.98%);
-  background-color: #2e225f;
+  background: var(--violet-gradient);
+  background-color: var(--dark-violet);
   padding: 12px 20px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--light-gray);
   @media (min-width: 768px) {
     padding: 16px 32px;
   }
@@ -63,7 +63,7 @@
   @media (min-width: 768px) {
     display: block;
     height: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--light-gray);
   }
 }
 .exitWrapper {
