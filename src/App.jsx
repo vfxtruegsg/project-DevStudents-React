@@ -17,40 +17,39 @@ function App() {
   // }, [dispatch]);
 
   return (
-    <LogoutModule></LogoutModule>
-    // <Routes>
-    //   {/* <Route path="/" element={<Header />}>
-    //     <Route
-    //       index
-    //       path={
-    //         <PrivateRoute>
-    //           <Dashboard />
-    //         </PrivateRoute>
-    //       }
-    //     />
-    //   </Route> */}
+    <Routes>
+      {/* <Route path="/" element={<Header />}>
+        <Route
+          index
+          path={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Route> */}
 
-    //   <Route
-    //     path="/login"
-    //     element={
-    //       // <PublicRoute>
-    //       //   <LoginPage />
-    //       // </PublicRoute>
-    //       <LoginPage />
-    //     }
-    //   />
-    //   <Route
-    //     path="/register"
-    //     element={
-    //       // <PublicRoute>
-    //       //   <RegistrationPage />
-    //       // </PublicRoute>
-    //       <RegistrationPage />
-    //     }
-    //   />
+      <Route
+        path="/login"
+        element={
+          // <PublicRoute>
+          //   <LoginPage />
+          // </PublicRoute>
+          <LoginPage />
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          // <PublicRoute>
+          //   <RegistrationPage />
+          // </PublicRoute>
+          <RegistrationPage />
+        }
+      />
 
-    //   {/* <Route path="*" element={<NotFound/>}/> */}
-    // </Routes>
+      {/* <Route path="*" element={ <RegistrationPage />}/> */}
+    </Routes>
   );
 }
 
