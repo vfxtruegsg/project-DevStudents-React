@@ -32,19 +32,19 @@ function App() {
       <Route
         path="/login"
         element={
-          // <PublicRoute>
-          //   <LoginPage />
-          // </PublicRoute>
-          <LoginPage />
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+          // <LoginPage />
         }
       />
       <Route
         path="/register"
         element={
-          // <PublicRoute>
-          //   <RegistrationPage />
-          // </PublicRoute>
-          <RegistrationPage />
+          <PublicRoute>
+            <RegistrationPage />
+          </PublicRoute>
+          // <RegistrationPage />
         }
       />
 
