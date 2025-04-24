@@ -1,9 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { NavLink } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import css from "./RegistrationForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { registerThunk } from "../../redux/auth/operations.js";
+import { showToastErrorMessage } from "../../utils/showToastErrorMessage.js";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 const schema = yup.object().shape({
   name: yup
@@ -27,21 +31,38 @@ const emailFormId = nanoid();
 const passwordFormId = nanoid();
 const passwordConfirmFormId = nanoid();
 
-const toLogIn = () => {
-  <NavLink to="/login" />;
-};
-
 export const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm({ resolver: yupResolver(schema) });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onSubmit = async (payload) => {
+    const data = {
+      name: payload.name,
+      email: payload.email,
+      password: payload.password,
+    };
+
+    if (payload.password !== payload["confirm-password"]) {
+      showToastErrorMessage("The passwords you entered do not match");
+      return;
+    }
+
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
+
     reset();
   };
+
+  const passwordValue = watch("password");
 
   return (
     <div className={css["register-form-container"]}>
@@ -55,6 +76,8 @@ export const RegistrationForm = () => {
             <img
               className={`${css.svg}`}
               src="/user.svg"
+              width="24"
+              height="24"
               alt="Letter picture"
             />
           </label>
@@ -67,7 +90,7 @@ export const RegistrationForm = () => {
               required: "Name required",
             })}
           />
-          {errors.email && <p className={css.errors}>{errors.name.message}</p>}
+          {errors.name && <p className={css.errors}>{errors.name.message}</p>}
         </div>
 
         <div className={`${css.fields}`}>
@@ -75,6 +98,8 @@ export const RegistrationForm = () => {
             <img
               className={`${css.svg}`}
               src="/letter.svg"
+              width="24"
+              height="24"
               alt="Letter picture"
             />
           </label>
@@ -94,7 +119,13 @@ export const RegistrationForm = () => {
 
         <div className={`${css.fields}`}>
           <label htmlFor={passwordFormId}>
-            <img className={`${css.svg}`} src="/lock.svg" alt="Lock picture" />
+            <img
+              className={`${css.svg}`}
+              src="/lock.svg"
+              width="24"
+              height="24"
+              alt="Lock picture"
+            />
           </label>
 
           <input
@@ -114,7 +145,13 @@ export const RegistrationForm = () => {
 
         <div className={`${css.fields}`}>
           <label htmlFor={passwordConfirmFormId}>
-            <img className={`${css.svg}`} src="/lock.svg" alt="Lock picture" />
+            <img
+              className={`${css.svg}`}
+              src="/lock.svg"
+              width="24"
+              height="24"
+              alt="Lock picture"
+            />
           </label>
 
           <input
@@ -122,24 +159,30 @@ export const RegistrationForm = () => {
             type="password"
             placeholder="Confirm password"
             id={passwordConfirmFormId}
-            {...register("password", {
+            {...register("confirm-password", {
               required: "Password required",
             })}
           />
-
-          {errors.password && (
-            <p className={css.errors}>{errors.password.message}</p>
-          )}
         </div>
 
-        <button className="btn-gradient" type="submit">
+        <PasswordStrengthBar
+          className={css["password-bar"]}
+          password={passwordValue}
+          colors={["#ff4d4f", "#ff7a45", "#faad14", "#52c41a", "#367c4d"]}
+        />
+
+        <button
+          className="btn-gradient"
+          type="submit"
+          style={{ marginTop: 32 }}
+        >
           register
         </button>
       </form>
 
-      <button className="btn-classic" type="button" onClick={toLogIn}>
+      <Link to="/login" className={`btn-classic`} style={{ display: "block" }}>
         log in
-      </button>
+      </Link>
     </div>
   );
 };

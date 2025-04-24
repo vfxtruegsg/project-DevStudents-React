@@ -3,6 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./LoginForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginThunk } from "../../redux/auth/operations.js";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email format!").required("Email required"),
@@ -16,10 +19,6 @@ const schema = yup.object().shape({
 const emailFormId = nanoid();
 const passwordFormId = nanoid();
 
-const toRegistration = () => {
-  <NavLink to="/register" />;
-};
-
 export const LoginForm = () => {
   const {
     register,
@@ -28,7 +27,18 @@ export const LoginForm = () => {
     reset,
   } = useForm({ resolver: yupResolver(schema) });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onSubmit = async (payload) => {
+    const data = {
+      email: payload.email,
+      password: payload.password,
+    };
+
+    dispatch(loginThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
+
     reset();
   };
 
@@ -44,6 +54,8 @@ export const LoginForm = () => {
             <img
               className={`${css.svg}`}
               src="/letter.svg"
+              width="24"
+              height="24"
               alt="Letter picture"
             />
           </label>
@@ -63,7 +75,13 @@ export const LoginForm = () => {
 
         <div className={`${css.fields}`}>
           <label htmlFor={passwordFormId}>
-            <img className={`${css.svg}`} src="/lock.svg" alt="Lock picture" />
+            <img
+              className={`${css.svg}`}
+              src="/lock.svg"
+              width="24"
+              height="24"
+              alt="Lock picture"
+            />
           </label>
 
           <input
@@ -86,9 +104,13 @@ export const LoginForm = () => {
         </button>
       </form>
 
-      <button className="btn-classic" type="button" onClick={toRegistration}>
+      <Link
+        to="/register"
+        className={`btn-classic`}
+        style={{ display: "block" }}
+      >
         register
-      </button>
+      </Link>
     </div>
   );
 };

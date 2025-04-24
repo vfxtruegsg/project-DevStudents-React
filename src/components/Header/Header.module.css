@@ -1,0 +1,82 @@
+.wrapper {
+  background: var(--violet-gradient);
+  background-color: var(--dark-violet);
+  padding: 12px 20px;
+  color: var(--light-gray);
+  @media (min-width: 768px) {
+    padding: 16px 32px;
+  }
+  @media (min-width: 1280px) {
+    padding: 16px;
+  }
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media (min-width: 768px) {
+    gap: 12px;
+  }
+}
+.companyLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  @media (min-width: 768px) {
+    font-size: 13px;
+  }
+}
+.logo {
+  width: 16px;
+  height: 13px;
+  @media (min-width: 768px) {
+    width: 23.49px;
+    height: 22.47px;
+  }
+}
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 106px;
+  @media (min-width: 768px) {
+    gap: 12px;
+    width: 161px;
+  }
+  @media (min-width: 768px) {
+    gap: 12px;
+  }
+}
+.nameWrapper {
+  display: flex;
+  align-items: center;
+}
+.name {
+  font-size: 18px;
+  font-weight: 400;
+}
+.customHr {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    height: 30px;
+    border: 1px solid var(--light-gray);
+  }
+}
+.exitWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.exitText {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}

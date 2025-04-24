@@ -8,6 +8,15 @@
   margin-bottom: 40px;
 }
 
+.password-bar {
+  margin-top: -32px;
+  width: 100%;
+}
+
+.password-bar > p {
+  display: none;
+}
+
 .input {
   padding-left: 18px;
 }
@@ -18,7 +27,7 @@
 
 .errors {
   position: absolute;
-  color: var(--error);
+  color: var(--light-gray);
   bottom: -24px;
   left: 15px;
 }
