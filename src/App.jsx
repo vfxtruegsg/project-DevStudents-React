@@ -20,7 +20,7 @@ function App() {
       {/* <Route path="/" element={<Header />}>
         <Route
           index
-          path={
+          element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>

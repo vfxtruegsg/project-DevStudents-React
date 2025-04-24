@@ -20,6 +20,8 @@ export const registerThunk = createAsyncThunk(
     try {
       const { data } = await backAPI.post("/auth/register", credentials);
       setAuthHeader(data.data.accessToken);
+      console.log(data.data);
+
       return data.data;
     } catch (error) {
       if (error.status === 409) {
@@ -31,6 +33,9 @@ export const registerThunk = createAsyncThunk(
     }
   }
 );
+
+// завтра нужно реализовать логинизацию чтоб у нас подтягивались данные пользователя,
+// пока идея при логине глянуть запрос по беку getCurrentUser и пришить его в санку логина
 
 export const loginThunk = createAsyncThunk(
   "auth/login",
@@ -75,12 +80,12 @@ export const logoutThunk = createAsyncThunk(
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",
   async (_, thunkApi) => {
-    // const token = thunkApi.getState().auth.token;
+    const token = thunkApi.getState().auth.token;
 
-    // if (token === null) {
-    //   return thunkApi.rejectWithValue("Token is not exist");
-    // }
-    // setAuthHeader(token);
+    if (token === null) {
+      return thunkApi.rejectWithValue("Token is not exist");
+    }
+    setAuthHeader(token);
 
     try {
       const { data } = await backAPI.post(

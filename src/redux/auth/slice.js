@@ -8,8 +8,10 @@ import {
 
 const initialState = {
   user: {
+    currentUserId: null,
     name: null,
     email: null,
+    avatar: null,
     balance: 0,
   },
   token: null,
@@ -23,9 +25,11 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerThunk.fulfilled, (state, action) => {
-        state.user.name = action.payload.name;
-        state.user.email = action.payload.email;
-        state.user.balance = action.payload.balance;
+        state.user.currentUserId = action.payload.user._id;
+        state.user.name = action.payload.user.name;
+        state.user.email = action.payload.user.email;
+        state.user.avatar = action.payload.user.avatar.url;
+        state.user.balance = action.payload.user.balance;
         state.isLoggedIn = true;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
