@@ -1,7 +1,7 @@
-import css from "./LogoutModule.module.css";
+import css from "./LogoutModal.module.css";
 import { Link } from "react-router-dom";
 
-export const LogoutModule = () => {
+function LogoutModal() {
   return (
     <div className={css.logoutContainer}>
       <div className={css.backdrop}>
@@ -23,4 +23,6 @@ export const LogoutModule = () => {
       </div>
     </div>
   );
-};
+}
+
+export default LogoutModal;
