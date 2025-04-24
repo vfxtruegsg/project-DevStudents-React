@@ -6,7 +6,7 @@
 
 .company-logo {
   margin: 0 auto;
-  margin-bottom: 52px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
@@ -22,6 +22,18 @@
   height: 25px;
 }
 
+.dollar-tablet {
+  display: none;
+  overflow: hidden;
+  z-index: -1000;
+}
+
+.dollar-desc-hidden {
+  display: none;
+  overflow: hidden;
+  z-index: -1000;
+}
+
 @media (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi),
   (min-resolution: 2dppx) {
@@ -32,7 +44,32 @@
 
 @media (min-width: 768px) {
   .registration-page {
-    background-image: url("../../images/gradients/Gradient_1.png");
+    position: relative;
+    background-image: url("../../images/bg_image/gr_dollars_4.png"),
+      url("../../images/gradients/Gradient_1.png");
+    background-size: cover, 100% 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+  }
+
+  .registration-page-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .backdrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 533px;
+    height: 624px;
+    border-radius: 8px;
+
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .logo {
@@ -40,25 +77,53 @@
     height: 35px;
   }
 
+  .dollar-tablet {
+    position: absolute;
+    display: block;
+    top: -18px;
+    right: -234px;
+  }
+
   @media (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .registration-page {
-      background-image: url("../../images/gradients/Gradient_1-2x.png");
+      background-image: url("../../images/bg_image/gr_dollars_4-2x.png"),
+        url("../../images/gradients/Gradient_1-2x.png");
     }
   }
 }
 
 @media (min-width: 1280px) {
   .registration-page {
-    background-image: url("../../images/gradients/Gradient_6.png");
+    background-image: url("../../images/bg_image/gr_dollars_4.png"),
+      url("../../images/gradients/Gradient_6.png");
+    background-size: cover, 100% 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+  }
+
+  .dollar-desc-hidden {
+    position: absolute;
+    display: block;
+  }
+
+  .dollar-desk-1 {
+    top: 0;
+    left: 0;
+  }
+
+  .dollar-desk-2 {
+    top: 0;
+    right: 0;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     .registration-page {
-      background-image: url("../../images/gradients/Gradient_6-2x.png");
+      background-image: url("../../images/bg_image/gr_dollars_4-2x.png"),
+        url("../../images/gradients/Gradient_6-2x.png");
     }
   }
 }

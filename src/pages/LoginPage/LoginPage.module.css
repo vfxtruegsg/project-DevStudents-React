@@ -1,3 +1,11 @@
+.login-page {
+  background-image: url("../../images/gradients/Gradient_2.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
 .login-page-container {
   display: flex;
   flex-direction: column;
@@ -10,16 +18,21 @@
   text-align: center;
 }
 
-.login-page {
-  background-image: url("../../images/gradients/Gradient_2.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 .logo {
   width: 25px;
   height: 25px;
+}
+
+.first-gold {
+  display: none;
+  overflow: hidden;
+  z-index: -1000;
+}
+
+.second-gold {
+  display: none;
+  overflow: hidden;
+  z-index: -1000;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -32,7 +45,42 @@
 
 @media (min-width: 768px) {
   .login-page {
+    position: relative;
     background-image: url("../../images/gradients/Gradient_4.png");
+  }
+
+  .login-page-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .backdrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 533px;
+    height: 570px;
+    border-radius: 8px;
+
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .first-gold {
+    position: absolute;
+    display: block;
+    bottom: -87px;
+    right: -232px;
+  }
+
+  .second-gold {
+    position: absolute;
+    display: block;
+    left: -58px;
+    top: -204px;
   }
 
   .logo {
@@ -52,6 +100,20 @@
 @media (min-width: 1280px) {
   .login-page {
     background-image: url("../../images/gradients/Gradient_7.png");
+  }
+
+  .first-gold {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    right: 0;
+  }
+
+  .second-gold {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2),
