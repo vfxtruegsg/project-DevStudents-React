@@ -1,8 +1,21 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors.js";
 
 const Header = () => {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userEmail = useSelector(selectUser.emailAddress);
+  const userName = getMailboxName(userEmail);
+
+  function getMailboxName(emailAddress) {
+    const parts = emailAddress.split("@");
+    if (parts.length === 2) {
+      return parts[0];
+    } else {
+      return null;
+    }
+  }
   return (
     <header className={css.wrapper}>
       <nav className={css.nav}>
@@ -13,9 +26,9 @@ const Header = () => {
           </div>
         </NavLink>
         <div className={css.loginWrapper}>
-          <NavLink to="/" className={css.linkName}>
+          <NavLink to="/usermodal" className={css.linkName}>
             <div className={css.nameWrapper}>
-              <p className={css.name}>Name</p>
+              <p className={css.name}>{userName}</p>
             </div>
           </NavLink>
           <hr className={css.customHr} />

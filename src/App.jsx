@@ -7,13 +7,14 @@ import { refreshThunk } from "./redux/auth/operations.js";
 import { selectIsRefreshing } from "./redux/auth/selectors.js";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
+import LogoutModule from "./components/LogoutModule/LogoutModule.jsx";
 
 function App() {
-  const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
-  useEffect(() => {
-    dispatch(refreshThunk());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // const isRefreshing = useSelector(selectIsRefreshing);
+  // useEffect(() => {
+  //   dispatch(refreshThunk());
+  // }, [dispatch]);
 
   return (
     <Routes>
@@ -47,7 +48,7 @@ function App() {
         }
       />
 
-      {/* <Route path="*" element={<NotFound/>}/> */}
+      {/* <Route path="*" element={ <RegistrationPage />}/> */}
     </Routes>
   );
 }
