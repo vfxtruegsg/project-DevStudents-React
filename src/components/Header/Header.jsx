@@ -6,7 +6,7 @@ import LogoutModal from "../LogoutModal/LogoutModal.jsx";
 
 const Header = () => {
   const userEmail = useSelector(selectUser);
-  const userName = getMailboxName(userEmail.emailAddress);
+  const userName = getMailboxName(userEmail.email);
 
   function getMailboxName(emailAddress) {
     const parts = emailAddress.split("@");
@@ -17,12 +17,12 @@ const Header = () => {
     }
   }
 
-  const handleClickLogout = () => {
-    <LogoutModal />;
-  };
-  const handleClickUserModal = () => {
-    <UserModal />;
-  };
+  // const handleClickLogout = () => {
+  //   <LogoutModal />;
+  // };
+  // const handleClickUserModal = () => {
+  //   <UserModal />;
+  // };
   return (
     <header className={css.wrapper}>
       <nav className={css.nav}>
@@ -32,7 +32,7 @@ const Header = () => {
         </div>
         <div className={css.loginWrapper}>
           <button
-            onClick={handleClickUserModal}
+            // onClick={handleClickUserModal}
             className={css.linkName}
             type="button"
           >
@@ -42,7 +42,7 @@ const Header = () => {
           </button>
           <hr className={css.customHr} />
           <button
-            onClick={handleClickLogout}
+            // onClick={handleClickLogout}
             className={css.linkExit}
             type="button"
           >
