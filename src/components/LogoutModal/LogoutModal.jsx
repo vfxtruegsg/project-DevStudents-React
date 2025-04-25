@@ -2,6 +2,12 @@ import css from "./LogoutModal.module.css";
 import { Link } from "react-router-dom";
 
 function LogoutModal() {
+  const handleClickLogout = () => {
+    alert("You are logged out!");
+  };
+  const handleClickClosed = () => {
+    alert("I closed myself.!");
+  };
   return (
     <div className={css.logoutContainer}>
       <div className={css.backdrop}>
@@ -13,13 +19,20 @@ function LogoutModal() {
           <p className={css.text}>Are you sure you want to log out?</p>
         </div>
 
-        <button className={`btn-gradient ${css.logoutBtn}`} type="submit">
-          logout
-        </button>
-
-        <Link to="/" className={`btn-classic`} style={{ display: "block" }}>
+        <button
+          onClick={handleClickLogout}
+          className={`btn-gradient ${css.logoutBtn}`}
+          type="button"
+        >
           cancel
-        </Link>
+        </button>
+        <button
+          onClick={handleClickClosed}
+          className={`btn-classic`}
+          type="button"
+        >
+          cancel
+        </button>
       </div>
     </div>
   );
