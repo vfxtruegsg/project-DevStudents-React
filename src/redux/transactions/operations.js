@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import backAPI from "";
+import { backAPI } from "../../utils/axiosUtils.js";
 
 export const getAllTransactions = createAsyncThunk(
   "transactions/getAll",

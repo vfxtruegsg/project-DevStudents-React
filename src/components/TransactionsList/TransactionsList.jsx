@@ -6,32 +6,6 @@ import { selectTransactions } from "../../redux/transactions/selectors.js";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransactions);
-  // const transactions = [
-  //   {
-  //     _id: 1,
-  //     date: "21-21-2121",
-  //     type: "income",
-  //     category: "Income",
-  //     comment: "udygskjg",
-  //     sum: 100,
-  //   },
-  //   {
-  //     _id: 2,
-  //     date: "21-21-2120",
-  //     type: "expense",
-  //     category: "Car",
-  //     comment: "udygskjg",
-  //     sum: 50,
-  //   },
-  //   {
-  //     _id: 3,
-  //     date: "20-21-2121",
-  //     type: "expense",
-  //     category: "Car",
-  //     comment: "udyg fgdskjg ghghgffffff",
-  //     sum: 30,
-  //   },
-  // ];
 
   return (
     <div className={css.transactions_container}>
