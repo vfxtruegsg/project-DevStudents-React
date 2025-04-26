@@ -38,6 +38,7 @@ function App() {
           <LoginPage />
         }
       />
+
       <Route
         path="/register"
         element={
@@ -47,8 +48,6 @@ function App() {
           <RegistrationPage />
         }
       />
-
-      {/* <Route path="*" element={<NotFound/>}/> */}
     </Routes>
   );
 }
