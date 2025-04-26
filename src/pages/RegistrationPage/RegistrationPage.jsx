@@ -1,5 +1,6 @@
 import css from "./RegistrationPage.module.css";
 import { RegistrationForm } from "../../components/RegistrationForm/RegistrationForm.jsx";
+import TransactionsList from "../../components/TransactionsList/TransactionsList.jsx";
 
 export const RegistrationPage = () => {
   const grDollars1 = new URL(
