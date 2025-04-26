@@ -1,8 +1,7 @@
 import css from "./RegistrationPage.module.css";
 import { RegistrationForm } from "../../components/RegistrationForm/RegistrationForm.jsx";
-import TransactionsList from "../../components/TransactionsList/TransactionsList.jsx";
 
-export const RegistrationPage = () => {
+const RegistrationPage = () => {
   const grDollars1 = new URL(
     "../../images/bg_image/gr_dollars_1.png",
     import.meta.url
@@ -46,3 +45,5 @@ export const RegistrationPage = () => {
     </div>
   );
 };
+
+export default RegistrationPage;

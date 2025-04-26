@@ -1,13 +1,14 @@
+import { useDispatch } from "react-redux";
 import css from "./LogoutModal.module.css";
-import { Link } from "react-router-dom";
+import { logoutThunk } from "../../redux/auth/operations.js";
 
-function LogoutModal() {
+function LogoutModal({ modalIsOpen }) {
+  const dispatch = useDispatch();
+
   const handleClickLogout = () => {
-    alert("You are logged out!");
+    dispatch(logoutThunk());
   };
-  const handleClickClosed = () => {
-    alert("I closed myself.!");
-  };
+
   return (
     <div className={css.logoutContainer}>
       <div className={css.backdrop}>
@@ -24,10 +25,12 @@ function LogoutModal() {
           className={`btn-gradient ${css.logoutBtn}`}
           type="button"
         >
-          cancel
+          logout
         </button>
         <button
-          onClick={handleClickClosed}
+          onClick={() => {
+            modalIsOpen(false);
+          }}
           className={`btn-classic`}
           type="button"
         >

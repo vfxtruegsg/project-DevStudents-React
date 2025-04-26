@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import { LoginPage } from "./pages/LoginPage/LoginPage.jsx";
-import { RegistrationPage } from "./pages/RegistrationPage/RegistrationPage.jsx";
 import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
-import Layout from "./components/Layout/Layout.jsx";
 import { setupAxiosInterceptors } from "./services/axiosInterceptors.js";
+import { Loader } from "./components/Loader/Loader.jsx";
+
+const Layout = lazy(() => import("./components/Layout/Layout.jsx"));
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
+const RegistrationPage = lazy(() =>
+  import("./pages/RegistrationPage/RegistrationPage.jsx")
+);
 
 function App() {
   useEffect(() => {
@@ -13,39 +17,46 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        {/* <Route
-          index
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route
+          path="/"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <Layout />
             </PrivateRoute>
           }
-        /> */}
-      </Route>
-
-      <Route
-        path="/login"
+        >
+          {/* <Route
+        index
         element={
-          // <PublicRoute>
-          //   <LoginPage />
-          // </PublicRoute>
-          <LoginPage />
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
         }
-      />
-      <Route
-        path="/register"
-        element={
-          // <PublicRoute>
-          //   <RegistrationPage />
-          // </PublicRoute>
-          <RegistrationPage />
-        }
-      />
+      /> */}
+        </Route>
 
-      {/* <Route path="*" element={<NotFound/>}/> */}
-    </Routes>
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+
+        {/* <Route path="*" element={<NotFound/>}/> */}
+      </Routes>
+    </Suspense>
   );
 }
 

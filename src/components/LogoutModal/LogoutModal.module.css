@@ -1,24 +1,22 @@
-@media (max-width: 767px) {
-  .logoutContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 238px auto;
-    height: 691px;
-    background-image: url("../../images/gradients/Ellipse_19.png");
-    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    overflow: hidden;
-  }
-  .companyLogo {
-    display: none;
-  }
-  .logoutBtn {
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
+.logoutContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 238px auto;
+  height: 691px;
+  background-image: url("../../images/gradients/Ellipse_19.png");
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+.companyLogo {
+  display: none;
+}
+.logoutBtn {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .textWrapper {
@@ -41,6 +39,7 @@
     align-items: center;
     height: 100vh;
   }
+
   .backdrop {
     display: flex;
     flex-direction: column;
@@ -57,6 +56,7 @@
     background-position: center;
     overflow: hidden;
   }
+
   .companyLogo {
     display: flex;
     flex-direction: column;
@@ -66,10 +66,12 @@
     font-weight: 400;
     font-size: 27px;
   }
+
   .logo {
     width: 36px;
     height: 36px;
   }
+
   .textWrapper {
     margin: 53px 0 53px 0;
   }
