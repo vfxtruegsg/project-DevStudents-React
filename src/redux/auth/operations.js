@@ -1,34 +1,29 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { showToastErrorMessage } from "../../utils/showToastErrorMessage.js";
-
-export const backAPI = axios.create({
-  baseURL: "https://project-devstudents-node-js.onrender.com",
-  withCredentials: true,
-});
-
-export const setAuthHeader = (token) => {
-  backAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-export const deleteAuthHeader = () => {
-  delete backAPI.defaults.headers.common.Authorization;
-};
+import {
+  backAPI,
+  setAuthHeader,
+  deleteAuthHeader,
+} from "../../utils/axiosUtils.js";
 
 export const registerThunk = createAsyncThunk(
   "auth/register",
   async (credentials, thunkApi) => {
     try {
-      const { data } = await backAPI.post("/auth/register", credentials);
+      const { data } = await backAPI.post("/auth/register", credentials, {
+        withCredentials: true,
+      });
       setAuthHeader(data.data.accessToken);
+
       return data.data;
     } catch (error) {
       if (error.status === 409) {
         showToastErrorMessage("User already exist! Please log in!");
-        return;
+        return thunkApi.rejectWithValue("User already exist! Please log in!");
       }
 
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -38,12 +33,18 @@ export const loginThunk = createAsyncThunk(
   "auth/login",
   async (credentials, thunkApi) => {
     try {
-      const { data } = await backAPI.post("/auth/login", credentials);
+      const { data } = await backAPI.post("/auth/login", credentials, {
+        withCredentials: true,
+      });
+
       setAuthHeader(data.data.accessToken);
 
-      return data.data;
+      const { data: dataUser } = await backAPI.get("/user/current");
+
+      return { ...data.data, ...dataUser.data };
     } catch (error) {
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -61,12 +62,14 @@ export const logoutThunk = createAsyncThunk(
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          withCredentials: true,
         }
       );
 
       return data;
     } catch (error) {
       showToastErrorMessage(error.message);
+
       return thunkApi.rejectWithValue(error.message);
     } finally {
       deleteAuthHeader();
@@ -82,13 +85,19 @@ export const refreshThunk = createAsyncThunk(
     if (token === null) {
       return thunkApi.rejectWithValue("Token is not exist");
     }
-    setAuthHeader(token);
 
     try {
-      const { data } = await backAPI.post("/auth/refresh");
-      console.log("successfully refresh");
+      const { data } = await backAPI.post(
+        "/auth/refresh",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
 
-      return data;
+      setAuthHeader(data.data.accessToken);
+
+      return data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

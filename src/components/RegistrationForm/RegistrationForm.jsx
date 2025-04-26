@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import css from "./RegistrationForm.module.css";
 import * as yup from "yup";
 import { nanoid } from "nanoid";
@@ -41,6 +41,7 @@ export const RegistrationForm = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (payload) => {
     const data = {
@@ -54,9 +55,10 @@ export const RegistrationForm = () => {
       return;
     }
 
-    dispatch(registerThunk(data));
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
 
-    // navigate("/dashboard"); доделать через unwrap
     reset();
   };
 

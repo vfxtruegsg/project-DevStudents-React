@@ -7,6 +7,7 @@
   --yellow: #ffb627;
   --icon-violet: #734aef;
   --text-violet: #623f8b;
+  --dark-violet: #2e225f;
   --coral: #ff868d;
   --dark-blue: #302e8e;
   --background-gradient-button: linear-gradient(
@@ -15,6 +16,7 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
+  --violet-gradient: linear-gradient(270.02deg, #2e1746 3.2%, #2e225f 99.98%);
   --error: #f00000;
   --background-classic-button: #fcfcfc;
   --box-shadow-button: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
