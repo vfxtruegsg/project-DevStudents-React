@@ -3,10 +3,13 @@ import css from "./Header.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import LogoutModal from "../LogoutModal/LogoutModal.jsx";
+import { useState } from "react";
 
 const Header = () => {
   const userEmail = useSelector(selectUser);
   const userName = getMailboxName(userEmail.email);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
+  const [isClickUserModal, setIsClickUserModal] = useState(false);
 
   function getMailboxName(emailAddress) {
     const parts = emailAddress.split("@");
@@ -17,14 +20,15 @@ const Header = () => {
     }
   }
 
-  // const handleClickLogout = () => {
-  //   <LogoutModal />;
-  // };
-  // const handleClickUserModal = () => {
-  //   <UserModal />;
-  // };
+  const handleClickLogout = () => {
+    setIsLoggedOut(true);
+  };
+  const handleClickUserModal = () => {
+    setIsClickUserModal(true);
+    alert("Here you can change your Avatar!");
+  };
   return (
-    <header className={css.wrapper}>
+    <header className={`container ${css.wrapper}`}>
       <nav className={css.nav}>
         <div className={css.companyLogo}>
           <img className={css.logo} src="/icons.svg" alt="Money Guard logo" />
@@ -32,7 +36,7 @@ const Header = () => {
         </div>
         <div className={css.loginWrapper}>
           <button
-            // onClick={handleClickUserModal}
+            onClick={handleClickUserModal}
             className={css.linkName}
             type="button"
           >
@@ -42,7 +46,7 @@ const Header = () => {
           </button>
           <hr className={css.customHr} />
           <button
-            // onClick={handleClickLogout}
+            onClick={handleClickLogout}
             className={css.linkExit}
             type="button"
           >
@@ -51,6 +55,7 @@ const Header = () => {
               <span className={css.exitText}>Exit</span>
             </div>
           </button>
+          {isLoggedOut ? <LogoutModal /> : null}
         </div>
       </nav>
     </header>

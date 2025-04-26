@@ -1,3 +1,4 @@
+import { useState } from "react";
 import css from "./LogoutModal.module.css";
 import { Link } from "react-router-dom";
 
@@ -6,10 +7,10 @@ function LogoutModal() {
     alert("You are logged out!");
   };
   const handleClickClosed = () => {
-    alert("I closed myself.!");
+    alert("I closed myself!");
   };
   return (
-    <div className={css.logoutContainer}>
+    <div className={`container ${css.logoutContainer}`}>
       <div className={css.backdrop}>
         <div className={css.companyLogo}>
           <img className={css.logo} src="/icons.svg" alt="Money Guard logo" />

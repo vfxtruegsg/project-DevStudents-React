@@ -1,6 +1,7 @@
 .wrapper {
   background: var(--violet-gradient);
   background-color: var(--dark-violet);
+  max-width: 320px;
   padding: 12px 20px;
   color: var(--light-gray);
   @media (min-width: 768px) {

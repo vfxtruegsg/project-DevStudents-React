@@ -1,12 +1,21 @@
 @media (max-width: 767px) {
   .logoutContainer {
+    position: absolute;
+    z-index: 5; /* Added z-index for stacking context */
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -1%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 238px auto;
+    max-width: 320px;
     height: 691px;
-    background-image: url("../../images/gradients/Ellipse_19.png");
-    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+
+    background-image: url("../../images/bg-logout.png");
+    background-size: 100% 100%;
+    /* box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25); */
+    /* box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25); */
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -36,6 +45,11 @@
 
 @media (min-width: 768px) {
   .logoutContainer {
+    position: absolute;
+    z-index: 5; /* Added z-index for stacking context */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,4 +94,9 @@
   color: var(--light-gray);
   bottom: -24px;
   left: 15px;
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
