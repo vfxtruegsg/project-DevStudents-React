@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice.js";
+import transactionsReducer from "./transactions/slice.js";
 import {
   persistStore,
   persistReducer,
