@@ -6,6 +6,7 @@ import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import { setupAxiosInterceptors } from "./services/axiosInterceptors.js";
+import UserModal from "./components/UserModal/UserModal.jsx";
 
 function App() {
   useEffect(() => {
@@ -41,6 +42,15 @@ function App() {
           //   <RegistrationPage />
           // </PublicRoute>
           <RegistrationPage />
+        }
+      />
+      <Route
+        path="/editprofile"
+        element={
+          // <PublicRoute>
+          //   <LoginPage />
+          // </PublicRoute>
+          <UserModal />
         }
       />
 

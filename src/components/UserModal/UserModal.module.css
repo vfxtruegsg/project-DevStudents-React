@@ -1,0 +1,150 @@
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.errors {
+  position: absolute;
+  color: var(--light-gray);
+  bottom: -24px;
+  left: 15px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.saveBtn {
+  margin-bottom: 68px !important;
+  margin-top: 40px;
+}
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 767px) {
+  .editProfileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 238px auto;
+    height: 691px;
+    background-image: url("../../images/gradients/Ellipse_19.png");
+    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+  }
+  .saveBtn {
+    max-width: 280px;
+  }
+}
+@media (min-width: 768px) {
+  .editProfileContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .backdrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0 60px 0;
+    width: 540px;
+    border-radius: 8px;
+    background-image: url("../../images/gradients/Ellipse_19.png");
+    backdrop-filter: blur(100px);
+    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+  }
+  .textWrapper {
+    margin: 53px 0 53px 0;
+  }
+}
+
+/* avatar css */
+
+.avatarUpload {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+.avatarImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.plusButton {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(45deg, #ff6b6b, #f8e71c);
+  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.nameInput {
+  width: 80%;
+  padding: 0.8rem;
+  border: none;
+  margin-top: 1rem;
+  border-bottom: 2px solid var(--light-gray);
+  background: transparent;
+  color: var(--light-gray);
+  font-size: 1rem;
+}
+
+.avatarPlaceholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* close button */
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.closeButton:hover {
+  color: white;
+}
+
+.closeButton:focus {
+  outline: none;
+}
