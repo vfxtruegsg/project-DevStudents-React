@@ -1,5 +1,6 @@
 import css from "./RegistrationPage.module.css";
 import { RegistrationForm } from "../../components/RegistrationForm/RegistrationForm.jsx";
+import TransactionsList from "../../components/TransactionsList/TransactionsList.jsx";
 
 export const RegistrationPage = () => {
   const grDollars1 = new URL(
@@ -16,7 +17,8 @@ export const RegistrationPage = () => {
   );
   return (
     <div className={`${css["registration-page"]}`}>
-      <img
+      <TransactionsList />
+      {/* <img
         className={`${css["dollar-tablet"]} `}
         src={grDollars2}
         alt="Dollars background image"
@@ -40,8 +42,9 @@ export const RegistrationPage = () => {
             <h1>Money Guard</h1>
           </div>
           <RegistrationForm />
+          
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
