@@ -18,7 +18,7 @@ const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab.jsx"));
 const StatisticsTab = lazy(() =>
   import("./pages/StatisticsTab/StatisticsTab.jsx")
 );
-const CurrencyTab = lazy(() => import("./pages/CurrencyTab/CurrencyTab.jsx"));
+const CurrencyTab = lazy(() => import("./components/Currency/Currency.jsx"));
 
 function App() {
   useEffect(() => {
