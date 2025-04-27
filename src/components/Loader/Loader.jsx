@@ -1,5 +1,5 @@
 import { CircleLoader } from "react-spinners";
-import css from "./Logout.module.css";
+import css from "./Loader.module.css";
 
 export const Loader = () => {
   return (

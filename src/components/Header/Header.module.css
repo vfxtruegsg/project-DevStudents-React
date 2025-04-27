@@ -2,7 +2,6 @@
   position: relative;
   background: var(--violet-gradient);
   background-color: var(--dark-violet);
-  max-width: 320px;
   padding: 12px 20px;
   color: var(--light-gray);
   @media (min-width: 768px) {
@@ -51,7 +50,7 @@
 .linkName:hover {
   cursor: pointer;
   color: var(--yellow);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 .nameWrapper {
   display: flex;
@@ -69,15 +68,20 @@
     border: 1px solid var(--light-gray);
   }
 }
-.linkExit:hover {
-  cursor: pointer;
+
+.linkExit:hover .exitText {
   color: var(--yellow);
+  cursor: pointer;
   transform: scale(1.03);
 }
-.exitIcon:hover {
-  /* color: var(--yellow); */
-  fill: green;
+
+.linkExit:hover .exitIcon {
+  cursor: pointer;
+  transform: scale(1.03);
+  filter: brightness(0) saturate(100%) invert(71%) sepia(81%) saturate(1107%)
+    hue-rotate(350deg) brightness(103%) contrast(101%);
 }
+
 .exitWrapper {
   display: flex;
   flex-direction: row;
