@@ -1,3 +1,4 @@
+import { useState } from "react";
 import css from "./LogoutModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutThunk } from "../../redux/auth/operations.js";
