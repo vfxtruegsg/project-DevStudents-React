@@ -10,6 +10,9 @@ const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage.jsx")
 );
+const DashboardPage = lazy(() =>
+  import("./pages/DashboardPage/DashboardPage.jsx")
+);
 
 function App() {
   useEffect(() => {
@@ -19,22 +22,15 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <Layout />
-            </PrivateRoute>
-          }
-        >
-          {/* <Route
-        index
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      /> */}
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
 
         <Route

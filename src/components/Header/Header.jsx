@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors.js";
 import LogoutModal from "../LogoutModal/LogoutModal.jsx";
 import { useState } from "react";
+import { openLogOutModal } from "../../redux/modal/slice.js";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -19,12 +20,10 @@ const Header = () => {
     }
   }
 
-  const [logoutModalIsOpen, setLogoutModalIsOpen] = useState(false);
-  const [userModalIsOpen, setUserModalIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <>
-      {logoutModalIsOpen && <LogoutModal modalIsOpen={setLogoutModalIsOpen} />}
       <header className={css.wrapper}>
         <nav className={css.nav}>
           <div className={css.companyLogo}>
@@ -44,7 +43,7 @@ const Header = () => {
             <hr className={css.customHr} />
             <button
               onClick={() => {
-                setLogoutModalIsOpen(true);
+                dispatch(openLogOutModal());
               }}
               className={css.linkExit}
               type="button"
@@ -56,6 +55,7 @@ const Header = () => {
             </button>
           </div>
         </nav>
+        <LogoutModal />
       </header>
     </>
   );

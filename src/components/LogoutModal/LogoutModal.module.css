@@ -1,85 +1,51 @@
 .logoutContainer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 238px auto;
-  height: 691px;
-  background-image: url("../../images/gradients/Ellipse_19.png");
-  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  overflow: hidden;
 }
+
+.backdrop {
+  width: 100%;
+  max-width: 320px;
+}
+
 .companyLogo {
   display: none;
 }
-.logoutBtn {
-  margin-top: 40px;
-  margin-bottom: 20px;
+
+.textLogo {
+  font-weight: 400;
+  font-size: 26px;
+  color: #fbfbfb;
 }
 
 .textWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  width: 214px;
   margin-bottom: 40px;
-  font-size: 18px;
+}
+
+.text {
   font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: var(--full-white);
 }
-.logoutBtn {
-  margin-bottom: 20px;
-}
 
-@media (min-width: 768px) {
-  .logoutContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .backdrop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 0 60px 0;
-    width: 533px;
-    height: 477px;
-    border-radius: 8px;
-    background-image: url("../../images/gradients/Ellipse_19.png");
-    backdrop-filter: blur(100px);
-    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    overflow: hidden;
-  }
-
+@media screen and (min-width: 768px) {
   .companyLogo {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 76px;
-    font-weight: 400;
-    font-size: 27px;
-  }
-
-  .logo {
-    width: 36px;
-    height: 36px;
+    margin-bottom: 52px;
   }
 
   .textWrapper {
-    margin: 53px 0 53px 0;
+    margin-bottom: 52px;
   }
-}
 
-.errors {
-  position: absolute;
-  color: var(--light-gray);
-  bottom: -24px;
-  left: 15px;
+  .btn {
+    display: block;
+  }
 }

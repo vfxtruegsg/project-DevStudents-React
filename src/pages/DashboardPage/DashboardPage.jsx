@@ -2,10 +2,10 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "./DashboardPage.module.css";
 
-import Sidebar from "./components/Sidebar";
-import Stats from "./components/Stats";
-import Chart from "./components/Chart";
-import Transactions from "./components/Transactions";
+// import Sidebar from "./components/Sidebar";
+// import Stats from "./components/Stats";
+// import Chart from "./components/Chart";
+// import Transactions from "./components/Transactions";
 
 const DashboardPage = () => {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
@@ -14,7 +14,7 @@ const DashboardPage = () => {
 
   return (
     <div className={styles["dashboard-container"]}>
-      {isDesktop && <Sidebar />}
+      {/* {isDesktop && <Sidebar />}
       <div className={styles["main-content"]}>
         <div className={styles["content-grid"]}>
           <Stats />
@@ -22,7 +22,7 @@ const DashboardPage = () => {
           {(isTablet || isMobile) && <Chart compact />}
           <Transactions />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
