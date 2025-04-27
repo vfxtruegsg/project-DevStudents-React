@@ -1,0 +1,18 @@
+.chartWrapper {
+  width: 280px;
+  height: 280px;
+}
+
+@media (min-width: 728px) {
+  .chartWrapper {
+    width: 336px;
+    height: 336px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .chartWrapper {
+    width: 288px;
+    height: 288px;
+  }
+}

@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { toast } from "react-toastify";
+
+import { showToastErrorMessage } from "../../utils/showToastErrorMessage"; // Новый импорт!
 
 import css from "./EditTransactionForm.module.css";
 import { getEditTxSchema } from "./validation";
@@ -35,7 +36,7 @@ export default function EditTransactionForm({ tx, onClose, onSuccess }) {
       onSuccess?.(data);
       onClose();
     } catch (e) {
-      toast.error(e.response?.data?.message || e.message);
+      showToastErrorMessage(e.response?.data?.message || e.message); // Теперь через утилиту
     }
   };
 
@@ -62,7 +63,6 @@ export default function EditTransactionForm({ tx, onClose, onSuccess }) {
           onSubmit={handleSubmit(onSubmit)}
           noValidate
         >
-          {/* Заголовок + переключатель */}
           <h2 className={css["edittransactionform-title"]}>Edit transaction</h2>
 
           <div className={css["edittransactionform-typeSwitch"]}>
@@ -90,7 +90,6 @@ export default function EditTransactionForm({ tx, onClose, onSuccess }) {
           {/* CATEGORY */}
           {isExpense && (
             <div className={css["edittransactionform-row"]}>
-              <span className={css["edittransactionform-label"]}></span>
               <select
                 {...register("category")}
                 className={css["edittransactionform-select"]}
@@ -117,7 +116,7 @@ export default function EditTransactionForm({ tx, onClose, onSuccess }) {
             </span>
           )}
 
-          {/* SUM + DATE*/}
+          {/* SUM + DATE */}
           <div className={css["edittransactionform-double"]}>
             <div className={css["edittransactionform-half"]}>
               <div className={css["edittransactionform-inputWrapper"]}>
