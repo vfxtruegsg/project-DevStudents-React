@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { showToastErrorMessage } from "../../utils/showToastErrorMessage"; // Новый импорт!
+import { showToastErrorMessage } from "../../utils/showToastErrorMessage";
 
 import css from "./EditTransactionForm.module.css";
 import { getEditTxSchema } from "./validation";
