@@ -3,7 +3,6 @@ import css from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors.js";
 import { openLogOutModal } from "../../redux/modal/slice.js";
-// import { useState } from "react";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
