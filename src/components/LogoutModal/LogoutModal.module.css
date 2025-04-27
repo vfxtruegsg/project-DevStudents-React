@@ -34,6 +34,21 @@
 }
 
 @media screen and (min-width: 768px) {
+  .logoutContainer {
+    background-image: url("../../images/gradients/Ellipse_19.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .logoutContainer {
+      background-image: url("../../images/gradients/Ellipse_19-2x.png");
+    }
+  }
+
   .companyLogo {
     display: flex;
     flex-direction: column;
@@ -47,5 +62,6 @@
 
   .btn {
     display: block;
+    margin: 0 auto;
   }
 }

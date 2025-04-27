@@ -1,0 +1,48 @@
+.homeSection {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../images/gradients/Gradient_2.png"),
+    url("../../images/gradients/Ellipse_19.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  /* backdrop-filter: blur(200px); */
+  min-height: 508px;
+}
+.homeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+}
+.homeItemIcon {
+}
+.homeItemStatistics {
+}
+.homeItemCurrency {
+  display: flex;
+}
+
+.homeList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 12px 20px;
+  /* @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+    padding: 0px 32px;
+    margin-top: 80px;
+  } */
+}
+.homeText {
+  display: none;
+}
+
+.currencyChart {
+  /* order: 1; */
+}
