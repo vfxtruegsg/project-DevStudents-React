@@ -1,28 +1,26 @@
 .homeSection {
   display: flex;
-  flex-direction: column;
-  background-image: url("../../images/gradients/Gradient_2.png"),
-    url("../../images/gradients/Ellipse_19.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  overflow: hidden;
-  /* backdrop-filter: blur(200px); */
-  min-height: 508px;
+  align-items: flex-start;
+  /* min-width: 1280px; */
 }
+
 .homeWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0px 20px;
+  @media (min-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .homeItemIcon {
-}
-.homeItemStatistics {
-}
-.homeItemCurrency {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
 }
 
 .homeList {
@@ -32,17 +30,18 @@
   justify-content: center;
   gap: 32px;
   padding: 12px 20px;
-  /* @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 32px;
-    padding: 0px 32px;
-    margin-top: 80px;
-  } */
-}
-.homeText {
-  display: none;
+  @media (min-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 40px 0 28px 0;
+    & .homeText {
+      display: flex;
+    }
+  }
 }
 
-.currencyChart {
-  /* order: 1; */
+.homeText {
+  display: none;
 }

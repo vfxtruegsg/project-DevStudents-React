@@ -28,9 +28,9 @@ const DashboardPage = () => {
             <div className={css.dashboardInf}>
               <div>
                 <div className={css.navigation}>{/* <Navigation /> */}</div>
-                <div className={css.balance}>{!isMobile && <Balance />}</div>
+                {/* <div className={css.balance}>{!isMobile && <Balance />}</div> */}
               </div>
-              <div className={css.currency}>{!isMobile && <Currency />}</div>
+              {/* <div className={css.currency}>{!isMobile && <Currency />}</div> */}
             </div>
             <div className={css.divider}></div>
             <Suspense fallback={<Loader />}>

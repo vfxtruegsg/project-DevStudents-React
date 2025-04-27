@@ -14,7 +14,7 @@ const RegistrationPage = lazy(() =>
 const DashboardPage = lazy(() =>
   import("./pages/DashboardPage/DashboardPage.jsx")
 );
-const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab.jsx"));
+const HomeTab = lazy(() => import("./components/Home/Home.jsx"));
 const StatisticsTab = lazy(() =>
   import("./pages/StatisticsTab/StatisticsTab.jsx")
 );

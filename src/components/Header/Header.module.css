@@ -2,7 +2,6 @@
   position: relative;
   background: var(--violet-gradient);
   background-color: var(--dark-violet);
-  max-width: 320px;
   padding: 12px 20px;
   color: var(--light-gray);
   @media (min-width: 768px) {
@@ -73,10 +72,6 @@
   cursor: pointer;
   color: var(--yellow);
   transform: scale(1.03);
-}
-.exitIcon:hover {
-  /* color: var(--yellow); */
-  fill: green;
 }
 .exitWrapper {
   display: flex;
