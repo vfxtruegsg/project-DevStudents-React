@@ -18,39 +18,46 @@ function LogoutModal() {
 
   const isLogoutModalOpen = useSelector(selectIsLogOutModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
-  return (
-    <ModalTemplate isOpenModal={isLogoutModalOpen}>
-      {isLoading && <Loader />}
-      <div className={`${css.logoutContainer} container`}>
-        <div className={css.backdrop}>
-          <div className={css.companyLogo}>
-            <img className={css.logo} src="/icons.svg" alt="Money Guard logo" />
-            <p className={css.textLogo}>Money&nbsp;Guard</p>
-          </div>
-          <div className={css.textWrapper}>
-            <p className={css.text}>Are you sure you want to log out?</p>
-          </div>
 
-          <button
-            onClick={handleClickLogout}
-            className={`btn-gradient ${css.btn}`}
-            type="button"
-            style={{ marginBottom: 20 }}
-          >
-            logout
-          </button>
-          <button
-            onClick={() => {
-              dispatch(closeModal());
-            }}
-            className={`btn-classic ${css.btn}`}
-            type="button"
-          >
-            cancel
-          </button>
+  return (
+    <>
+      {isLoading && <Loader />}
+      <ModalTemplate isOpenModal={isLogoutModalOpen}>
+        <div className={`${css.logoutContainer} container`}>
+          <div className={css.backdrop}>
+            <div className={css.companyLogo}>
+              <img
+                className={css.logo}
+                src="/icons.svg"
+                alt="Money Guard logo"
+              />
+              <p className={css.textLogo}>Money&nbsp;Guard</p>
+            </div>
+            <div className={css.textWrapper}>
+              <p className={css.text}>Are you sure you want to log out?</p>
+            </div>
+
+            <button
+              onClick={handleClickLogout}
+              className={`btn-gradient ${css.btn}`}
+              type="button"
+              style={{ marginBottom: 20 }}
+            >
+              logout
+            </button>
+            <button
+              onClick={() => {
+                dispatch(closeModal());
+              }}
+              className={`btn-classic ${css.btn}`}
+              type="button"
+            >
+              cancel
+            </button>
+          </div>
         </div>
-      </div>
-    </ModalTemplate>
+      </ModalTemplate>
+    </>
   );
 }
 

@@ -12,6 +12,9 @@ import { Outlet } from "react-router-dom";
 
 const Currency = lazy(() => import("../../components/Currency/Currency.jsx"));
 const Balance = lazy(() => import("../../components/Balance/Balance.jsx"));
+const LogoutModal = lazy(() =>
+  import("../../components/LogoutModal/LogoutModal.jsx")
+);
 
 const DashboardPage = () => {
   const { isMobile } = useMedia();
@@ -33,6 +36,7 @@ const DashboardPage = () => {
             <Suspense fallback={<Loader />}>
               <Outlet />
             </Suspense>
+            <LogoutModal />
           </div>
         </main>
       </section>

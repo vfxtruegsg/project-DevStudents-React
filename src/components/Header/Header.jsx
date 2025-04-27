@@ -2,8 +2,6 @@ import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors.js";
-import LogoutModal from "../LogoutModal/LogoutModal.jsx";
-import { useState } from "react";
 import { openLogOutModal } from "../../redux/modal/slice.js";
 
 const Header = () => {
@@ -55,7 +53,6 @@ const Header = () => {
             </button>
           </div>
         </nav>
-        <LogoutModal />
       </header>
     </>
   );

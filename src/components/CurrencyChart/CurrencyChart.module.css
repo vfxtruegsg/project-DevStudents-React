@@ -13,7 +13,6 @@
   left: 39px;
   top: 28px;
   position: absolute;
-  z-index: 1;
 }
 
 .second_circle {
@@ -22,7 +21,6 @@
     transform: translateX(-45%);
   }
 
-  z-index: 1;
   right: 71px;
   top: 6px;
   position: absolute;
@@ -68,7 +66,6 @@
     left: 57px;
     top: -5px;
     position: absolute;
-    z-index: 1;
   }
 
   .second_circle {
@@ -77,7 +74,6 @@
       transform: translateX(-45%);
     }
 
-    z-index: 1;
     right: 75px;
     top: -39px;
     position: absolute;
