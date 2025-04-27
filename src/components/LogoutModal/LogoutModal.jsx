@@ -4,6 +4,8 @@ import { logoutThunk } from "../../redux/auth/operations.js";
 import { ModalTemplate } from "../ModalTemplate/ModalTemplate.jsx";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectIsLogOutModalOpen } from "../../redux/modal/selectors.js";
+import { selectisAuthLoading } from "../../redux/auth/selectors.js";
+import { Loader } from "../Loader/Loader.jsx";
 
 function LogoutModal() {
   const dispatch = useDispatch();
@@ -15,9 +17,10 @@ function LogoutModal() {
   };
 
   const isLogoutModalOpen = useSelector(selectIsLogOutModalOpen);
-
+  const isLoading = useSelector(selectisAuthLoading);
   return (
     <ModalTemplate isOpenModal={isLogoutModalOpen}>
+      {isLoading && <Loader />}
       <div className={`${css.logoutContainer} container`}>
         <div className={css.backdrop}>
           <div className={css.companyLogo}>
