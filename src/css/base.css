@@ -80,6 +80,8 @@ body {
   overflow-x: hidden;
 }
 
+/* body */
+
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -96,10 +98,47 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+
+  background-image: url("../images/gradients/Gradient_2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
-.no-scroll {
-  overflow: hidden;
+@media (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  body {
+    background-image: url("../images/gradients/Gradient_2-2x.png");
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    background-image: url("../images/gradients/Gradient_5.png");
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    body {
+      background-image: url("../images/gradients/Gradient_5-2x.png");
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    background-image: url("../images/gradients/Gradient_3.png");
+  }
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    body {
+      background-image: url("../images/gradients/Gradient_3-2x.png");
+    }
+  }
 }
 
 /* налаштування розмірів екрану */
@@ -246,6 +285,10 @@ h3 {
   &:focus {
     opacity: 0.9;
   }
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
