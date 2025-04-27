@@ -1,41 +1,54 @@
 import { useState } from "react";
 import css from "./LogoutModal.module.css";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutThunk } from "../../redux/auth/operations.js";
+import { ModalTemplate } from "../ModalTemplate/ModalTemplate.jsx";
+import { closeModal } from "../../redux/modal/slice.js";
+import { selectIsLogOutModalOpen } from "../../redux/modal/selectors.js";
 
 function LogoutModal() {
-  const handleClickLogout = () => {
-    alert("You are logged out!");
-  };
-  const handleClickClosed = () => {
-    alert("I closed myself!");
-  };
-  return (
-    <div className={`container ${css.logoutContainer}`}>
-      <div className={css.backdrop}>
-        <div className={css.companyLogo}>
-          <img className={css.logo} src="/icons.svg" alt="Money Guard logo" />
-          <p className={css.textLogo}>Money&nbsp;Guard</p>
-        </div>
-        <div className={css.textWrapper}>
-          <p className={css.text}>Are you sure you want to log out?</p>
-        </div>
+  const dispatch = useDispatch();
 
-        <button
-          onClick={handleClickLogout}
-          className={`btn-gradient ${css.logoutBtn}`}
-          type="button"
-        >
-          cancel
-        </button>
-        <button
-          onClick={handleClickClosed}
-          className={`btn-classic`}
-          type="button"
-        >
-          cancel
-        </button>
+  const handleClickLogout = () => {
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => dispatch(closeModal()));
+  };
+
+  const isLogoutModalOpen = useSelector(selectIsLogOutModalOpen);
+
+  return (
+    <ModalTemplate isOpenModal={isLogoutModalOpen}>
+      <div className={`${css.logoutContainer} container`}>
+        <div className={css.backdrop}>
+          <div className={css.companyLogo}>
+            <img className={css.logo} src="/icons.svg" alt="Money Guard logo" />
+            <p className={css.textLogo}>Money&nbsp;Guard</p>
+          </div>
+          <div className={css.textWrapper}>
+            <p className={css.text}>Are you sure you want to log out?</p>
+          </div>
+
+          <button
+            onClick={handleClickLogout}
+            className={`btn-gradient ${css.btn}`}
+            type="button"
+            style={{ marginBottom: 20 }}
+          >
+            logout
+          </button>
+          <button
+            onClick={() => {
+              dispatch(closeModal());
+            }}
+            className={`btn-classic ${css.btn}`}
+            type="button"
+          >
+            cancel
+          </button>
+        </div>
       </div>
-    </div>
+    </ModalTemplate>
   );
 }
 

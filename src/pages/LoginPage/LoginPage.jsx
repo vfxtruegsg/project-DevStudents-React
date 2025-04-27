@@ -1,7 +1,7 @@
 import { LoginForm } from "../../components/LoginForm/LoginForm.jsx";
 import css from "./LoginPage.module.css";
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const grCoins1 = new URL(
     "../../images/bg_image/golden_coins_1.png",
     import.meta.url
@@ -35,3 +35,5 @@ export const LoginPage = () => {
     </div>
   );
 };
+
+export default LoginPage;

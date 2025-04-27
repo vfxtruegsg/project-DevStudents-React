@@ -1,6 +1,6 @@
 .dashboard-container {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   background: linear-gradient(to bottom, #1e0036, #12002b);
   color: white;
 }

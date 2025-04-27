@@ -155,7 +155,7 @@ h3 {
   font-size: 16px;
   line-height: 1.3;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 /* Name / Exit */
@@ -217,12 +217,12 @@ h3 {
   background: var(--background-gradient-button);
   border: none;
 
-  /* transition: background-color var(--animation);
+  transition: opacity var(--animation);
 
   &:hover,
   &:focus {
-    background-color: var(--background-save-button);
-  } */
+    opacity: 0.9;
+  }
 }
 
 /* стилі для кнопок з білим фоном */
@@ -239,6 +239,13 @@ h3 {
   text-align: center;
   background-color: var(--background-classic-button);
   border: none;
+
+  transition: opacity var(--animation);
+
+  &:hover,
+  &:focus {
+    opacity: 0.9;
+  }
 }
 
 @media (min-width: 768px) {
