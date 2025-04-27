@@ -9,6 +9,7 @@ import { PublicRoute } from "./components/PublicRoute/PublicRoute.jsx";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 
+
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -19,6 +20,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route />
         {/* <Route
           index
           element={
