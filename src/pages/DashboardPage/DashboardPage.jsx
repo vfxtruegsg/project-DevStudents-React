@@ -1,9 +1,11 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import css from "./DashboardPage.module.css";
 import { useMedia } from "../../hooks/useMedia.js";
 import Layout from "../../components/Layout/Layout.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { Outlet } from "react-router-dom";
+
+import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
 
 // import Sidebar from "./components/Sidebar";
 // import Stats from "./components/Stats";
@@ -18,6 +20,23 @@ const LogoutModal = lazy(() =>
 
 const DashboardPage = () => {
   const { isMobile } = useMedia();
+
+  // Состояния для выбранного месяца и года
+  const [selectedMonth, setSelectedMonth] = useState("All month");
+  const [selectedYear, setSelectedYear] = useState(
+    `${new Date().getFullYear()}`
+  );
+
+  // Функции для изменения месяца и года
+  const handleMonthChange = (month) => {
+    setSelectedMonth(month);
+    console.log("Выбран месяц:", month);
+  };
+
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
+    console.log("Выбран год:", year);
+  };
 
   return (
     <>
@@ -34,6 +53,14 @@ const DashboardPage = () => {
             </div>
             <div className={css.divider}></div>
             <Suspense fallback={<Loader />}>
+              <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+                <StatisticsDashboard
+                  selectedMonth={selectedMonth}
+                  selectedYear={selectedYear}
+                  onMonthChange={handleMonthChange}
+                  onYearChange={handleYearChange}
+                />
+              </div>
               <Outlet />
             </Suspense>
             <LogoutModal />
