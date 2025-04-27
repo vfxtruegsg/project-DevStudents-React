@@ -46,6 +46,12 @@
     gap: 12px;
   }
 }
+
+.linkName:hover {
+  cursor: pointer;
+  color: var(--yellow);
+  transform: scale(1.03);
+}
 .nameWrapper {
   display: flex;
   align-items: center;
@@ -61,6 +67,15 @@
     height: 30px;
     border: 1px solid var(--light-gray);
   }
+}
+.linkExit:hover {
+  cursor: pointer;
+  color: var(--yellow);
+  transform: scale(1.03);
+}
+.exitIcon:hover {
+  /* color: var(--yellow); */
+  fill: green;
 }
 .exitWrapper {
   display: flex;

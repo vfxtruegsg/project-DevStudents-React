@@ -55,7 +55,7 @@ const Header = () => {
               <span className={css.exitText}>Exit</span>
             </div>
           </button>
-          {isLoggedOut ? <LogoutModal /> : null}
+          {isLoggedOut && <LogoutModal />}
         </div>
       </nav>
     </header>

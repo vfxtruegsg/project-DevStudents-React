@@ -88,15 +88,18 @@
     margin: 53px 0 53px 0;
   }
 }
-
-.errors {
-  position: absolute;
-  color: var(--light-gray);
-  bottom: -24px;
-  left: 15px;
-}
 body {
   height: 100vh;
   overflow: hidden;
   position: relative;
 }
+/* .filter{
+  filter: blur(2px);
+} */
+
+/* .errors {
+  position: absolute;
+  color: var(--light-gray);
+  bottom: -24px;
+  left: 15px;
+} */
