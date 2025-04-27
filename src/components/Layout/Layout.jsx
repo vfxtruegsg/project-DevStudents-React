@@ -6,10 +6,6 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main>
-        {/* <DashboardPage /> */}
-        <Outlet />
-      </main>
     </>
   );
 };

@@ -27,7 +27,7 @@ export const ModalTemplate = ({ children, isOpenModal, className = "" }) => {
       onRequestClose={() => dispatch(closeModal())}
       bodyOpenClassName={s.html}
       className={`${s.modal} ${className}`}
-      overlayClassName={s.overlay}
+      overlayClassName={`${s.overlay}`}
       preventScroll={false}
     >
       <div className={s.modalContent}>{children}</div>

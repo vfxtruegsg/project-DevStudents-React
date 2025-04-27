@@ -38,7 +38,7 @@
   color: rgba(251, 251, 251, 1);
 }
 .hryvniaIcon {
-  fill: #ffffff;
+  filter: invert(100%);
   width: 20px;
   height: 28px;
 }
