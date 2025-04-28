@@ -1,9 +1,11 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import css from "./DashboardPage.module.css";
 import { useMedia } from "../../hooks/useMedia.js";
 import Layout from "../../components/Layout/Layout.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { Outlet } from "react-router-dom";
+
+import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
 
 // import Sidebar from "./components/Sidebar";
 // import Stats from "./components/Stats";

@@ -1,3 +1,4 @@
+import ButtonAddTransactions from "../../components/ButtonAddTransactions/ButtonAddTransactions";
 import s from "./HomeTab.module.css";
 import Balance from "../../components/Balance/Balance.jsx";
 import TransactionsList from "../../components/TransactionsList/TransactionsList.jsx";
@@ -21,6 +22,7 @@ const HomeTab = () => {
     <>
       <Balance number={currentUserData.balance} />
       <TransactionsList transactions={transactions} />
+      <ButtonAddTransactions />
     </>
   );
 };
