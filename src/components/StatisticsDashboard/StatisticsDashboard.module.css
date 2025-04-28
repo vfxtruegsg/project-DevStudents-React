@@ -77,13 +77,13 @@
   padding: 10px 16px;
   cursor: pointer;
   color: #fff;
-  transition: background 0.2s;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .dropdownItem:hover,
 .dropdownItemActive {
   background-color: rgba(255, 255, 255, 0.15);
-  color: #ff8a65;
+  color: var(--coral);
 }
 
 @media (min-width: 768px) {
@@ -99,6 +99,14 @@
     flex-direction: row;
     gap: 16px;
   }
+
+  .dropdownWrapper {
+    width: 160px;
+  }
+
+  .dropdownWrapper::after {
+    right: 21px;
+  }
 }
 
 @media (min-width: 1280px) {
@@ -112,5 +120,13 @@
 
   .wrapper {
     gap: 32px;
+  }
+
+  .dropdownWrapper {
+    width: 182px;
+  }
+
+  .dropdownWrapper::after {
+    right: 21px;
   }
 }
