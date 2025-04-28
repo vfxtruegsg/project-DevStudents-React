@@ -75,7 +75,7 @@ const StatisticsTab = () => {
   return (
     <div className={`container`}>
       <h1 className={`${s.header}`}>Statistics</h1>
-      <Chart transactions={transactions} balance={currentUserData.balance} />
+      <Chart data={transactions} balance={currentUserData.balance} />
       <StatisticsDashboard
         selectedMonth={selectedMonth}
         selectedYear={selectedYear}
