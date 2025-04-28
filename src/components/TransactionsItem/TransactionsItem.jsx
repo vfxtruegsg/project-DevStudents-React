@@ -3,16 +3,27 @@ import css from "./TransactionsItem.module.css";
 import MediaQuery from "react-responsive";
 import { deleteTransaction } from "../../redux/transactions/operations.js";
 import { changeEditTransaction } from "../../redux/transactions/slice.js";
+import { openEditModal } from "../../redux/modal/slice.js";
+
+function getDate(incomeDate) {
+  const date = new Date(incomeDate);
+  const year = date.getFullYear() - 2000;
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return [day, month, year].join(".");
+}
 
 const TransactionsItem = ({
   transaction: { _id, date, type, category, comment, sum },
 }) => {
+  const parsedDate = getDate(date);
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteTransaction(_id));
   };
   const handleEdit = () => {
     dispatch(changeEditTransaction(_id));
+    dispatch(openEditModal());
   };
   return (
     <>
@@ -23,7 +34,7 @@ const TransactionsItem = ({
           <ul className={css.transaction_list}>
             <li className={css.transaction_item}>
               <div className={css.transaction_title}>Date</div>
-              <div className={`p-classic`}>{date}</div>
+              <div className={`p-classic`}>{parsedDate}</div>
             </li>
             <li className={css.transaction_item}>
               <div className={css.transaction_title}>Type</div>
@@ -75,7 +86,7 @@ const TransactionsItem = ({
       </MediaQuery>
       <MediaQuery minWidth={768}>
         <td className={css.transaction_item}>
-          <div className={`p-classic`}>{date}</div>
+          <div className={`p-classic`}>{parsedDate}</div>
         </td>
         <td className={css.transaction_item}>
           <div className={(`p-classic`, css.center)}>

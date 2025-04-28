@@ -1,0 +1,57 @@
+.statistics_table {
+}
+.statistics_table_head {
+  font-weight: 600;
+  font-size: 16px;
+}
+.statistics_table_head th {
+  padding: 16px;
+  background-color: rgba(82, 59, 126, 0.6);
+}
+.statistics_table td {
+  padding: 16px;
+  vertical-align: middle;
+}
+.statistics_table_head th:first-child {
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+}
+.statistics_table_head th:last-child {
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.statistics_table_cell {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.statistics_table_cell_sum {
+  text-align: right;
+}
+.statistics_table_tr {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  font-size: 14px;
+}
+.statistics_table_title {
+  font-weight: 600;
+  font-size: 14px;
+}
+.statistics_table_expvalue {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ff868d;
+  text-align: right;
+}
+.statistics_table_incvalue {
+  font-weight: 600;
+  font-size: 14px;
+  color: #ffb627;
+  text-align: right;
+}
+
+.statistics_table_colorbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+}
