@@ -8,6 +8,8 @@ import Header from "../../components/Header/Header.jsx";
 
 import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
 
+import StatisticsDashboard from "../../components/StatisticsDashboard/StatisticsDashboard";
+
 // import Sidebar from "./components/Sidebar";
 // import Stats from "./components/Stats";
 // import Chart from "./components/Chart";

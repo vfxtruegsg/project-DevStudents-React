@@ -76,7 +76,7 @@ const transactionsSlice = createSlice({
       .addCase(getSummary.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.summary = action.payload;
+        state.summary = action.payload.data;
       })
 
       .addCase(getCategories.fulfilled, (state, action) => {

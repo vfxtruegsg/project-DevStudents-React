@@ -1,9 +1,7 @@
 import React from "react";
 import css from "./Balance.module.css";
 
-const Balance = () => {
-  const number = 24000;
-
+const Balance = ({ number }) => {
   const numberFormat = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
