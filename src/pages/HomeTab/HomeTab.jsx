@@ -1,7 +1,13 @@
+import ButtonAddTransactions from "../../components/ButtonAddTransactions/ButtonAddTransactions";
+
 import s from "./HomeTab.module.css";
 
 const HomeTab = () => {
-  return <p>lalala</p>;
+  return (
+    <>
+      <ButtonAddTransactions />
+    </>
+  );
 };
 
 export default HomeTab;
