@@ -1,5 +1,8 @@
-import s from "./StatisticsTab.module.css";
+import css from "./StatisticsTab.module.css";
+import React from "react";
 
-const StatisticsTab = () => {};
+const StatisticsTab = () => {
+  return <div>StatisticsTab</div>;
+};
 
 export default StatisticsTab;

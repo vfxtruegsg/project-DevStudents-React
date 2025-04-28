@@ -4,6 +4,7 @@ import { useMedia } from "../../hooks/useMedia.js";
 import Layout from "../../components/Layout/Layout.jsx";
 import { Loader } from "../../components/Loader/Loader.jsx";
 import { Outlet } from "react-router-dom";
+import Header from "../../components/Header/Header.jsx";
 
 // import Sidebar from "./components/Sidebar";
 // import Stats from "./components/Stats";
@@ -21,25 +22,23 @@ const DashboardPage = () => {
 
   return (
     <>
-      <Layout />
-      <section className={css.dashboardPage}>
-        <main>
-          <div className={css.dashboard}>
-            <div className={css.dashboardInf}>
-              <div>
-                <div className={css.navigation}>{/* <Navigation /> */}</div>
-                {/* <div className={css.balance}>{!isMobile && <Balance />}</div> */}
-              </div>
-              {/* <div className={css.currency}>{!isMobile && <Currency />}</div> */}
+      <Header />
+      <main className={css.dashboardPage}>
+        <div className={css.dashboard}>
+          <div className={css.dashboardInf}>
+            <div>
+              <div className={css.navigation}>{/* <Navigation /> */}</div>
+              {/* <div className={css.balance}>{!isMobile && <Balance />}</div> */}
             </div>
-            <div className={css.divider}></div>
-            <Suspense fallback={<Loader />}>
-              <Outlet />
-            </Suspense>
-            <LogoutModal />
+            {/* <div className={css.currency}>{!isMobile && <Currency />}</div> */}
           </div>
-        </main>
-      </section>
+          <div className={css.divider}></div>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+          <LogoutModal />
+        </div>
+      </main>
     </>
   );
 };
