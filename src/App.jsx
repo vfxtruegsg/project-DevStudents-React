@@ -18,7 +18,7 @@ const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab.jsx"));
 const StatisticsTab = lazy(() =>
   import("./pages/StatisticsTab/StatisticsTab.jsx")
 );
-const CurrencyTab = lazy(() => import("./components/Currency/Currency.jsx"));
+const CurrencyTab = lazy(() => import("./pages/CurrencyTab/CurrencyTab.jsx"));
 
 function App() {
   useEffect(() => {
@@ -38,7 +38,7 @@ function App() {
             </PrivateRoute>
           }
         >
-          <Route index element={<HomeTab />} />
+          <Route path="home" element={<HomeTab />} />
           <Route path="statistics" element={<StatisticsTab />} />
           <Route
             path="currency"
