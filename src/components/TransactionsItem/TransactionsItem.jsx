@@ -3,6 +3,7 @@ import css from "./TransactionsItem.module.css";
 import MediaQuery from "react-responsive";
 import { deleteTransaction } from "../../redux/transactions/operations.js";
 import { changeEditTransaction } from "../../redux/transactions/slice.js";
+import { openEditModal } from "../../redux/modal/slice.js";
 
 const TransactionsItem = ({
   transaction: { _id, date, type, category, comment, sum },
@@ -13,6 +14,7 @@ const TransactionsItem = ({
   };
   const handleEdit = () => {
     dispatch(changeEditTransaction(_id));
+    dispatch(openEditModal());
   };
   return (
     <>
