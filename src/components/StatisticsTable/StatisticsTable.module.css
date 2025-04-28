@@ -42,13 +42,13 @@
 .statistics_table_expvalue {
   font-weight: 600;
   font-size: 14px;
-  color: #ff868d;
+  color: var(--coral);
   text-align: right;
 }
 .statistics_table_incvalue {
   font-weight: 600;
   font-size: 14px;
-  color: #ffb627;
+  color: var(--yellow);
   text-align: right;
 }
 
