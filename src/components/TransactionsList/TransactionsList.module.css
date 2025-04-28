@@ -40,3 +40,9 @@
     border-bottom: none;
   }
 }
+
+@media (min-width: 768px) {
+  .transactions_container {
+    margin-top: 46px;
+  }
+}

@@ -8,7 +8,6 @@ import {
 import css from "./StatisticsDashboard.module.css";
 
 const months = [
-  "All month",
   "January",
   "February",
   "March",

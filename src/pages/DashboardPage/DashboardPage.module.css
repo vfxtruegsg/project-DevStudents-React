@@ -51,10 +51,16 @@
     width: 1280px;
   }
 
-  .dashboard {
-    padding-left: 0;
+  .dashboardInf {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 0;
+    gap: 0;
+  }
+  .dashboard {
+    display: flex;
+    padding: 0;
   }
 
   .dashboardData {
@@ -71,11 +77,12 @@
     width: 480px;
   }
 
-  /* .divider {
+  .line {
     display: block;
     width: 1px;
-    background-color: var(--white-600);
+    background-color: var(--light-gray);
     box-shadow: 1px 4px 1px 0 rgba(0, 0, 0, 0.25);
-    flex-shrink: 0;
-  } */
+
+    height: 105vh;
+  }
 }

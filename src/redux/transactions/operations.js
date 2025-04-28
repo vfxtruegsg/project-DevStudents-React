@@ -63,7 +63,7 @@ export const deleteTransaction = createAsyncThunk(
 
 export const getSummary = createAsyncThunk(
   "transactions/summary",
-  async (month, year, thunkAPI) => {
+  async ({ month, year }, thunkAPI) => {
     try {
       const response = await backAPI.get("/transactions/summary", {
         params: { month, year },
