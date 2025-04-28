@@ -6,7 +6,6 @@ import { setupAxiosInterceptors } from "./services/axiosInterceptors.js";
 import { Loader } from "./components/Loader/Loader.jsx";
 import { useMedia } from "./hooks/useMedia.js";
 
-const Layout = lazy(() => import("./components/Layout/Layout.jsx"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage.jsx")

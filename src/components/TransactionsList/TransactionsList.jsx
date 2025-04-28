@@ -9,7 +9,7 @@ const TransactionsList = () => {
 
   return (
     <div className={css.transactions_container}>
-      {!transactions ? (
+      {transactions.length == 0 ? (
         <p>You dont have any transactions!</p>
       ) : (
         <>
