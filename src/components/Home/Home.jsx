@@ -70,7 +70,7 @@ const Home = () => {
               alt1="Statistics icon"
               alt2="Statistics icon Active"
             />
-            <span className={css.homeText}>Statistics</span>
+            <span className={css.statisticsText}>Statistics</span>
           </button>
           <button
             onClick={handleClickCurrency}

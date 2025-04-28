@@ -36,12 +36,14 @@
     align-items: flex-start;
     gap: 12px;
     padding: 40px 0 28px 0;
-    & .homeText {
+    & .homeText,
+    & .statisticsText {
       display: flex;
     }
   }
 }
 
-.homeText {
+.homeText,
+.statisticsText {
   display: none;
 }
