@@ -73,16 +73,20 @@ const StatisticsTab = () => {
   };
 
   return (
-    <div className={`container`}>
-      <h1 className={`${s.header}`}>Statistics</h1>
-      <Chart data={transactions} balance={currentUserData.balance} />
-      <StatisticsDashboard
-        selectedMonth={selectedMonth}
-        selectedYear={selectedYear}
-        onMonthChange={handleMonthChange}
-        onYearChange={handleYearChange}
-      />
-      <StatisticsTable />
+    <div className={`container ${s.statisticTabWrapper}`}>
+      <div>
+        <h1 className={`${s.header}`}>Statistics</h1>
+        <Chart data={transactions} balance={currentUserData.balance} />
+      </div>
+      <div>
+        <StatisticsDashboard
+          selectedMonth={selectedMonth}
+          selectedYear={selectedYear}
+          onMonthChange={handleMonthChange}
+          onYearChange={handleYearChange}
+        />
+        <StatisticsTable />
+      </div>
     </div>
   );
 };

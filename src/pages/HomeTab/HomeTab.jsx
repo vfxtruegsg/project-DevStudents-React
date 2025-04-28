@@ -7,6 +7,7 @@ import { selectUser } from "../../redux/auth/selectors.js";
 import { useEffect } from "react";
 import { getAllTransactions } from "../../redux/transactions/operations.js";
 import { selectTransactions } from "../../redux/transactions/selectors.js";
+import MediaQuery from "react-responsive";
 
 const HomeTab = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,10 @@ const HomeTab = () => {
 
   return (
     <>
-      <Balance number={currentUserData.balance} />
-      <TransactionsList transactions={transactions} />
+      <MediaQuery minWidth={320} maxWidth={767}>
+        <Balance number={currentUserData.balance} />
+      </MediaQuery>
+      <TransactionsList transactions={transactions.data} />
       <ButtonAddTransactions />
     </>
   );

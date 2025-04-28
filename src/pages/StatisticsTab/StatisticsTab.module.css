@@ -5,3 +5,33 @@
   margin-bottom: 8px;
   margin-top: 40px;
 }
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .statisticTabWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-start;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+
+  .statisticTabWrapper {
+    display: flex;
+    justify-content: end;
+    gap: 32px;
+    align-items: self-start;
+    padding: 0;
+    margin-top: 32px;
+  }
+}
