@@ -1,15 +1,11 @@
-import { useSelector } from "react-redux";
 import TransactionsItem from "../TransactionsItem/TransactionsItem.jsx";
 import css from "./TransactionsList.module.css";
 import MediaQuery from "react-responsive";
-import { selectTransactions } from "../../redux/transactions/selectors.js";
 
-const TransactionsList = () => {
-  const transactions = useSelector(selectTransactions);
-
+const TransactionsList = ({ transactions }) => {
   return (
     <div className={css.transactions_container}>
-      {transactions.length == 0 ? (
+      {!Array.isArray(transactions) || transactions.length === 0 ? (
         <p>You dont have any transactions!</p>
       ) : (
         <>
