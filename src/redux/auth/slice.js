@@ -65,7 +65,8 @@ const slice = createSlice({
         isAnyOf(
           registerThunk.rejected,
           loginThunk.rejected,
-          refreshThunk.rejected
+          refreshThunk.rejected,
+          logoutThunk.rejected
         ),
         (state, action) => {
           state.isAuthLoading = false;
