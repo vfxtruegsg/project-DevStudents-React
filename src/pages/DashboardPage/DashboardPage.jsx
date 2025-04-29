@@ -6,7 +6,6 @@ import { Loader } from "../../components/Loader/Loader.jsx";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
-import Navigation from "../../components/Navigation/Navigation.jsx";
 
 const CurrencyTab = lazy(() =>
   import("../../pages/CurrencyTab/CurrencyTab.jsx")
@@ -14,6 +13,9 @@ const CurrencyTab = lazy(() =>
 const Balance = lazy(() => import("../../components/Balance/Balance.jsx"));
 const LogoutModal = lazy(() =>
   import("../../components/LogoutModal/LogoutModal.jsx")
+);
+const Navigation = lazy(() =>
+  import("../../components/Navigation/Navigation.jsx")
 );
 
 const DashboardPage = () => {
