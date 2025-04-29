@@ -82,7 +82,5 @@
     width: 1px;
     background-color: var(--light-gray);
     box-shadow: 1px 4px 1px 0 rgba(0, 0, 0, 0.25);
-
-    height: 105vh;
   }
 }
