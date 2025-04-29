@@ -14,6 +14,7 @@ const UserModal = ({ onClose }) => {
   const [name, setName] = useState(user?.name || "");
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(user?.avatar?.url || "");
+  const [nameError, setNameError] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -21,7 +22,19 @@ const UserModal = ({ onClose }) => {
       setAvatarPreview(user.avatar?.url || "");
     }
   }, [user]);
-  const handleNameChange = (e) => setName(e.target.value);
+
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    const regex = /^[a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ\s'-]*$/;
+
+    if (!regex.test(value)) {
+      setNameError("Error: You can add only letters");
+    } else {
+      setNameError("");
+    }
+
+    setName(value);
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -65,9 +78,10 @@ const UserModal = ({ onClose }) => {
     <div className={css.editProfileContainer} onClick={handleBackdropClick}>
       <div className={css.backdrop}>
         <button className={css.closeButton} onClick={onClose}>
-          ✖
+          <img src="/close.svg" alt="Close" />
         </button>
 
+        <p className={css.textWrapper}>Edit Profile</p>
         <form onSubmit={handleSubmit} className={css.form}>
           <div className={css.avatarUpload}>
             <label htmlFor="avatar-input">
@@ -78,7 +92,7 @@ const UserModal = ({ onClose }) => {
                   className={css.avatarImage}
                 />
               ) : (
-                <div className={css.avatarPlaceholder}></div> // 👈 Show empty box or "add avatar" icon
+                <div className={css.avatarPlaceholder}></div>
               )}
               <div className={css.plusButton}>+</div>
             </label>
@@ -98,6 +112,7 @@ const UserModal = ({ onClose }) => {
             placeholder="Name"
             className={css.nameInput}
           />
+          {nameError && <p className={css.errorText}>{nameError}</p>}
 
           <button type="submit" className={`btn-gradient ${css.saveBtn}`}>
             Save

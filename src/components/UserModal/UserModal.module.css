@@ -4,8 +4,9 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 40px;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 400;
+  color: white;
 }
 
 .errors {
@@ -27,8 +28,16 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.errorText {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
 
 @media (max-width: 767px) {
+  .textWrapper {
+    font-size: 30px;
+  }
   .editProfileContainer {
     display: flex;
     flex-direction: column;
