@@ -2,11 +2,12 @@
   width: 320px;
   height: 214px;
   overflow: hidden;
+  margin-top: 24px;
 
   @media only screen and (min-width: 768px) {
     width: 336px;
-
-    tr>td {
+    margin-top: 0;
+    tr > td {
       padding: 0;
     }
   }
@@ -15,7 +16,7 @@
     width: 480px;
     height: 380px;
 
-    .wrapper tr>td:first-child {
+    .wrapper tr > td:first-child {
       padding-left: 60px;
     }
 
