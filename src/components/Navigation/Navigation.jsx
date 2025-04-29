@@ -33,7 +33,7 @@ const Navigation = () => {
       <nav className={css.nav}>
         <NavLink
           className={({ isActive }) => clsx(css.link, isActive && css.act1mive)}
-          to="/statistics"
+          to="/"
           onClick={() => setIsClicked(1)}
         >
           <div>
