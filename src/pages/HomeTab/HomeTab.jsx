@@ -26,7 +26,6 @@ const HomeTab = () => {
       </MediaQuery>
       <TransactionsList transactions={transactions.data} />
       <ButtonAddTransactions />
-      <Home />
     </>
   );
 };

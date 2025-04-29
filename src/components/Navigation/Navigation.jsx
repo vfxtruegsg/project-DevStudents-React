@@ -1,38 +1,85 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors.js";
+import React, { useState } from "react";
 import css from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
-import { isMobile } from "../../utils/mediaQuery.js";
 import clsx from "clsx";
+import { useMedia } from "../../hooks/useMedia.js";
+
+const imgObject = {
+  img1: "/home.svg",
+  img1_active: "/home-active.svg",
+  img2: "/statistics.svg",
+  img2_active: "/statistics-active.svg",
+  img3: "/currency.svg",
+  img3_active: "/currency-active.svg",
+};
 
 const Navigation = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isMobile } = useMedia();
+
+  const [isClicked, setIsClicked] = useState(1);
+
+  const imgSource1 = isClicked == 1 ? imgObject.img1_active : imgObject.img1;
+  const altSource1 = isClicked === 1 ? "Home icon" : "Home icon Active";
+  const textSource1 = isClicked === 1 ? css.active : css.homeText;
+  const imgSource2 = isClicked == 2 ? imgObject.img2_active : imgObject.img2;
+  const altSource2 =
+    isClicked === 2 ? "Statistics icon" : "Statistics icon Active";
+  const textSource2 = isClicked === 2 ? css.active : css.homeText;
+  const imgSource3 = isClicked == 3 ? imgObject.img3_active : imgObject.img3;
+  const altSource3 = isClicked === 3 ? "Currency icon" : "Currency icon Active";
+
   return (
-    <nav className={css.navigation}>
-      <NavLink
-        className={({ isActive }) => clsx(css.link, isActive && css.active)}
-        to="/home"
-      >
-        HomeTab
-      </NavLink>
-      {isLoggedIn && (
+    <section className={css.navSection}>
+      <nav className={css.nav}>
         <NavLink
-          className={({ isActive }) => clsx(css.link, isActive && css.active)}
+          className={({ isActive }) => clsx(css.link, isActive && css.act1mive)}
           to="/statistics"
+          onClick={() => setIsClicked(1)}
         >
-          StatisticsTab
+          <div>
+            <img
+              src={imgSource1}
+              alt={altSource1}
+              className={css.swappedImage}
+            />
+          </div>
+
+          <span className={textSource1}>Home</span>
         </NavLink>
-      )}
-      {isMobile && (
         <NavLink
-          className={({ isActive }) => clsx(css.link, isActive && css.active)}
-          to="/currency"
+          className={({ isActive }) => clsx(css.link, isActive && css.actmve)}
+          to="/statistics"
+          onClick={() => setIsClicked(2)}
         >
-          CurrencyTab
+          <div>
+            <img
+              src={imgSource2}
+              alt={altSource2}
+              className={css.swappedImage}
+            />
+          </div>
+
+          <span className={textSource2}>Statistics</span>
         </NavLink>
-      )}
-    </nav>
+        {isMobile && (
+          <NavLink
+            className={({ isActive }) =>
+              clsx(css.link, isActive && css.actdive)
+            }
+            to="/currency"
+            onClick={() => setIsClicked(3)}
+          >
+            <div>
+              <img
+                src={imgSource3}
+                alt={altSource3}
+                className={css.swappedImage}
+              />
+            </div>
+          </NavLink>
+        )}
+      </nav>
+    </section>
   );
 };
 
