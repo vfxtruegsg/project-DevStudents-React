@@ -24,7 +24,7 @@ const HomeTab = () => {
       <MediaQuery minWidth={320} maxWidth={767}>
         <Balance number={currentUserData.balance} />
       </MediaQuery>
-      <TransactionsList transactions={transactions.data} />
+      <TransactionsList transactions={transactions} />
       <ButtonAddTransactions />
     </>
   );
