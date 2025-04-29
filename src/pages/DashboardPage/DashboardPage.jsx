@@ -6,6 +6,7 @@ import { Loader } from "../../components/Loader/Loader.jsx";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
+import Navigation from "../../components/Navigation/Navigation.jsx";
 
 const CurrencyTab = lazy(() =>
   import("../../pages/CurrencyTab/CurrencyTab.jsx")
@@ -27,7 +28,9 @@ const DashboardPage = () => {
           <div className={css.dashboard}>
             <div className={css.dashboardInf}>
               <div>
-                <div className={css.navigation}>{/* <Navigation /> */}</div>
+                <div className={css.navigation}>
+                  <Navigation />
+                </div>
                 <div className={css.balance}>
                   {!isMobile && <Balance number={currentUserData.balance} />}
                 </div>

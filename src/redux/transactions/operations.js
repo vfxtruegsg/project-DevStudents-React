@@ -5,6 +5,12 @@ import { showToastSuccessMessage } from "../../utils/showToastSuccessMessage.js"
 export const getAllTransactions = createAsyncThunk(
   "transactions/getAll",
   async (_, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token available");
+    }
+
     try {
       const response = await backAPI.get("/transactions");
       return response.data;
@@ -72,6 +78,12 @@ export const deleteTransaction = createAsyncThunk(
 export const getSummary = createAsyncThunk(
   "transactions/summary",
   async ({ month, year }, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token available");
+    }
+
     try {
       const response = await backAPI.get("/transactions/summary", {
         params: { month, year },
