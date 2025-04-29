@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { backAPI } from "../../utils/axiosUtils.js";
+import { showToastSuccessMessage } from "../../utils/showToastSuccessMessage.js";
 
 export const getAllTransactions = createAsyncThunk(
   "transactions/getAll",
@@ -24,6 +25,9 @@ export const addTransaction = createAsyncThunk(
         comment: transaction.comment,
         sum: transaction.sum,
       });
+
+      showToastSuccessMessage(`Successfully added transaction`);
+
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -42,6 +46,9 @@ export const editTransaction = createAsyncThunk(
         comment,
         sum,
       });
+
+      showToastSuccessMessage(`Transaction ${_id} edited successfully`);
+
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -54,6 +61,7 @@ export const deleteTransaction = createAsyncThunk(
   async (_id, thunkAPI) => {
     try {
       const response = await backAPI.delete(`/transactions/${_id}`);
+      showToastSuccessMessage(`Successfully deleted transaction ${_id}`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

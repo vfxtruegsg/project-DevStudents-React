@@ -25,7 +25,7 @@ const monthsList = [
 ];
 
 const getMonthNumber = (monthName) => {
-  return monthsList.indexOf(monthName) + 1;
+  return monthsList.indexOf(monthName);
 };
 
 const StatisticsTab = () => {

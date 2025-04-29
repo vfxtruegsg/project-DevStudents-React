@@ -1,9 +1,9 @@
 .expense {
-  color: #ff868d;
+  color: var(--coral);
 }
 
 .income {
-  color: #ffb627;
+  color: var(--yellow);
 }
 
 .expense_decor {
@@ -17,7 +17,7 @@
 .expense_decor::before {
   content: "";
   position: absolute;
-  border: 2.5px solid #ff868d;
+  border: 2.5px solid var(--coral);
   height: 100%;
   top: 0;
   left: 0;
@@ -34,7 +34,7 @@
 .income_decor::before {
   content: "";
   position: absolute;
-  border: 2.5px solid #ffb627;
+  border: 2.5px solid var(--yellow);
   height: 100%;
   top: 0;
   left: 0;
