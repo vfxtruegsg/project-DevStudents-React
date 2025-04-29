@@ -17,7 +17,10 @@ const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab.jsx"));
 const StatisticsTab = lazy(() =>
   import("./pages/StatisticsTab/StatisticsTab.jsx")
 );
-const CurrencyTab = lazy(() => import("./pages/CurrencyTab/CurrencyTab.jsx"));
+const CurrencyTab = lazy(() => import("./components/Currency/Currency.jsx"));
+const NotFoundPage = lazy(() =>
+  import("./pages/NotFoundPage/NotFoundPage.jsx")
+);
 
 function App() {
   useEffect(() => {
@@ -62,7 +65,7 @@ function App() {
           }
         />
 
-        {/* <Route path="*" element={<NotFound/>}/> */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
