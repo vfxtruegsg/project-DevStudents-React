@@ -40,7 +40,7 @@ function App() {
             </PrivateRoute>
           }
         >
-          <Route path="home" element={<HomeTab />} />
+          <Route index element={<HomeTab />} />
           <Route path="statistics" element={<StatisticsTab />} />
           <Route
             path="currency"
