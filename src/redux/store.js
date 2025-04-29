@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice.js";
 import userReducer from "./user/slice.js";
+import transactionsReducer from "./transactions/slice.js";
 import {
   persistStore,
   persistReducer,
@@ -12,6 +13,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import modalReducer from "./modal/slice.js";
 
 const persistConfig = {
   key: "auth-data",
@@ -31,6 +33,8 @@ export const store = configureStore({
   reducer: {
     auth: persistedReducer,
     user: persistedUserReducer,
+    transactions: transactionsReducer,
+    modal: modalReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

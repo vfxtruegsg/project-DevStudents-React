@@ -16,7 +16,7 @@ const initialState = {
   },
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isAuthLoading: false,
 };
 
 const slice = createSlice({
@@ -24,23 +24,28 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(refreshThunk.pending, (state, action) => {
-        state.isRefreshing = true;
-      })
 
       .addCase(refreshThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
         state.token = action.payload.accessToken;
-        state.isRefreshing = false;
+        state.isAuthLoading = false;
       })
 
       .addCase(logoutThunk.fulfilled, (state, action) => {
         return initialState;
       })
 
-      .addCase(refreshThunk.rejected, (state, action) => {
-        state.isRefreshing = false;
-      })
+      .addMatcher(
+        isAnyOf(
+          registerThunk.pending,
+          loginThunk.pending,
+          refreshThunk.pending,
+          logoutThunk.pending
+        ),
+        (state, action) => {
+          state.isAuthLoading = true;
+        }
+      )
 
       .addMatcher(
         isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
@@ -52,6 +57,19 @@ const slice = createSlice({
           state.user.balance = action.payload.balance;
           state.token = action.payload.accessToken;
           state.isLoggedIn = true;
+          state.isAuthLoading = false;
+        }
+      )
+
+      .addMatcher(
+        isAnyOf(
+          registerThunk.rejected,
+          loginThunk.rejected,
+          refreshThunk.rejected,
+          logoutThunk.rejected
+        ),
+        (state, action) => {
+          state.isAuthLoading = false;
         }
       );
   },

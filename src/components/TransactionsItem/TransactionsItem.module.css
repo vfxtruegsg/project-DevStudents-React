@@ -1,0 +1,115 @@
+.expense {
+  color: var(--coral);
+}
+
+.income {
+  color: var(--yellow);
+}
+
+.expense_decor {
+  border-radius: 10px;
+  width: 280px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.expense_decor::before {
+  content: "";
+  position: absolute;
+  border: 2.5px solid var(--coral);
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.income_decor {
+  border-radius: 10px;
+  width: 280px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.income_decor::before {
+  content: "";
+  position: absolute;
+  border: 2.5px solid var(--yellow);
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.transaction_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction_item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.transaction_item:last-child {
+  border-bottom: none;
+}
+
+.transaction_title {
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.transaction_delete_btn {
+  font-weight: 400;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: var(--white);
+  box-shadow: var(--box-shadow-button);
+  border-radius: 18px;
+  padding: 4px 12px;
+  text-align: center;
+  background: var(--background-gradient-button);
+  border: none;
+  max-width: 69px;
+}
+
+.transaction_edit_btn {
+  display: flex;
+  gap: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media (min-width: 768px) {
+  .transaction_item {
+    display: table-cell;
+    border-bottom: none;
+    padding: 19px 20px;
+  }
+  .transaction_item_comment {
+    padding: 12px 20px;
+    max-width: 120px;
+    vertical-align: middle;
+  }
+  .center {
+    text-align: center;
+  }
+  .expense {
+    text-align: right;
+  }
+
+  .income {
+    text-align: right;
+  }
+
+  .transaction_btn_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
