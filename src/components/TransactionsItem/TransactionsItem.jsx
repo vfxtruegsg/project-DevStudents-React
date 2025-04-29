@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 import css from "./TransactionsItem.module.css";
 import MediaQuery from "react-responsive";
-import { deleteTransaction } from "../../redux/transactions/operations.js";
+import {
+  deleteTransaction,
+  getAllTransactions,
+} from "../../redux/transactions/operations.js";
 import { changeEditTransaction } from "../../redux/transactions/slice.js";
 import { openEditModal } from "../../redux/modal/slice.js";
 
@@ -18,9 +21,13 @@ const TransactionsItem = ({
 }) => {
   const parsedDate = getDate(date);
   const dispatch = useDispatch();
+
   const handleDelete = () => {
-    dispatch(deleteTransaction(_id));
+    dispatch(deleteTransaction(_id))
+      .unwrap()
+      .then(() => dispatch(getAllTransactions()));
   };
+
   const handleEdit = () => {
     dispatch(changeEditTransaction(_id));
     dispatch(openEditModal());

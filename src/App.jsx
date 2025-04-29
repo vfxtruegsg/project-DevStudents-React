@@ -6,7 +6,6 @@ import { setupAxiosInterceptors } from "./services/axiosInterceptors.js";
 import { Loader } from "./components/Loader/Loader.jsx";
 import { useMedia } from "./hooks/useMedia.js";
 
-const Layout = lazy(() => import("./components/Layout/Layout.jsx"));
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage.jsx")
@@ -18,7 +17,10 @@ const HomeTab = lazy(() => import("./pages/HomeTab/HomeTab.jsx"));
 const StatisticsTab = lazy(() =>
   import("./pages/StatisticsTab/StatisticsTab.jsx")
 );
-const CurrencyTab = lazy(() => import("./pages/CurrencyTab/CurrencyTab.jsx"));
+const CurrencyTab = lazy(() => import("./components/Currency/Currency.jsx"));
+const NotFoundPage = lazy(() =>
+  import("./pages/NotFoundPage/NotFoundPage.jsx")
+);
 
 function App() {
   useEffect(() => {
@@ -63,7 +65,7 @@ function App() {
           }
         />
 
-        {/* <Route path="*" element={<NotFound/>}/> */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );

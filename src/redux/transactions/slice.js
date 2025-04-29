@@ -38,13 +38,13 @@ const transactionsSlice = createSlice({
       .addCase(getAllTransactions.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items = action.payload;
+        state.items = action.payload.data;
       })
 
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload);
+        state.items.push(action.payload.data);
       })
 
       .addCase(editTransaction.fulfilled, (state, action) => {
@@ -52,37 +52,37 @@ const transactionsSlice = createSlice({
         state.error = null;
         state.editItem.isEditItem = false;
         state.editItem._id = null;
-        const index = state.items.findIndex(
+        const index = state.items.data.findIndex(
           (item) => item._id === action.payload._id
         );
         state.items.splice(index, 1, {
-          date: action.payload.date,
-          type: action.payload.type,
-          category: action.payload.category,
-          comment: action.payload.comment,
-          sum: action.payload.sum,
+          date: action.payload.data.date,
+          type: action.payload.data.type,
+          category: action.payload.data.category,
+          comment: action.payload.data.comment,
+          sum: action.payload.data.sum,
         });
       })
 
       .addCase(deleteTransaction.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        const index = state.items.findIndex(
-          (item) => item._id === action.payload._id
+        state.items = state.items.filter(
+          (item) => item._id !== action.payload._id
         );
-        state.items.splice(index, 1);
+        // state.items.data.splice(index, 1);
       })
 
       .addCase(getSummary.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.summary = action.payload;
+        state.summary = action.payload.data;
       })
 
       .addCase(getCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.categories = action.payload;
+        state.categories = action.payload.data;
       })
 
       .addCase(logoutThunk.fulfilled, (state) => {

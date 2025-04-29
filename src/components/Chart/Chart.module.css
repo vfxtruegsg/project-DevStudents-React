@@ -1,12 +1,22 @@
 .chartWrapper {
   width: 280px;
   height: 280px;
+  margin-bottom: 32px;
+}
+
+.noData {
+  margin-bottom: 32px;
 }
 
 @media (min-width: 728px) {
   .chartWrapper {
     width: 336px;
     height: 336px;
+    margin-bottom: 0;
+  }
+
+  .noData {
+    margin-bottom: 0;
   }
 }
 

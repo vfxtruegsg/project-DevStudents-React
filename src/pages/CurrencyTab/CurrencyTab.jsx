@@ -1,8 +1,7 @@
-import React from "react";
-import css from "./CurrencyTab.module.css";
+import Currency from "../../components/Currency/Currency.jsx";
 
 const CurrencyTab = () => {
-  return <div>CurrencyTab</div>;
+  return <Currency />;
 };
 
 export default CurrencyTab;

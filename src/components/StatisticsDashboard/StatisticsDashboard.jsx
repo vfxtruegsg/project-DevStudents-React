@@ -8,7 +8,6 @@ import {
 import css from "./StatisticsDashboard.module.css";
 
 const months = [
-  "All month",
   "January",
   "February",
   "March",
@@ -92,26 +91,3 @@ const StatisticsDashboard = ({
 
 export default StatisticsDashboard;
 
-// // Состояния для выбранного месяца и года
-// const [selectedMonth, setSelectedMonth] = useState("All month");
-// const [selectedYear, setSelectedYear] = useState(`${new Date().getFullYear()}`);
-
-// // Функции для изменения месяца и года
-// const handleMonthChange = (month) => {
-//   setSelectedMonth(month);
-//   console.log("Выбран месяц:", month);
-// };
-
-// const handleYearChange = (year) => {
-//   setSelectedYear(year);
-//   console.log("Выбран год:", year);
-// };
-
-// <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-//   <StatisticsDashboard
-//     selectedMonth={selectedMonth}
-//     selectedYear={selectedYear}
-//     onMonthChange={handleMonthChange}
-//     onYearChange={handleYearChange}
-//   />
-// </div>;

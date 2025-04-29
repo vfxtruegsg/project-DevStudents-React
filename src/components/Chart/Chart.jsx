@@ -23,8 +23,8 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 //   totalExpenses: 600,
 // }
 
-export const Chart = ({ data, balance }) => {
-  if (!data) return null;
+const Chart = ({ data, balance }) => {
+  if (!data) return <p className={css.noData}>No information to draw graph</p>;
 
   const excludedKeys = ["totalExpenses", "Incomes"];
 
@@ -87,3 +87,5 @@ export const Chart = ({ data, balance }) => {
     </div>
   );
 };
+
+export default Chart;
