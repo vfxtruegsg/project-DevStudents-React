@@ -1,29 +1,48 @@
-import React from "react";
-import { useMediaQuery } from "react-responsive";
-import styles from "./DashboardPage.module.css";
+import { lazy, Suspense } from "react";
+import css from "./DashboardPage.module.css";
+import { useMedia } from "../../hooks/useMedia.js";
+import Layout from "../../components/Layout/Layout.jsx";
+import { Loader } from "../../components/Loader/Loader.jsx";
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors.js";
 
-import Sidebar from "./components/Sidebar";
-import Stats from "./components/Stats";
-import Chart from "./components/Chart";
-import Transactions from "./components/Transactions";
+const CurrencyTab = lazy(() =>
+  import("../../pages/CurrencyTab/CurrencyTab.jsx")
+);
+const Balance = lazy(() => import("../../components/Balance/Balance.jsx"));
+const LogoutModal = lazy(() =>
+  import("../../components/LogoutModal/LogoutModal.jsx")
+);
 
 const DashboardPage = () => {
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const { isMobile } = useMedia();
 
+  const currentUserData = useSelector(selectUser);
   return (
-    <div className={styles["dashboard-container"]}>
-      {isDesktop && <Sidebar />}
-      <div className={styles["main-content"]}>
-        <div className={styles["content-grid"]}>
-          <Stats />
-          {isDesktop && <Chart />}
-          {(isTablet || isMobile) && <Chart compact />}
-          <Transactions />
-        </div>
-      </div>
-    </div>
+    <>
+      <Layout />
+      <section className={`${css.dashboardPage}`}>
+        <main className={css.main}>
+          <div className={css.dashboard}>
+            <div className={css.dashboardInf}>
+              <div>
+                <div className={css.navigation}>{/* <Navigation /> */}</div>
+                <div className={css.balance}>
+                  {!isMobile && <Balance number={currentUserData.balance} />}
+                </div>
+              </div>
+              <div className={css.currency}>{!isMobile && <CurrencyTab />}</div>
+            </div>
+            <div className={css.line}></div>
+            <Suspense fallback={<Loader />}>
+              <Outlet />
+            </Suspense>
+            <LogoutModal />
+          </div>
+        </main>
+      </section>
+    </>
   );
 };
 

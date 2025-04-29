@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   background: var(--violet-gradient);
   background-color: var(--dark-violet);
   padding: 12px 20px;
@@ -41,14 +42,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  width: 106px;
-  @media (min-width: 768px) {
-    gap: 12px;
-    width: 161px;
-  }
   @media (min-width: 768px) {
     gap: 12px;
   }
+}
+
+.linkName:hover {
+  cursor: pointer;
+  color: var(--yellow);
+  transform: scale(1.02);
 }
 .nameWrapper {
   display: flex;
@@ -66,6 +68,20 @@
     border: 1px solid var(--light-gray);
   }
 }
+
+.linkExit:hover .exitText {
+  color: var(--yellow);
+  cursor: pointer;
+  transform: scale(1.03);
+}
+
+.linkExit:hover .exitIcon {
+  cursor: pointer;
+  transform: scale(1.03);
+  filter: brightness(0) saturate(100%) invert(71%) sepia(81%) saturate(1107%)
+    hue-rotate(350deg) brightness(103%) contrast(101%);
+}
+
 .exitWrapper {
   display: flex;
   flex-direction: row;

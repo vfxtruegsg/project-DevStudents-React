@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import './ModalAddTransaction.css';
+import css from './ModalAddTransaction.module.css';
 
 const ModalAddTransaction = ({ onClose, children }) => {
   useEffect(() => {
@@ -16,9 +16,11 @@ const ModalAddTransaction = ({ onClose, children }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className="modal-backdrop" onClick={handleBackdropClick}>
-      <div className="modal">
-        <button className="close-button" onClick={onClose}><img src="/close.svg" alt="Plus" width="18" height="18" /></button>
+    <div className={css.modalBackdrop} onClick={handleBackdropClick}>
+      <div className={css.modal}>
+        <button className={css.closeButton} onClick={onClose}>
+          <img src="/close.svg" alt="Close" width="18" height="18" />
+        </button>
         {children}
       </div>
     </div>,
