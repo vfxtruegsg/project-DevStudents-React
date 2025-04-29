@@ -21,6 +21,7 @@
     width: 480px;
     margin-bottom: 32px;
     padding: 8px 56px 12px 56px;
+    border-radius: 8px 0 0 8px;
   }
 }
 
