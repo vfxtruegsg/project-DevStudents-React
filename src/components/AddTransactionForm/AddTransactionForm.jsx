@@ -48,7 +48,6 @@ const AddTransactionForm = ({ onCancel }) => {
     setValue,
     formState: { errors },
     watch,
-    reset,
   } = useForm({
     defaultValues: {
       type: "expense",
@@ -74,7 +73,6 @@ const AddTransactionForm = ({ onCancel }) => {
     dispatch(addTransaction(payload))
       .unwrap()
       .then(() => dispatch(closeModal()));
-    reset();
   };
 
   return (
@@ -160,7 +158,8 @@ const AddTransactionForm = ({ onCancel }) => {
                   selected={field.value}
                   dateFormat="dd.MM.yyyy"
                   className={`${css.input} ${css.dateInput}`}
-                  calendarClassName="custom-calendar"
+                  calendarClassName={css["calendar"]}
+                  dayClassName={() => css["calendarDay"]}
                 />
                 <span className={css.calendarIcon}>
                   <img

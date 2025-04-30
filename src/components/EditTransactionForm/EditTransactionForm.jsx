@@ -154,6 +154,8 @@ export default function EditTransactionForm() {
                   }
                   dateFormat="dd.MM.yyyy"
                   className={`${css["edittransactionform-dateInput"]} ${css.dateInput} `}
+                  calendarClassName={css["calendar"]}
+                  dayClassName={() => css["calendarDay"]}
                 />
                 <svg
                   className={css["edittransactionform-calendarIcon"]}

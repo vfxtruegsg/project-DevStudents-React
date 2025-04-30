@@ -173,6 +173,26 @@
   animation: dropdownIn 0.2s;
 }
 
+.calendar {
+  background: linear-gradient(
+    360deg,
+    rgba(84, 61, 186, 0.986) 70%,
+    rgba(80, 48, 154, 0.795) 90.94%,
+    rgba(106, 70, 165, 0.7) 61.04%,
+    rgba(133, 93, 175, 0.7) 100%
+  );
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+  color: #fbfbfb;
+}
+
+.calendarDay {
+  color: #fbfbfb;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
 @keyframes dropdownIn {
   from {
     opacity: 0;
