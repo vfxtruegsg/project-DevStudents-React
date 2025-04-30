@@ -23,7 +23,11 @@ function LogoutModal() {
   return (
     <>
       {isLoading && <Loader />}
-      <ModalTemplate isOpenModal={isLogoutModalOpen}>
+      <ModalTemplate
+        isOpenModal={isLogoutModalOpen}
+        className={css.modal}
+        modalContent={css.modalContent}
+      >
         <div className={`${css.logoutContainer} container`}>
           <div className={css.backdrop}>
             <div className={css.companyLogo}>

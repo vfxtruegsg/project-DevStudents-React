@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import Navigation from "../../components/Navigation/Navigation.jsx";
+import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction.jsx";
 
 const CurrencyTab = lazy(() =>
   import("../../pages/CurrencyTab/CurrencyTab.jsx")
@@ -42,6 +43,7 @@ const DashboardPage = () => {
               <Outlet />
             </Suspense>
             <LogoutModal />
+            <ModalAddTransaction />
           </div>
         </main>
       </section>
@@ -50,3 +52,6 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
+
+// пока что модалка открывается, разобраться конкретно со стилями модалки,
+// потом подключить санку для добавления транзакции

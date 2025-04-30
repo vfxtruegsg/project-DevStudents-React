@@ -1,25 +1,37 @@
-import { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import DatePicker from 'react-datepicker';
-import * as yup from 'yup';
-import css from './AddTransactionForm.module.css';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import DatePicker from "react-datepicker";
+import * as yup from "yup";
+import css from "./AddTransactionForm.module.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const categories = [
-  'Main expenses', 'Products', 'Car', 'Self care', 'Child care',
-  'Household products', 'Education', 'Leisure', 'Other expenses', 'Entertainment'
+  "Main expenses",
+  "Products",
+  "Car",
+  "Self care",
+  "Child care",
+  "Household products",
+  "Education",
+  "Leisure",
+  "Other expenses",
+  "Entertainment",
 ];
 
 const schema = yup.object({
   type: yup.string().required(),
-  category: yup.string().when('type', {
-    is: 'expense',
-    then: (schema) => schema.required('Category is required'),
+  category: yup.string().when("type", {
+    is: "expense",
+    then: (schema) => schema.required("Category is required"),
   }),
-  amount: yup.number().typeError('Enter a number').positive('Must be positive').required('Required'),
-  date: yup.date().required('Required'),
-  comment: yup.string().required('Required'),
+  amount: yup
+    .number()
+    .typeError("Enter a number")
+    .positive("Must be positive")
+    .required("Required"),
+  date: yup.date().required("Required"),
+  comment: yup.string().required("Required"),
 });
 
 const AddTransactionForm = ({ onSubmit, onCancel }) => {
@@ -34,58 +46,64 @@ const AddTransactionForm = ({ onSubmit, onCancel }) => {
     watch,
   } = useForm({
     defaultValues: {
-      type: 'expense',
-      amount: '',
+      type: "expense",
+      amount: "",
       date: new Date(),
-      category: '',
-      comment: '',
+      category: "",
+      comment: "",
     },
     resolver: yupResolver(schema),
   });
 
-  const type = watch('type');
-  const category = watch('category');
+  const type = watch("type");
+  const category = watch("category");
 
-  const handleTypeChange = (value) => setValue('type', value);
+  const handleTypeChange = (value) => setValue("type", value);
 
   const handleCategorySelect = (cat) => {
-    setValue('category', cat);
+    setValue("category", cat);
     setShowDropdown(false);
   };
 
   return (
-    <form className={css.addForm} onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+    <form
+      className={css.addForm}
+      onSubmit={handleSubmit(onSubmit)}
+      autoComplete="off"
+    >
       <div className={css.formTitle}>Add transaction</div>
 
       <div className={css.switcher}>
-        <span className={type === 'income' ? css.active : ''}>Income</span>
+        <span className={type === "income" ? css.active : ""}>Income</span>
         <label className={css.switch}>
           <input
             type="checkbox"
-            checked={type === 'expense'}
-            onChange={() => handleTypeChange(type === 'income' ? 'expense' : 'income')}
+            checked={type === "expense"}
+            onChange={() =>
+              handleTypeChange(type === "income" ? "expense" : "income")
+            }
           />
           <span className={css.slider}>
-            {type === 'income' ? (
+            {type === "income" ? (
               <img src="/plus.svg" alt="Plus" width="44" height="44" />
             ) : (
               <img src="/minus.svg" alt="Minus" width="44" height="44" />
             )}
           </span>
         </label>
-        <span className={type === 'expense' ? css.active : ''}>Expense</span>
+        <span className={type === "expense" ? css.active : ""}>Expense</span>
       </div>
 
-      {type === 'expense' && (
+      {type === "expense" && (
         <div className={css.dropdownWrap}>
           <label className={css.dropdownLabel}></label>
           <div
-            className={`${css.dropdownSelect} ${showDropdown ? css.open : ''}`}
+            className={`${css.dropdownSelect} ${showDropdown ? css.open : ""}`}
             onClick={() => setShowDropdown((s) => !s)}
             tabIndex={0}
             onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
           >
-            <span>{category || 'Select a category'}</span>
+            <span>{category || "Select a category"}</span>
             <span className={css.dropdownArrow}>&#9662;</span>
           </div>
           {showDropdown && (
@@ -93,7 +111,9 @@ const AddTransactionForm = ({ onSubmit, onCancel }) => {
               {categories.map((cat) => (
                 <div
                   key={cat}
-                  className={`${css.dropdownItem} ${cat === category ? css.selected : ''}`}
+                  className={`${css.dropdownItem} ${
+                    cat === category ? css.selected : ""
+                  }`}
                   onClick={() => handleCategorySelect(cat)}
                 >
                   {cat}
@@ -101,53 +121,66 @@ const AddTransactionForm = ({ onSubmit, onCancel }) => {
               ))}
             </div>
           )}
-          {errors.category && <p className={css.error}>{errors.category.message}</p>}
+          {errors.category && (
+            <p className={css.error}>{errors.category.message}</p>
+          )}
         </div>
       )}
 
-      <input
-        type="number"
-        step="0.01"
-        placeholder="0.00"
-        className={css.input}
-        {...register('amount')}
-      />
-      {errors.amount && <p className={css.error}>{errors.amount.message}</p>}
+      <div className={css.sumDateWrap}>
+        <input
+          type="number"
+          step="0.01"
+          placeholder="0.00"
+          className={`${css.input} ${css.amountInput}`}
+          {...register("amount")}
+        />
+        {errors.amount && <p className={css.error}>{errors.amount.message}</p>}
 
-      <Controller
-        control={control}
-        name="date"
-        render={({ field }) => (
-          <div className={css.datePickerWrap}>
-            <div className={css.dateInputGroup}>
-              <DatePicker
-                {...field}
-                selected={field.value}
-                dateFormat="dd.MM.yyyy"
-                className={`${css.input} ${css.dateInput}`}
-                calendarClassName="custom-calendar"
-              />
-              <span className={css.calendarIcon}>
-                <img src="/calendar.svg" alt="Calendar" width="18" height="20" />
-              </span>
+        <Controller
+          control={control}
+          name="date"
+          render={({ field }) => (
+            <div className={css.datePickerWrap}>
+              <div className={css.dateInputGroup}>
+                <DatePicker
+                  {...field}
+                  selected={field.value}
+                  dateFormat="dd.MM.yyyy"
+                  className={`${css.input} ${css.dateInput}`}
+                  calendarClassName="custom-calendar"
+                />
+                <span className={css.calendarIcon}>
+                  <img
+                    src="/calendar.svg"
+                    alt="Calendar"
+                    width="18"
+                    height="20"
+                  />
+                </span>
+              </div>
             </div>
-          </div>
-        )}
-      />
-      {errors.date && <p className={css.error}>{errors.date.message}</p>}
+          )}
+        />
+        {errors.date && <p className={css.error}>{errors.date.message}</p>}
+      </div>
 
       <div className={css.inputWrap}>
         <input
           type="text"
           placeholder="Comment"
           className={`${css.input} ${css.inputComment}`}
-          {...register('comment')}
+          {...register("comment")}
         />
       </div>
       {errors.comment && <p className={css.error}>{errors.comment.message}</p>}
 
-      <button type="submit" className={css.submitButton}>ADD</button>
-      <button type="button" className={css.cancelButton} onClick={onCancel}>CANCEL</button>
+      <button type="submit" className={css.submitButton}>
+        ADD
+      </button>
+      <button type="button" className={css.cancelButton} onClick={onCancel}>
+        CANCEL
+      </button>
     </form>
   );
 };

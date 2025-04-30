@@ -6,7 +6,12 @@ import { useEffect } from "react";
 
 Modal.setAppElement("#root");
 
-export const ModalTemplate = ({ children, isOpenModal, className = "" }) => {
+export const ModalTemplate = ({
+  children,
+  isOpenModal,
+  className = "",
+  modalContent,
+}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,11 +31,11 @@ export const ModalTemplate = ({ children, isOpenModal, className = "" }) => {
       isOpen={isOpenModal}
       onRequestClose={() => dispatch(closeModal())}
       bodyOpenClassName={s.html}
-      className={`${s.modal} ${className}`}
+      className={`${className}`}
       overlayClassName={`${s.overlay}`}
       preventScroll={false}
     >
-      <div className={s.modalContent}>{children}</div>
+      <div className={modalContent}>{children}</div>
     </Modal>
   );
 };
