@@ -5,6 +5,9 @@ import DatePicker from "react-datepicker";
 import * as yup from "yup";
 import css from "./AddTransactionForm.module.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch } from "react-redux";
+import { addTransaction } from "../../redux/transactions/operations.js";
+import { closeModal } from "../../redux/modal/slice.js";
 
 const categories = [
   "Main expenses",
@@ -25,7 +28,7 @@ const schema = yup.object({
     is: "expense",
     then: (schema) => schema.required("Category is required"),
   }),
-  amount: yup
+  sum: yup
     .number()
     .typeError("Enter a number")
     .positive("Must be positive")
@@ -34,7 +37,8 @@ const schema = yup.object({
   comment: yup.string().required("Required"),
 });
 
-const AddTransactionForm = ({ onSubmit, onCancel }) => {
+const AddTransactionForm = ({ onCancel }) => {
+  const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
 
   const {
@@ -44,12 +48,13 @@ const AddTransactionForm = ({ onSubmit, onCancel }) => {
     setValue,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     defaultValues: {
       type: "expense",
-      amount: "",
+      sum: "",
       date: new Date(),
-      category: "",
+      category: "Incomes",
       comment: "",
     },
     resolver: yupResolver(schema),
@@ -63,6 +68,13 @@ const AddTransactionForm = ({ onSubmit, onCancel }) => {
   const handleCategorySelect = (cat) => {
     setValue("category", cat);
     setShowDropdown(false);
+  };
+
+  const onSubmit = (payload) => {
+    dispatch(addTransaction(payload))
+      .unwrap()
+      .then(() => dispatch(closeModal()));
+    reset();
   };
 
   return (
@@ -133,7 +145,7 @@ const AddTransactionForm = ({ onSubmit, onCancel }) => {
           step="0.01"
           placeholder="0.00"
           className={`${css.input} ${css.amountInput}`}
-          {...register("amount")}
+          {...register("sum")}
         />
         {errors.amount && <p className={css.error}>{errors.amount.message}</p>}
 

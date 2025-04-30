@@ -44,7 +44,7 @@ const transactionsSlice = createSlice({
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.items.push(action.payload.data);
+        state.items.push(action.payload.data.transaction);
       })
 
       .addCase(editTransaction.fulfilled, (state, action) => {
