@@ -1,42 +1,31 @@
-import { useEffect, useState } from "react";
 import EditTransactionForm from "../EditTransactionForm/EditTransactionForm";
-import css from "../EditTransactionForm/EditTransactionForm.module.css";
+import css from "./ModalEditTransaction.module.css";
+import { ModalTemplate } from "../ModalTemplate/ModalTemplate.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIsEditModalOpen } from "../../redux/modal/selectors.js";
+import { selectLoading } from "../../redux/transactions/selectors.js";
+import { Loader } from "../Loader/Loader.jsx";
 
-export default function ModalEditTransaction({ tx, onClose, onSuccess }) {
-  const [hide, setHide] = useState(false);
+const ModalEditTransaction = () => {
+  const dispatch = useDispatch();
 
-  const close = () => {
-    setHide(true);
-    setTimeout(onClose, 300);
-  };
-
-  useEffect(() => {
-    const escHandler = (e) => {
-      if (e.code === "Escape") {
-        console.log("Escape pressed");
-        close();
-      }
-    };
-
-    document.addEventListener("keydown", escHandler);
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", escHandler);
-      document.body.style.overflow = "";
-    };
-  }, []);
+  const isEditTransactionModalOpen = useSelector(selectIsEditModalOpen);
+  const isLoading = useSelector(selectLoading);
 
   return (
-    <div
-      className={`${css["edittransactionform-overlay"]} ${
-        hide ? css["edittransactionform-overlay-hide"] : ""
-      }`}
-      onClick={close}
-    >
-      <div onClick={(e) => e.stopPropagation()}>
-        <EditTransactionForm tx={tx} onClose={close} onSuccess={onSuccess} />
-      </div>
-    </div>
+    <>
+      {isLoading && <Loader />}
+      <ModalTemplate
+        isOpenModal={isEditTransactionModalOpen}
+        className={css.modalContainer}
+        modalContent={css.modalContent}
+      >
+        <div className={css.contentContainer}>
+          <EditTransactionForm />
+        </div>
+      </ModalTemplate>
+    </>
   );
-}
+};
+
+export default ModalEditTransaction;

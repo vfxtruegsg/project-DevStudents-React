@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import Navigation from "../../components/Navigation/Navigation.jsx";
-import ModalAddTransaction from "../../components/ModalAddTransaction/ModalAddTransaction.jsx";
+import ModalEditTransaction from "../../components/ModalEditTransaction/ModalEditTransaction.jsx";
 
 const CurrencyTab = lazy(() =>
   import("../../pages/CurrencyTab/CurrencyTab.jsx")
@@ -15,6 +15,9 @@ const CurrencyTab = lazy(() =>
 const Balance = lazy(() => import("../../components/Balance/Balance.jsx"));
 const LogoutModal = lazy(() =>
   import("../../components/LogoutModal/LogoutModal.jsx")
+);
+const ModalAddTransaction = lazy(() =>
+  import("../../components/ModalAddTransaction/ModalAddTransaction.jsx")
 );
 
 const DashboardPage = () => {
@@ -44,6 +47,7 @@ const DashboardPage = () => {
             </Suspense>
             <LogoutModal />
             <ModalAddTransaction />
+            <ModalEditTransaction />
           </div>
         </main>
       </section>
@@ -52,6 +56,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-
-// пока что модалка открывается, разобраться конкретно со стилями модалки,
-// потом подключить санку для добавления транзакции

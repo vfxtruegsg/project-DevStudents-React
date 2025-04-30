@@ -21,7 +21,7 @@ const transactionsSlice = createSlice({
   name: "transactions",
   initialState: {
     items: [],
-    editItem: { isEditItem: false, _id: null },
+    editItem: { isEditItem: false, _id: null, type: "", category: "" },
     loading: false,
     error: null,
     summary: {},
@@ -30,7 +30,9 @@ const transactionsSlice = createSlice({
   reducers: {
     changeEditTransaction(state, action) {
       state.editItem.isEditItem = true;
-      state.editItem._id = action.payload;
+      state.editItem._id = action.payload._id;
+      state.editItem.type = action.payload.type;
+      state.editItem.category = action.payload.category;
     },
   },
   extraReducers: (builder) => {
@@ -52,7 +54,7 @@ const transactionsSlice = createSlice({
         state.error = null;
         state.editItem.isEditItem = false;
         state.editItem._id = null;
-        const index = state.items.data.findIndex(
+        const index = state.items.findIndex(
           (item) => item._id === action.payload._id
         );
         state.items.splice(index, 1, {

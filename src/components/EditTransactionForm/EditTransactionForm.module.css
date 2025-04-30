@@ -32,7 +32,7 @@
   align-items: center;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .edittransactionform-modal {
     padding: 40px 20px;
   }
@@ -54,7 +54,7 @@
   transform: rotate(90deg);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .edittransactionform-closeBtn {
     display: none;
   }
@@ -91,10 +91,14 @@
   color: #e0e0e0;
 }
 
-.typeActive.typeIncome {
-  color: #ffb627;
+.edittransactionform-typeIncomeActive {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--yellow);
 }
-.typeActive.typeExpense {
+.edittransactionform-typeExpenseActive {
+  font-weight: 600;
+  font-size: 16px;
   color: var(--coral);
 }
 
@@ -111,15 +115,20 @@
   gap: 40px;
 }
 
+@media (min-width: 768px) {
+  .edittransactionform-form {
+    width: 394px;
+    gap: 40px;
+  }
+}
+
 .edittransactionform-row {
   display: flex;
   flex-direction: column;
 }
 
 /*  Inputs / Select / Date  */
-input[type="number"],
-input[type="text"],
-.edittransactionform-dateInput {
+.input {
   width: 100%;
   height: 32px;
   font-size: 18px;
@@ -130,14 +139,27 @@ input[type="text"],
   padding-left: 6px;
 }
 
-input[type="number"] {
+.inputNumber {
   font-weight: 600;
-  text-align: center;
 }
 
-input[type="text"],
-.edittransactionform-dateInput {
+.inputNumber {
+  font-weight: 600;
+}
+
+.inputText {
   font-weight: 400;
+}
+
+.dateInput {
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .inputNumber,
+  .dateInput {
+    width: 181px;
+  }
 }
 
 .edittransactionform-inputWrapper {
@@ -255,7 +277,7 @@ input[type="text"],
   flex-direction: column;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .edittransactionform-double {
     flex-direction: column;
     gap: 32px;

@@ -256,11 +256,12 @@ h3 {
   background: var(--background-gradient-button);
   border: none;
 
-  transition: opacity var(--animation);
+  transition: all var(--animation);
 
   &:hover,
   &:focus {
     opacity: 0.9;
+    transform: scale(1.03);
   }
 }
 
@@ -279,11 +280,12 @@ h3 {
   background-color: var(--background-classic-button);
   border: none;
 
-  transition: opacity var(--animation);
+  transition: all var(--animation);
 
   &:hover,
   &:focus {
     opacity: 0.9;
+    transform: scale(1.03);
   }
 }
 
