@@ -11,7 +11,7 @@ import { openEditModal } from "../../redux/modal/slice.js";
 function getDate(incomeDate) {
   const date = new Date(incomeDate);
   const year = date.getFullYear() - 2000;
-  const month = date.getMonth() + 1;
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = date.getDate();
   return [day, month, year].join(".");
 }
