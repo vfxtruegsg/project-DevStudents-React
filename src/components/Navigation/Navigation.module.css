@@ -41,6 +41,10 @@
 .homeText {
   display: none;
 }
+.swappedImage {
+  width: 38px;
+  height: 38px;
+}
 
 /* ===================== Active ======================= */
 
@@ -51,6 +55,13 @@
   text-decoration-thickness: 2px;
   text-decoration-color: var(--color-primary);
   @media (max-width: 767px) {
-    display: none;
+    /* display: none; */
+  }
+  & .swappedImage {
+    background-color: white;
+    border-radius: 9px;
+    width: 38px;
+    height: 38px;
+    transition: all 0.5s;
   }
 }

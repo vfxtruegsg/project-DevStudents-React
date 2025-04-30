@@ -20,11 +20,9 @@ const Navigation = () => {
 
   const imgSource1 = isClicked == 1 ? imgObject.img1_active : imgObject.img1;
   const altSource1 = isClicked === 1 ? "Home icon" : "Home icon Active";
-  const textSource1 = isClicked === 1 ? css.active : css.homeText;
   const imgSource2 = isClicked == 2 ? imgObject.img2_active : imgObject.img2;
   const altSource2 =
     isClicked === 2 ? "Statistics icon" : "Statistics icon Active";
-  const textSource2 = isClicked === 2 ? css.active : css.homeText;
   const imgSource3 = isClicked == 3 ? imgObject.img3_active : imgObject.img3;
   const altSource3 = isClicked === 3 ? "Currency icon" : "Currency icon Active";
 
@@ -32,7 +30,7 @@ const Navigation = () => {
     <section className={css.navSection}>
       <nav className={css.nav}>
         <NavLink
-          className={({ isActive }) => clsx(css.link, isActive && css.act1mive)}
+          className={({ isActive }) => clsx(css.link, isActive && css.active)}
           to="/"
           onClick={() => setIsClicked(1)}
         >
@@ -44,10 +42,10 @@ const Navigation = () => {
             />
           </div>
 
-          <span className={textSource1}>Home</span>
+          <span className={css.homeText}>Home</span>
         </NavLink>
         <NavLink
-          className={({ isActive }) => clsx(css.link, isActive && css.actmve)}
+          className={({ isActive }) => clsx(css.link, isActive && css.active)}
           to="/statistics"
           onClick={() => setIsClicked(2)}
         >
@@ -59,13 +57,11 @@ const Navigation = () => {
             />
           </div>
 
-          <span className={textSource2}>Statistics</span>
+          <span className={css.homeText}>Statistics</span>
         </NavLink>
         {isMobile && (
           <NavLink
-            className={({ isActive }) =>
-              clsx(css.link, isActive && css.actdive)
-            }
+            className={({ isActive }) => clsx(css.link, isActive && css.active)}
             to="/currency"
             onClick={() => setIsClicked(3)}
           >
