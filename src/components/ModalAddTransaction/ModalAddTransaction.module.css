@@ -165,5 +165,10 @@
     box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
     background: rgba(255, 255, 255, 0.1);
     width: 100%;
+
+    background-image: url("../../images/gradients/Ellipse_19.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }

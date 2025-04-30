@@ -51,7 +51,9 @@ const ModalAddTransaction = () => {
         className={css.modalContainer}
         modalContent={css.modalContent}
       >
-        <AddTransactionForm onCancel={handleModalClose} />
+        <div className={css.contentContainer}>
+          <AddTransactionForm onCancel={handleModalClose} />
+        </div>
       </ModalTemplate>
     </>
   );
