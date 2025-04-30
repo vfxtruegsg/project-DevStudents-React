@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./Navigation.module.css";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { useMedia } from "../../hooks/useMedia.js";
+import useMediaQuery2 from "../../hooks/useMediaQuery2.jsx";
 
 const imgObject = {
   img1: "/home.svg",
@@ -14,62 +15,66 @@ const imgObject = {
 };
 
 const Navigation = () => {
+  const isMobile2 = useMediaQuery2("(max-width: 767px)");
+  const isTablet2 = useMediaQuery2(
+    "(min-width: 768px) and (max-width: 1199px)"
+  );
+  const isDesktop2 = useMediaQuery2("(min-width: 1280px)");
+
   const { isMobile } = useMedia();
 
   const [isClicked, setIsClicked] = useState(1);
 
   const imgSource1 = isClicked == 1 ? imgObject.img1_active : imgObject.img1;
   const altSource1 = isClicked === 1 ? "Home icon" : "Home icon Active";
-  const textSource1 = isClicked === 1 ? css.active : css.homeText;
   const imgSource2 = isClicked == 2 ? imgObject.img2_active : imgObject.img2;
   const altSource2 =
     isClicked === 2 ? "Statistics icon" : "Statistics icon Active";
-  const textSource2 = isClicked === 2 ? css.active : css.homeText;
   const imgSource3 = isClicked == 3 ? imgObject.img3_active : imgObject.img3;
   const altSource3 = isClicked === 3 ? "Currency icon" : "Currency icon Active";
-
+  useEffect(() => {
+    if (isMobile2) {
+      setIsClicked(1);
+    } else if (isTablet2) {
+      setIsClicked(1);
+    } else if (isDesktop2) {
+      setIsClicked(1);
+    }
+  }, [isMobile2, isTablet2, isDesktop2]);
   return (
     <section className={css.navSection}>
       <nav className={css.nav}>
-        <NavLink
-          className={({ isActive }) => clsx(css.link, isActive && css.act1mive)}
-          to="/"
-          onClick={() => setIsClicked(1)}
-        >
-          <div>
+        <NavLink className={css.link} to="/" onClick={() => setIsClicked(1)}>
+          <div className={clsx(css.navImg, isClicked === 1 && css.active)}>
             <img
               src={imgSource1}
               alt={altSource1}
               className={css.swappedImage}
             />
+            <span className={css.homeText}>Home</span>
           </div>
-
-          <span className={textSource1}>Home</span>
         </NavLink>
         <NavLink
-          className={({ isActive }) => clsx(css.link, isActive && css.actmve)}
+          className={css.link}
           to="/statistics"
           onClick={() => setIsClicked(2)}
         >
-          <div>
+          <div className={clsx(css.navImg, isClicked === 2 && css.active)}>
             <img
               src={imgSource2}
               alt={altSource2}
               className={css.swappedImage}
             />
+            <span className={css.homeText}>Statistics</span>
           </div>
-
-          <span className={textSource2}>Statistics</span>
         </NavLink>
         {isMobile && (
           <NavLink
-            className={({ isActive }) =>
-              clsx(css.link, isActive && css.actdive)
-            }
+            className={css.link}
             to="/currency"
             onClick={() => setIsClicked(3)}
           >
-            <div>
+            <div className={clsx(css.navImg, isClicked === 3 && css.active)}>
               <img
                 src={imgSource3}
                 alt={altSource3}
