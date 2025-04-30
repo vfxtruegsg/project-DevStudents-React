@@ -83,17 +83,23 @@
 }
 
 .dateInputGroup {
+  position: relative;
   justify-content: space-between;
   box-sizing: border-box;
   padding-right: 2px;
+  /* width: 280px; */
 }
 
 .calendarIcon {
+  display: block;
   pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 17px;
 }
 
 .dateInput {
-  width: 100%;
+  width: 280px;
 }
 
 .amountInput {
@@ -213,6 +219,8 @@
   text-transform: uppercase;
   text-align: center;
   color: #fbfbfb;
+
+  transition: all var(--animation);
 }
 
 .cancelButton {
@@ -227,6 +235,16 @@
   box-shadow: 0 2px 8px rgba(75, 47, 132, 0.1);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
+  transition: all var(--animation);
+}
+
+.submitButton:hover,
+.cancelButton:hover,
+.submitButton:focus,
+.cancelButton:focus {
+  opacity: 0.9;
+  transform: scale(1.03);
 }
 
 .error {
@@ -268,11 +286,22 @@
   }
 
   .calendarIcon {
+    right: 11px;
   }
 
   .inputComment {
     width: 100%;
     height: auto;
     padding-bottom: 8px;
+  }
+
+  .submitButton {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  .cancelButton {
+    width: 300px;
+    margin: 0 auto;
   }
 }

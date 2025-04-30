@@ -27,6 +27,13 @@ const ModalAddTransaction = () => {
         modalContent={css.modalContent}
       >
         <div className={css.contentContainer}>
+          <button
+            onClick={handleModalClose}
+            className={css.closeButton}
+            type="button"
+          >
+            <img className={css.closeSvg} src="/close.svg" alt="Close image" />
+          </button>
           <AddTransactionForm onCancel={handleModalClose} />
         </div>
       </ModalTemplate>

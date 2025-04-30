@@ -47,7 +47,7 @@
   border: none;
   cursor: pointer;
   line-height: 0;
-  transition: transform 0.3s ease;
+  transition: transform var(--animation);
 }
 
 .edittransactionform-closeBtn:hover {
@@ -311,7 +311,7 @@
   text-transform: uppercase;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease-in-out;
 }
 
 .edittransactionform-saveBtn {
@@ -350,7 +350,7 @@
 .overlay {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--animation);
 }
 .overlay--hide {
   opacity: 0;
@@ -373,6 +373,7 @@
 .edittransactionform-cancelBtn:hover,
 .edittransactionform-cancelBtn:focus {
   transform: scale(1.03);
+  opacity: 0.9;
 }
 
 @media (max-width: 480px) {
