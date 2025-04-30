@@ -54,7 +54,7 @@ const AddTransactionForm = ({ onCancel }) => {
       type: "expense",
       sum: "",
       date: new Date(),
-      category: "Incomes",
+      category: "Main expenses",
       comment: "",
     },
     resolver: yupResolver(schema),

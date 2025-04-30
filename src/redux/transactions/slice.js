@@ -21,7 +21,14 @@ const transactionsSlice = createSlice({
   name: "transactions",
   initialState: {
     items: [],
-    editItem: { isEditItem: false, _id: null, type: "", category: "" },
+    editItem: {
+      isEditItem: false,
+      _id: null,
+      type: "",
+      category: "",
+      sum: "",
+      comment: "",
+    },
     loading: false,
     error: null,
     summary: {},
@@ -33,6 +40,8 @@ const transactionsSlice = createSlice({
       state.editItem._id = action.payload._id;
       state.editItem.type = action.payload.type;
       state.editItem.category = action.payload.category;
+      state.editItem.sum = action.payload.sum;
+      state.editItem.comment = action.payload.comment;
     },
   },
   extraReducers: (builder) => {

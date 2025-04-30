@@ -30,9 +30,9 @@ export default function EditTransactionForm() {
     defaultValues: {
       category: selectEditTransaction.category,
       type: selectEditTransaction.type,
-      sum: "",
+      sum: selectEditTransaction.sum,
       date: new Date(),
-      comment: "",
+      comment: selectEditTransaction.comment,
     },
   });
 
@@ -102,6 +102,7 @@ export default function EditTransactionForm() {
             <select
               {...register("category")}
               className={css["edittransactionform-select"]}
+              defaultValue={selectEditTransaction.category}
             >
               <option value="" hidden>
                 Select…

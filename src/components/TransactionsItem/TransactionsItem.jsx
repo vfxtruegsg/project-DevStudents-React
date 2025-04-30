@@ -29,7 +29,7 @@ const TransactionsItem = ({
   };
 
   const handleEdit = () => {
-    dispatch(changeEditTransaction({ _id, type, category }));
+    dispatch(changeEditTransaction({ _id, type, category, sum, comment }));
     dispatch(openEditModal());
   };
 
