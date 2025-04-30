@@ -7,29 +7,6 @@
   border-radius: 8px;
 }
 
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-
-  width: 100vw;
-  height: 100vh;
-  border: none;
-
-  backdrop-filter: blur(100px);
-  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 700;
-  backdrop-filter: blur(100px);
-}
-
 .overlay {
   backdrop-filter: blur(7px);
   background: rgba(34, 13, 91, 0.23);
@@ -46,14 +23,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .modal {
-    width: 533px;
-    height: 447px;
-    border-radius: 8px;
-    backdrop-filter: blur(100px);
-    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-    background: rgba(255, 255, 255, 0.1);
-  }
   .overlay {
     backdrop-filter: blur(7px);
   }
