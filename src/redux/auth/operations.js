@@ -103,3 +103,17 @@ export const refreshThunk = createAsyncThunk(
     }
   }
 );
+
+export const getUserDataThunk = createAsyncThunk(
+  "auth/userData",
+  async (_, thunkApi) => {
+    try {
+      const { data } = await backAPI.get("/user/current");
+      console.log(data.data);
+
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

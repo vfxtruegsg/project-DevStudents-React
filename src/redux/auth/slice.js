@@ -1,5 +1,6 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
+  getUserDataThunk,
   loginThunk,
   logoutThunk,
   refreshThunk,
@@ -35,29 +36,48 @@ const slice = createSlice({
         return initialState;
       })
 
+      .addCase(registerThunk.fulfilled, (state, action) => {
+        state.user.userId = action.payload._id;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.user.avatar = action.payload.avatar;
+        state.user.balance = action.payload.balance;
+        state.token = action.payload.accessToken;
+        state.isLoggedIn = true;
+        state.isAuthLoading = false;
+      })
+
+      .addCase(loginThunk.fulfilled, (state, action) => {
+        state.user.userId = action.payload.userId;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.user.avatar = action.payload.avatar.url;
+        state.user.balance = action.payload.balance;
+        state.token = action.payload.accessToken;
+        state.isLoggedIn = true;
+        state.isAuthLoading = false;
+      })
+
+      .addCase(getUserDataThunk.fulfilled, (state, action) => {
+        state.user.userId = action.payload._id;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
+        state.user.avatar = action.payload.avatar.url;
+        state.user.balance = action.payload.balance;
+        state.isLoggedIn = true;
+        state.isAuthLoading = false;
+      })
+
       .addMatcher(
         isAnyOf(
           registerThunk.pending,
           loginThunk.pending,
           refreshThunk.pending,
-          logoutThunk.pending
+          logoutThunk.pending,
+          getUserDataThunk.pending
         ),
         (state, action) => {
           state.isAuthLoading = true;
-        }
-      )
-
-      .addMatcher(
-        isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
-        (state, action) => {
-          state.user.userId = action.payload.userId;
-          state.user.name = action.payload.name;
-          state.user.email = action.payload.email;
-          state.user.avatar = action.payload.avatar.url;
-          state.user.balance = action.payload.balance;
-          state.token = action.payload.accessToken;
-          state.isLoggedIn = true;
-          state.isAuthLoading = false;
         }
       )
 
@@ -66,7 +86,8 @@ const slice = createSlice({
           registerThunk.rejected,
           loginThunk.rejected,
           refreshThunk.rejected,
-          logoutThunk.rejected
+          logoutThunk.rejected,
+          getUserDataThunk.rejected
         ),
         (state, action) => {
           state.isAuthLoading = false;

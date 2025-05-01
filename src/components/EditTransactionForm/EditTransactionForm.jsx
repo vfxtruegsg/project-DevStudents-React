@@ -12,6 +12,7 @@ import {
 } from "../../redux/transactions/operations.js";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectIsEditTransaction } from "../../redux/transactions/selectors.js";
+import { getUserDataThunk } from "../../redux/auth/operations.js";
 
 export default function EditTransactionForm() {
   const dispatch = useDispatch();
@@ -36,7 +37,6 @@ export default function EditTransactionForm() {
     },
   });
 
-  /* submit */
   const onSubmit = async (values) => {
     await dispatch(
       editTransaction({ ...values, _id: selectEditTransaction._id })
@@ -47,6 +47,8 @@ export default function EditTransactionForm() {
           .unwrap()
           .then(() => dispatch(closeModal()));
       });
+
+    await dispatch(getUserDataThunk());
   };
 
   const onClose = () => {
