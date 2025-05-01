@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch } from "react-redux";
 import { addTransaction } from "../../redux/transactions/operations.js";
 import { closeModal } from "../../redux/modal/slice.js";
+import { getUserDataThunk } from "../../redux/auth/operations.js";
 
 const categories = [
   "Main expenses",
@@ -72,7 +73,11 @@ const AddTransactionForm = ({ onCancel }) => {
   const onSubmit = (payload) => {
     dispatch(addTransaction(payload))
       .unwrap()
-      .then(() => dispatch(closeModal()));
+      .then(() =>
+        dispatch(getUserDataThunk())
+          .unwrap()
+          .then(() => dispatch(closeModal()))
+      );
   };
 
   return (

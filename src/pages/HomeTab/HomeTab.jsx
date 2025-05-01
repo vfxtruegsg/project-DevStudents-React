@@ -11,13 +11,10 @@ import MediaQuery from "react-responsive";
 
 const HomeTab = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllTransactions());
-  }, [dispatch]);
-
   const currentUserData = useSelector(selectUser);
   const transactions = useSelector(selectTransactions);
+
+  if (transactions.length === 0) dispatch(getAllTransactions());
 
   return (
     <>

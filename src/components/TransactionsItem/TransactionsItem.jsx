@@ -7,6 +7,7 @@ import {
 } from "../../redux/transactions/operations.js";
 import { changeEditTransaction } from "../../redux/transactions/slice.js";
 import { openEditModal } from "../../redux/modal/slice.js";
+import { getUserDataThunk } from "../../redux/auth/operations.js";
 
 function getDate(incomeDate) {
   const date = new Date(incomeDate);
@@ -25,7 +26,11 @@ const TransactionsItem = ({
   const handleDelete = () => {
     dispatch(deleteTransaction(_id))
       .unwrap()
-      .then(() => dispatch(getAllTransactions()));
+      .then(() =>
+        dispatch(getAllTransactions())
+          .unwrap()
+          .then(() => dispatch(getUserDataThunk()))
+      );
   };
 
   const handleEdit = () => {

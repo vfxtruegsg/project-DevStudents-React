@@ -1,35 +1,21 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import css from "./Chart.module.css";
+import { useSelector } from "react-redux";
+import { selectSummary } from "../../redux/transactions/selectors.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// принимает пропс data в таком формате, грубо говоря data
-// при ответе на запрос /transactions/summary,
-// и пропс balance для отрисовки по центру суммы денег пользователя
-
-// {
-//   "Main expenses": 130,
-//   Products: 120,
-//   Car: 100,
-//   "Self care": 80,
-//   "Child care": 60,
-//   "Household products": 90,
-//   Education: 70,
-//   Leisure: 50,
-//   "Other expenses": 40,
-//   Entertainment: 30,
-//   Incomes: 1000,
-//   totalExpenses: 600,
-// }
-
-const Chart = ({ data, balance }) => {
-  if (!data) return <p className={css.noData}>No information to draw graph</p>;
+const Chart = ({ data }) => {
+  if (!data || Object.keys(data).length === 0) {
+    return <p className={css.noData}>No information to draw graph</p>;
+  }
 
   const excludedKeys = ["totalExpenses", "Incomes"];
-
   const labels = Object.keys(data).filter((key) => !excludedKeys.includes(key));
   const values = labels.map((label) => data[label]);
+
+  const totalExpenses = data.totalExpenses ?? 0;
 
   const backgroundColors = [
     "#fed057",
@@ -41,6 +27,7 @@ const Chart = ({ data, balance }) => {
     "#81e1ff",
     "#24cca7",
     "#00ad84",
+    "#ffcc00",
   ];
 
   const centerTextPlugin = {
@@ -55,11 +42,8 @@ const Chart = ({ data, balance }) => {
       ctx.textAlign = "center";
       ctx.fillStyle = "#fbfbfb";
 
-      const text = `$${balance}`;
-      const textX = width / 2;
-      const textY = height / 2;
-
-      ctx.fillText(text, textX, textY);
+      const text = `$${totalExpenses}`;
+      ctx.fillText(text, width / 2, height / 2);
       ctx.save();
     },
   };

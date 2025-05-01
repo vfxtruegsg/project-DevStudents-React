@@ -18,6 +18,12 @@ const StatisticsTable = () => {
     "#00ad84",
     "#06755b",
   ];
+
+  // Отфильтровываем только категории с суммой > 0 и исключаем totalExpenses/Incomes
+  const filteredKeys = keys.filter(
+    (key) => key !== "totalExpenses" && key !== "Incomes" && summary[key] !== 0
+  );
+
   let counter = -1;
 
   return (
@@ -29,11 +35,8 @@ const StatisticsTable = () => {
         </tr>
       </thead>
       <tbody>
-        {[...keys].map((key, index) => {
+        {filteredKeys.map((key, index) => {
           counter += 1;
-          if (key === "totalExpenses" || key === "Incomes") {
-            return null;
-          }
           return (
             <tr className={css.statistics_table_tr} key={index}>
               <td className={css.statistics_table_cell}>
@@ -49,10 +52,10 @@ const StatisticsTable = () => {
             </tr>
           );
         })}
+
         <tr>
           <td className={css.statistics_table_title}>Expenses:</td>
           <td className={css.statistics_table_expvalue}>
-            {/* Берем сумму из объекта */}
             {typeof summary.totalExpenses === "object"
               ? summary.totalExpenses.amount
               : summary.totalExpenses}
@@ -62,7 +65,6 @@ const StatisticsTable = () => {
         <tr>
           <td className={css.statistics_table_title}>Income:</td>
           <td className={css.statistics_table_incvalue}>
-            {/* Берем сумму из объекта */}
             {typeof summary.Incomes === "object"
               ? summary.Incomes.amount
               : summary.Incomes}
