@@ -12,6 +12,27 @@
 }
 
 @media (min-width: 768px) {
+  .transactions_container {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+
+  .transactions_container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .transactions_container::-webkit-scrollbar-track {
+    background: var(--icon-violet);
+    border-radius: 8px;
+  }
+
+  .transactions_container::-webkit-scrollbar-thumb {
+    background-color: var(--white); /* цвет ползунка */
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
   thead.transactions_table_head {
     font-weight: 600;
     font-size: 16px;

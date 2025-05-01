@@ -1,6 +1,7 @@
 import { store } from "../redux/store.js";
 import { refreshThunk } from "../redux/auth/operations.js";
 import { backAPI, setAuthHeader } from "../utils/axiosUtils.js";
+import { logoutThunk } from "../redux/auth/operations.js";
 
 let isRefreshing = false;
 let failedQueue = [];
@@ -43,10 +44,12 @@ export const setupAxiosInterceptors = () => {
             processQueue(null, newToken);
             return backAPI(originalRequest);
           } else {
+            store.dispatch(logoutThunk());
             processQueue(resultAction.payload, null);
             return Promise.reject(error);
           }
         } catch (err) {
+          store.dispatch(logoutThunk());
           processQueue(err, null);
           return Promise.reject(err);
         } finally {
