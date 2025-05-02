@@ -10,7 +10,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { useState } from "react";
 
 function UserModal() {
-  let userUrl = "/public/home.svg";
+  let userUrl = "/user.svg";
 
   const dispatch = useDispatch();
 
@@ -23,6 +23,23 @@ function UserModal() {
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
 
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setName(value);
+    // Валідація: дозволені лише літери
+    if (!/^[a-zA-Zа-яА-ЯіїІЇєЄґҐ' -]*$/.test(value)) {
+      setError("Error: You can add only letters");
+    } else {
+      setError("");
+    }
+  };
+
+  const onClose = () => {
+    dispatch(closeModal());
+  };
   return (
     <>
       {isLoading && <Loader />}
@@ -34,15 +51,15 @@ function UserModal() {
         <div className={`${css.userContainer} container`}>
           <div className={css.backdrop}>
             <button
+              onClick={onClose}
               id="menu-close"
               className={css.mobileMenuClose}
               aria-label="Close menu"
             >
-              <img
-                className={css.userClose}
-                src="./close.svg"
-                alt="Icon close"
-              />
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                <path d="M1 1L17 17" stroke="#FBFBFB" strokeWidth="1" />
+                <path d="M1 17L17 1" stroke="#FBFBFB" strokeWidth="1" />
+              </svg>
             </button>
             <div className={css.userWrapper}>
               <div className={css.textWrapper}>
@@ -56,18 +73,24 @@ function UserModal() {
                   <span className={css.plus}>+</span>
                 </button>
               </div>
-              <input
-                onChange={() => {}}
-                type="text"
-                className={`input ${css.inputName}`}
-                type="text"
-                placeholder="Name"
-              />
+              <div className={css.inputWrapper}>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  value={name}
+                  className={`input ${css.inputName} ${
+                    error ? css.errorInput : ""
+                  }`}
+                  placeholder="Name"
+                />
+                {error && <p className={css.errorText}>{error}</p>}
+                {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+              </div>
               <button
                 onClick={handleClickSave}
                 className={`btn-gradient ${css.btn}`}
                 type="button"
-                style={{ marginBottom: 20 }}
+                disabled={error || !name.trim()}
               >
                 save
               </button>
