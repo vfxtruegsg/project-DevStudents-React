@@ -76,6 +76,32 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+export const userModalThunk = createAsyncThunk(
+  "auth/usermodal",
+  async (_, thunkApi) => {
+    const token = thunkApi.getState().auth.token;
+    try {
+      const { data } = await backAPI.post(
+        "/auth/usermodal",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+
+      return data;
+    } catch (error) {
+      showToastErrorMessage(error.message);
+
+      return thunkApi.rejectWithValue(error.message);
+    } finally {
+      deleteAuthHeader();
+    }
+  }
+);
 
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",

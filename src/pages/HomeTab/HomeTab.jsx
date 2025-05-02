@@ -4,7 +4,6 @@ import Balance from "../../components/Balance/Balance.jsx";
 import TransactionsList from "../../components/TransactionsList/TransactionsList.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
-import { useEffect } from "react";
 import { getAllTransactions } from "../../redux/transactions/operations.js";
 import { selectTransactions } from "../../redux/transactions/selectors.js";
 import MediaQuery from "react-responsive";

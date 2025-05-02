@@ -43,7 +43,7 @@
   align-items: center;
   gap: 8px;
   @media (min-width: 768px) {
-    gap: 12px;
+    gap: 13px;
   }
 }
 
@@ -54,7 +54,12 @@
 }
 .nameWrapper {
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #6c3db5;
 }
 .name {
   font-size: 18px;

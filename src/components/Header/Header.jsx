@@ -1,8 +1,7 @@
-import { NavLink } from "react-router-dom";
 import css from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors.js";
-import { openLogOutModal } from "../../redux/modal/slice.js";
+import { openLogOutModal, openUserModal } from "../../redux/modal/slice.js";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -30,12 +29,14 @@ const Header = () => {
           </div>
           <div className={css.loginWrapper}>
             <button
-              // onClick={handleClickUserModal}
+              onClick={() => {
+                dispatch(openUserModal());
+              }}
               className={css.linkName}
               type="button"
             >
               <div className={css.nameWrapper}>
-                <p className={css.name}>{userName}</p>
+                <p className={css.name}>{userName.charAt(0).toUpperCase()}</p>
               </div>
             </button>
             <hr className={css.customHr} />

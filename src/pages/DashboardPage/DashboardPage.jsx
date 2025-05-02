@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/auth/selectors.js";
 import Navigation from "../../components/Navigation/Navigation.jsx";
 import ModalEditTransaction from "../../components/ModalEditTransaction/ModalEditTransaction.jsx";
+import UserModal from "../../components/UserModal/UserModal.jsx";
 
 const CurrencyTab = lazy(() =>
   import("../../pages/CurrencyTab/CurrencyTab.jsx")
@@ -46,6 +47,7 @@ const DashboardPage = () => {
               <Outlet />
             </Suspense>
             <LogoutModal />
+            <UserModal />
             <ModalAddTransaction />
             <ModalEditTransaction />
           </div>
