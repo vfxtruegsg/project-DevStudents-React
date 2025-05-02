@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice.js";
+import userReducer from "./user/slice.js";
 import transactionsReducer from "./transactions/slice.js";
 import {
   persistStore,
@@ -20,11 +21,18 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistConfigUser = {
+  key: "user-data",
+  version: 1,
+  storage,
+};
 
+const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistedUserReducer = persistReducer(persistConfigUser, userReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedReducer,
+    user: persistedUserReducer,
     transactions: transactionsReducer,
     modal: modalReducer,
   },

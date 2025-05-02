@@ -6,6 +6,8 @@ import { setupAxiosInterceptors } from "./services/axiosInterceptors.js";
 import { Loader } from "./components/Loader/Loader.jsx";
 import { useMedia } from "./hooks/useMedia.js";
 
+import UserModal from "./components/UserModal/UserModal.jsx";
+
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
 const RegistrationPage = lazy(() =>
   import("./pages/RegistrationPage/RegistrationPage.jsx")
@@ -51,19 +53,23 @@ function App() {
         <Route
           path="/login"
           element={
-            <PublicRoute>
-              <LoginPage />
-            </PublicRoute>
+            // <PublicRoute>
+            //   <LoginPage />
+            // </PublicRoute>
+            <LoginPage />
           }
         />
         <Route
           path="/register"
           element={
-            <PublicRoute>
-              <RegistrationPage />
-            </PublicRoute>
+            // <PublicRoute>
+            //   <RegistrationPage />
+            // </PublicRoute>
+            <RegistrationPage />
           }
         />
+
+        <Route path="/usermodal" element={<UserModal />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
