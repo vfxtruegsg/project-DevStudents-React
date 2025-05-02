@@ -8,6 +8,7 @@ const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userData = useSelector(selectUser);
   const userName = isLoggedIn ? getMailboxName(userData.email) : null;
+  const userImage = isLoggedIn ? userData.avatar : null;
 
   function getMailboxName(emailAddress) {
     const parts = emailAddress.split("@");
@@ -34,8 +35,18 @@ const Header = () => {
               className={css.linkName}
               type="button"
             >
-              <div className={css.nameWrapper}>
-                <p className={css.name}>{userName}</p>
+              <div className={css.userDataWrapper}>
+                {userImage ? (
+                  <img
+                    className={css.profilePhoto}
+                    src={userImage}
+                    width={32}
+                    height={32}
+                    alt="User profile photo"
+                  />
+                ) : (
+                  <p className={css.name}>{userName}</p>
+                )}
               </div>
             </button>
             <hr className={css.customHr} />
