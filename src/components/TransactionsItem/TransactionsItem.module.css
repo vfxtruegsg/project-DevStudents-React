@@ -74,6 +74,14 @@
   background: var(--background-gradient-button);
   border: none;
   max-width: 69px;
+
+  transition: all var(--animation);
+}
+
+.transaction_delete_btn:hover,
+.transaction_delete_btn:focus {
+  transform: scale(1.05);
+  opacity: 0.9;
 }
 
 .transaction_edit_btn {
@@ -85,6 +93,15 @@
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
 }
+.transaction_edit_btn_svg {
+  transition: all var(--animation);
+}
+
+.transaction_edit_btn:hover .transaction_edit_btn_svg,
+.transaction_edit_btn:focus .transaction_edit_btn_svg {
+  transform: rotate(180deg);
+}
+
 @media (min-width: 768px) {
   .transaction_item {
     display: table-cell;

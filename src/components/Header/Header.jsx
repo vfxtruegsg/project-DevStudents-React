@@ -6,8 +6,8 @@ import { openLogOutModal } from "../../redux/modal/slice.js";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const userEmail = useSelector(selectUser);
-  const userName = isLoggedIn ? getMailboxName(userEmail.email) : null;
+  const userData = useSelector(selectUser);
+  const userName = isLoggedIn ? getMailboxName(userData.email) : null;
 
   function getMailboxName(emailAddress) {
     const parts = emailAddress.split("@");
