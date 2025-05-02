@@ -52,9 +52,7 @@
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
   text-decoration-color: var(--color-primary);
-  @media (max-width: 767px) {
-    /* display: none; */
-  }
+
   & .swappedImage {
     background-color: white;
     border-radius: 9px;
