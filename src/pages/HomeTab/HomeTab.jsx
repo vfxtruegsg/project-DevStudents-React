@@ -13,11 +13,11 @@ const HomeTab = () => {
   const currentUserData = useSelector(selectUser);
   const transactions = useSelector(selectTransactions);
 
-  useEffect(() => {
-    if (transactions.length === 0) {
-      dispatch(getAllTransactions());
-    }
-  }, [dispatch, transactions.length]);
+  // useEffect(() => {
+  //   if (transactions.length === 0) {
+  //     dispatch(getAllTransactions());
+  //   }
+  // }, [dispatch, transactions.length]);
 
   return (
     <>

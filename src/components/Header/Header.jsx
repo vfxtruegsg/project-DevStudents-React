@@ -46,7 +46,7 @@ const Header = () => {
                     alt="User profile photo"
                   />
                 ) : (
-                  <p className={css.name}>{userName}</p>
+                  <p className={css.name}>{userName.charAt(0).toUpperCase()}</p>
                 )}
               </div>
             </button>
