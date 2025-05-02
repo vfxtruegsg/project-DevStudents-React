@@ -16,6 +16,12 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
+  --add-btn-gradient: linear-gradient(
+    96.76deg,
+    #ffc727 -16.42%,
+    #9e40ba 97.04%,
+    #7000ff 150.71%
+  );
   --violet-gradient: linear-gradient(270.02deg, #2e1746 3.2%, #2e225f 99.98%);
   --error: #f00000;
   --background-classic-button: #fcfcfc;

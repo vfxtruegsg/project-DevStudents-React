@@ -42,7 +42,7 @@ const Chart = ({ data }) => {
       ctx.textAlign = "center";
       ctx.fillStyle = "#fbfbfb";
 
-      const text = `$${totalExpenses}`;
+      const text = `₴${totalExpenses}`;
       ctx.fillText(text, width / 2, height / 2);
       ctx.save();
     },

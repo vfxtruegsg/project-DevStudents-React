@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 import css from "./EditTransactionForm.module.css";
 import { getEditTxSchema } from "./validation";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,12 +12,28 @@ import {
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectIsEditTransaction } from "../../redux/transactions/selectors.js";
 import { getUserDataThunk } from "../../redux/auth/operations.js";
+import { useState } from "react";
+
+const categories = [
+  "Main expenses",
+  "Products",
+  "Car",
+  "Self care",
+  "Child care",
+  "Household products",
+  "Education",
+  "Leisure",
+  "Other expenses",
+  "Entertainment",
+];
 
 export default function EditTransactionForm() {
   const dispatch = useDispatch();
   const selectEditTransaction = useSelector(selectIsEditTransaction);
 
   const isExpense = selectEditTransaction.type == "expense";
+
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const {
     register,
@@ -36,6 +51,13 @@ export default function EditTransactionForm() {
       comment: selectEditTransaction.comment,
     },
   });
+
+  const category = watch("category");
+
+  const handleCategorySelect = (cat) => {
+    setValue("category", cat);
+    setShowDropdown(false);
+  };
 
   const onSubmit = async (values) => {
     await dispatch(
@@ -100,32 +122,38 @@ export default function EditTransactionForm() {
 
         {/* CATEGORY */}
         {isExpense && (
-          <div className={css["edittransactionform-row"]}>
-            <select
-              {...register("category")}
-              className={css["edittransactionform-select"]}
-              defaultValue={selectEditTransaction.category}
+          <div className={css.dropdownWrap}>
+            <label className={css.dropdownLabel}></label>
+            <div
+              className={`${css.dropdownSelect} ${
+                showDropdown ? css.open : ""
+              }`}
+              onClick={() => setShowDropdown((s) => !s)}
+              tabIndex={0}
+              onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
             >
-              <option value="" hidden>
-                Select…
-              </option>
-              <option value={"Main expenses"}>Main expenses</option>
-              <option value={"Products"}>Products</option>
-              <option value={"Car"}>Car</option>
-              <option value={"Self care"}>Self care</option>
-              <option value={"Child care"}>Child care</option>
-              <option value={"Household products"}>Household products</option>
-              <option value={"Education"}>Education</option>
-              <option value={"Leisure"}>Leisure</option>
-              <option value={"Other expenses"}>Other expenses</option>
-              <option value={"Entertainment"}>Entertainment</option>
-            </select>
+              <span>{category || "Select a category"}</span>
+              <span className={css.dropdownArrow}>&#9662;</span>
+            </div>
+            {showDropdown && (
+              <div className={css.dropdownList}>
+                {categories.map((cat) => (
+                  <div
+                    key={cat}
+                    className={`${css.dropdownItem} ${
+                      cat === category ? css.selected : ""
+                    }`}
+                    onClick={() => handleCategorySelect(cat)}
+                  >
+                    {cat}
+                  </div>
+                ))}
+              </div>
+            )}
+            {errors.category && (
+              <p className={css.error}>{errors.category.message}</p>
+            )}
           </div>
-        )}
-        {errors.category && (
-          <span className={css["edittransactionform-error"]}>
-            {errors.category.message}
-          </span>
         )}
 
         {/* SUM + DATE */}
@@ -137,6 +165,7 @@ export default function EditTransactionForm() {
                 step="0.01"
                 {...register("sum")}
                 className={`${css["edittransactionform-input"]} ${css["input"]} ${css.inputNumber}`}
+                placeholder="0.00"
               />
             </div>
             {errors.sum && (
@@ -158,6 +187,7 @@ export default function EditTransactionForm() {
                   className={`${css["edittransactionform-dateInput"]} ${css.dateInput} `}
                   calendarClassName={css["calendar"]}
                   dayClassName={() => css["calendarDay"]}
+                  placeholderText="dd.MM.yyyy"
                 />
                 <svg
                   className={css["edittransactionform-calendarIcon"]}
@@ -188,6 +218,7 @@ export default function EditTransactionForm() {
               type="text"
               {...register("comment")}
               className={` ${css.input}`}
+              placeholder="Comment"
             />
           </div>
           {errors.comment && (

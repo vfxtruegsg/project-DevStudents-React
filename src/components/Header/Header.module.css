@@ -11,6 +11,7 @@
     padding: 16px;
   }
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -19,6 +20,7 @@
     gap: 12px;
   }
 }
+
 .companyLogo {
   display: flex;
   flex-direction: column;
@@ -30,6 +32,7 @@
     font-size: 13px;
   }
 }
+
 .logo {
   width: 16px;
   height: 13px;
@@ -38,6 +41,7 @@
     height: 22.47px;
   }
 }
+
 .loginWrapper {
   display: flex;
   align-items: center;
@@ -52,7 +56,8 @@
   color: var(--yellow);
   transform: scale(1.02);
 }
-.nameWrapper {
+
+.userDataWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,10 +66,16 @@
   border-radius: 8px;
   background: #6c3db5;
 }
+
+.profilePhoto {
+  border-radius: 8px;
+}
+
 .name {
   font-size: 18px;
   font-weight: 400;
 }
+
 .customHr {
   display: none;
   @media (min-width: 768px) {
@@ -93,6 +104,7 @@
   align-items: center;
   gap: 8px;
 }
+
 .exitText {
   display: none;
   @media (min-width: 768px) {
