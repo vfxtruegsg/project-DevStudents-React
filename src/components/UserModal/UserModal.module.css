@@ -129,7 +129,6 @@
 
   background-color: transparent;
   border-bottom: 1px solid var(--light-gray);
-  box-shadow: var(--box-shadow-button);
   font-size: 18px;
   color: var(--light-gray);
 }
@@ -143,7 +142,7 @@
 
 .text {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 24px;
   text-align: center;
   color: var(--full-white);
 }
@@ -177,6 +176,10 @@
     height: 100vh;
   }
 
+  .text {
+    font-size: 30px;
+  }
+
   @media (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -194,6 +197,7 @@
   .inputWrapper {
     gap: 3px;
     margin-bottom: 50px;
+    padding-bottom: 8px;
   }
 
   .btn {

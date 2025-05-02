@@ -5,31 +5,28 @@ import { closeModal } from "../../redux/modal/slice.js";
 import { selectIsUserModalOpen } from "../../redux/modal/selectors.js";
 import { selectisAuthLoading } from "../../redux/auth/selectors.js";
 import { Loader } from "../Loader/Loader.jsx";
-import { userModalThunk } from "../../redux/auth/operations.js";
-import { FaRegUser } from "react-icons/fa6";
+import { userEditThunk } from "../../redux/auth/operations.js";
 import { useState } from "react";
 
 function UserModal() {
-  let userUrl = "/user.svg";
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleClickSave = () => {
-    // dispatch(userModalThunk())
-    //   .unwrap()
-    //   .then(() => dispatch(closeModal()));
+  const handleClickSave = (e) => {
+    e.preventDefault();
+    dispatch(userEditThunk({ name }))
+      .unwrap()
+      .then(() => dispatch(closeModal()));
   };
 
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
 
-  const [name, setName] = useState("");
-  const [error, setError] = useState("");
-
-  const handleChange = (event) => {
-    const value = event.target.value;
+  const handleChange = (e) => {
+    const value = e.target.value;
     setName(value);
-    // Валідація: дозволені лише літери
     if (!/^[a-zA-Zа-яА-ЯіїІЇєЄґҐ' -]*$/.test(value)) {
       setError("Error: You can add only letters");
     } else {
@@ -37,9 +34,6 @@ function UserModal() {
     }
   };
 
-  const onClose = () => {
-    dispatch(closeModal());
-  };
   return (
     <>
       {isLoading && <Loader />}
@@ -48,10 +42,13 @@ function UserModal() {
         className={css.modal}
         modalContent={css.modalContent}
       >
-        <div className={`${css.userContainer} container`}>
+        <form
+          onSubmit={handleClickSave}
+          className={`${css.userContainer} container`}
+        >
           <div className={css.backdrop}>
             <button
-              onClick={onClose}
+              onClick={() => dispatch(closeModal())}
               id="menu-close"
               className={css.mobileMenuClose}
               aria-label="Close menu"
@@ -77,26 +74,24 @@ function UserModal() {
                 <input
                   onChange={handleChange}
                   type="text"
-                  value={name}
                   className={`input ${css.inputName} ${
                     error ? css.errorInput : ""
                   }`}
+                  value={name}
                   placeholder="Name"
                 />
                 {error && <p className={css.errorText}>{error}</p>}
-                {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
               </div>
               <button
-                onClick={handleClickSave}
                 className={`btn-gradient ${css.btn}`}
-                type="button"
+                type="submit"
                 disabled={error || !name.trim()}
               >
                 save
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </ModalTemplate>
     </>
   );

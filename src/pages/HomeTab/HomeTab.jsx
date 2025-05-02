@@ -7,17 +7,18 @@ import { selectUser } from "../../redux/auth/selectors.js";
 import { getAllTransactions } from "../../redux/transactions/operations.js";
 import { selectTransactions } from "../../redux/transactions/selectors.js";
 import MediaQuery from "react-responsive";
+import { useEffect } from "react";
 
 const HomeTab = () => {
   const dispatch = useDispatch();
   const currentUserData = useSelector(selectUser);
   const transactions = useSelector(selectTransactions);
 
-  // useEffect(() => {
-  //   if (transactions.length === 0) {
-  //     dispatch(getAllTransactions());
-  //   }
-  // }, [dispatch, transactions.length]);
+  useEffect(() => {
+    if (transactions.length === 0) {
+      dispatch(getAllTransactions());
+    }
+  }, [dispatch, transactions.length]);
 
   return (
     <>
