@@ -9,6 +9,7 @@ import { userEditThunk } from "../../redux/auth/operations.js";
 import { useState } from "react";
 
 function UserModal() {
+  let userUrl = "/user.svg";
   const [name, setName] = useState("");
   const [error, setError] = useState("");
 
