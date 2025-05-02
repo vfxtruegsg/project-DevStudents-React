@@ -165,6 +165,7 @@ export default function EditTransactionForm() {
                 step="0.01"
                 {...register("sum")}
                 className={`${css["edittransactionform-input"]} ${css["input"]} ${css.inputNumber}`}
+                placeholder="0.00"
               />
             </div>
             {errors.sum && (
@@ -186,6 +187,7 @@ export default function EditTransactionForm() {
                   className={`${css["edittransactionform-dateInput"]} ${css.dateInput} `}
                   calendarClassName={css["calendar"]}
                   dayClassName={() => css["calendarDay"]}
+                  placeholderText="dd.MM.yyyy"
                 />
                 <svg
                   className={css["edittransactionform-calendarIcon"]}
@@ -216,6 +218,7 @@ export default function EditTransactionForm() {
               type="text"
               {...register("comment")}
               className={` ${css.input}`}
+              placeholder="Comment"
             />
           </div>
           {errors.comment && (

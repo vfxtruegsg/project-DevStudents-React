@@ -216,9 +216,16 @@
   color: #fbfbfb;
   padding-left: 6px;
 }
+.input::placeholder {
+  color: var(--light-gray);
+}
 
 .inputNumber {
   font-weight: 600;
+}
+.inputNumber::placeholder {
+  color: var(--light-gray);
+  font-weight: 400;
 }
 
 .inputNumber {
@@ -320,6 +327,10 @@
   padding-left: 6px;
   padding-right: 32px;
   box-sizing: border-box;
+}
+
+.edittransactionform-dateInput::placeholder {
+  color: var(--light-gray);
 }
 
 .calendar {
