@@ -5,19 +5,20 @@ import { closeModal } from "../../redux/modal/slice.js";
 import { selectIsUserModalOpen } from "../../redux/modal/selectors.js";
 import { selectisAuthLoading } from "../../redux/auth/selectors.js";
 import { Loader } from "../Loader/Loader.jsx";
-import { userModalThunk } from "../../redux/auth/operations.js";
-import { FaRegUser } from "react-icons/fa6";
+import { userEditThunk } from "../../redux/auth/operations.js";
 import { useState } from "react";
 
 function UserModal() {
   let userUrl = "/public/home.svg";
+  const [name, setName] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleClickSave = () => {
-    // dispatch(userModalThunk())
-    //   .unwrap()
-    //   .then(() => dispatch(closeModal()));
+  const handleClickSave = (e) => {
+    e.preventDefault();
+    dispatch(userEditThunk({ name }))
+      .unwrap()
+      .then(() => dispatch(closeModal()));
   };
 
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
@@ -31,9 +32,13 @@ function UserModal() {
         className={css.modal}
         modalContent={css.modalContent}
       >
-        <div className={`${css.userContainer} container`}>
+        <form
+          onSubmit={handleClickSave}
+          className={`${css.userContainer} container`}
+        >
           <div className={css.backdrop}>
             <button
+              onClick={() => dispatch(closeModal())}
               id="menu-close"
               className={css.mobileMenuClose}
               aria-label="Close menu"
@@ -57,23 +62,24 @@ function UserModal() {
                 </button>
               </div>
               <input
-                onChange={() => {}}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
                 type="text"
                 className={`input ${css.inputName}`}
-                type="text"
                 placeholder="Name"
+                name="name"
               />
               <button
-                onClick={handleClickSave}
                 className={`btn-gradient ${css.btn}`}
-                type="button"
+                type="submit"
                 style={{ marginBottom: 20 }}
               >
                 save
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </ModalTemplate>
     </>
   );

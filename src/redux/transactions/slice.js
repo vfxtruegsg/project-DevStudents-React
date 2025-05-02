@@ -7,7 +7,7 @@ import {
   getCategories,
   getSummary,
 } from "./operations.js";
-import { logoutThunk, userModalThunk } from "../auth/operations.js";
+import { logoutThunk } from "../auth/operations.js";
 
 const handlePending = (state) => {
   state.loading = true;
@@ -102,12 +102,6 @@ const transactionsSlice = createSlice({
         state.error = false;
       })
 
-      .addCase(userModalThunk.fulfilled, (state) => {
-        state.items = [];
-        state.loading = false;
-        state.error = false;
-      })
-
       .addMatcher(
         isAnyOf(
           getAllTransactions.pending,
@@ -116,8 +110,7 @@ const transactionsSlice = createSlice({
           deleteTransaction.pending,
           getSummary.pending,
           getCategories.pending,
-          logoutThunk.pending,
-          userModalThunk.pending
+          logoutThunk.pending
         ),
         handlePending
       )
@@ -130,8 +123,7 @@ const transactionsSlice = createSlice({
           deleteTransaction.rejected,
           getSummary.rejected,
           getCategories.rejected,
-          logoutThunk.rejected,
-          userModalThunk.rejected
+          logoutThunk.rejected
         ),
         handleRejected
       );

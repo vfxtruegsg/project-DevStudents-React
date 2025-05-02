@@ -76,29 +76,24 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
-export const userModalThunk = createAsyncThunk(
+
+export const userEditThunk = createAsyncThunk(
   "auth/usermodal",
-  async (_, thunkApi) => {
+  async (credentials, thunkApi) => {
     const token = thunkApi.getState().auth.token;
     try {
-      const { data } = await backAPI.post(
-        "/auth/usermodal",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
+      const { data } = await backAPI.patch("/user/update", credentials, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
 
-      return data;
+      return data.data;
     } catch (error) {
       showToastErrorMessage(error.message);
 
       return thunkApi.rejectWithValue(error.message);
-    } finally {
-      deleteAuthHeader();
     }
   }
 );

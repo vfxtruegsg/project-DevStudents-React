@@ -5,6 +5,7 @@ import {
   logoutThunk,
   refreshThunk,
   registerThunk,
+  userEditThunk,
 } from "./operations.js";
 
 const initialState = {
@@ -68,13 +69,21 @@ const slice = createSlice({
         state.isAuthLoading = false;
       })
 
+      .addCase(userEditThunk.fulfilled, (state, action) => {
+        state.user.name = action.payload.name;
+        state.user.avatar = action.payload.avatar.url;
+        state.isLoggedIn = true;
+        state.isAuthLoading = false;
+      })
+
       .addMatcher(
         isAnyOf(
           registerThunk.pending,
           loginThunk.pending,
           refreshThunk.pending,
           logoutThunk.pending,
-          getUserDataThunk.pending
+          getUserDataThunk.pending,
+          userEditThunk.pending
         ),
         (state, action) => {
           state.isAuthLoading = true;
@@ -87,7 +96,8 @@ const slice = createSlice({
           loginThunk.rejected,
           refreshThunk.rejected,
           logoutThunk.rejected,
-          getUserDataThunk.rejected
+          getUserDataThunk.rejected,
+          userEditThunk.rejected
         ),
         (state, action) => {
           state.isAuthLoading = false;
