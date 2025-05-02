@@ -101,7 +101,6 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
-  /* background: #6c3db5; */
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -113,22 +112,32 @@
   text-align: center;
   color: #161616;
 }
-
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 80px;
+}
 .inputName {
   width: 100%;
   height: 40px;
   padding: 0 16px;
-  margin-bottom: 80px;
+
   background-color: transparent;
   border-bottom: 1px solid var(--light-gray);
   font-size: 18px;
   color: var(--light-gray);
-  font-weight: 400;
-  padding-bottom: 12px;
 }
-
-.inputName::placeholder {
-  color: var(--light-gray);
+.errorText {
+  font-size: 10px;
+  color: red;
+}
+.inputName.errorInput {
+  color: red;
 }
 
 .text {
@@ -185,7 +194,8 @@
   .userPhotoWrapper {
     margin-bottom: 32px;
   }
-  .inputName {
+  .inputWrapper {
+    gap: 3px;
     margin-bottom: 50px;
     padding-bottom: 8px;
   }

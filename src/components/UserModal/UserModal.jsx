@@ -9,8 +9,9 @@ import { userEditThunk } from "../../redux/auth/operations.js";
 import { useState } from "react";
 
 function UserModal() {
-  let userUrl = "/public/home.svg";
+  let userUrl = "/user.svg";
   const [name, setName] = useState("");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
 
@@ -23,6 +24,16 @@ function UserModal() {
 
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setName(value);
+    if (!/^[a-zA-Zа-яА-ЯіїІЇєЄґҐ' -]*$/.test(value)) {
+      setError("Error: You can add only letters");
+    } else {
+      setError("");
+    }
+  };
 
   return (
     <>
@@ -43,11 +54,10 @@ function UserModal() {
               className={css.mobileMenuClose}
               aria-label="Close menu"
             >
-              <img
-                className={css.userClose}
-                src="./close.svg"
-                alt="Icon close"
-              />
+              <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                <path d="M1 1L17 17" stroke="#FBFBFB" strokeWidth="1" />
+                <path d="M1 17L17 1" stroke="#FBFBFB" strokeWidth="1" />
+              </svg>
             </button>
             <div className={css.userWrapper}>
               <div className={css.textWrapper}>
@@ -61,19 +71,22 @@ function UserModal() {
                   <span className={css.plus}>+</span>
                 </button>
               </div>
-              <input
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                type="text"
-                className={`input ${css.inputName}`}
-                placeholder="Name"
-                name="name"
-              />
+              <div className={css.inputWrapper}>
+                <input
+                  onChange={handleChange}
+                  type="text"
+                  className={`input ${css.inputName} ${
+                    error ? css.errorInput : ""
+                  }`}
+                  value={name}
+                  placeholder="Name"
+                />
+                {error && <p className={css.errorText}>{error}</p>}
+              </div>
               <button
                 className={`btn-gradient ${css.btn}`}
                 type="submit"
-                style={{ marginBottom: 20 }}
+                disabled={error || !name.trim()}
               >
                 save
               </button>
