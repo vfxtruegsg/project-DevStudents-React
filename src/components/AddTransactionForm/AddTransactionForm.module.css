@@ -295,6 +295,9 @@
   .dateInput {
     width: 181px;
   }
+  .dateInput::placeholder {
+    color: var(--light-gray);
+  }
 
   .amountInput {
     width: 181px;

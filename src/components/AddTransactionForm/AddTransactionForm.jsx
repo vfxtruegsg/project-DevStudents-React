@@ -165,6 +165,7 @@ const AddTransactionForm = ({ onCancel }) => {
                   className={`${css.input} ${css.dateInput}`}
                   calendarClassName={css["calendar"]}
                   dayClassName={() => css["calendarDay"]}
+                  placeholderText="dd.MM.yyyy"
                 />
                 <span className={css.calendarIcon}>
                   <img
