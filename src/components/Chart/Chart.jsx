@@ -64,6 +64,7 @@ const Chart = ({ data }) => {
   return (
     <div className={css.chartWrapper}>
       <Doughnut
+        key={totalExpenses}
         data={chartData}
         options={{ cutout: "72%", plugins: { legend: false } }}
         plugins={[centerTextPlugin]}
