@@ -85,6 +85,7 @@ export const userEditThunk = createAsyncThunk(
       const { data } = await backAPI.patch("/user/update", credentials, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
         withCredentials: true,
       });

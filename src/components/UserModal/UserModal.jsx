@@ -3,24 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { ModalTemplate } from "../ModalTemplate/ModalTemplate.jsx";
 import { closeModal } from "../../redux/modal/slice.js";
 import { selectIsUserModalOpen } from "../../redux/modal/selectors.js";
-import { selectisAuthLoading } from "../../redux/auth/selectors.js";
+import { selectisAuthLoading, selectUser } from "../../redux/auth/selectors.js";
 import { Loader } from "../Loader/Loader.jsx";
 import { userEditThunk } from "../../redux/auth/operations.js";
-import { useState } from "react";
+import { nanoid } from "nanoid";
 
 function UserModal() {
-  let userUrl = "/public/home.svg";
-  const [name, setName] = useState("");
+  const fileInputId = nanoid();
 
   const dispatch = useDispatch();
 
-  const handleClickSave = (e) => {
+  const handleClickSave = async (e) => {
     e.preventDefault();
-    dispatch(userEditThunk({ name }))
+
+    const name = e.target.elements.name.value;
+    const image = e.target.elements.userImage.files[0];
+
+    const formData = new FormData();
+    formData.append("name", name);
+    if (image) {
+      formData.append("avatar", image);
+    }
+
+    dispatch(userEditThunk(formData))
       .unwrap()
       .then(() => dispatch(closeModal()));
   };
 
+  const userImage = useSelector(selectUser).avatar;
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
 
@@ -55,16 +65,24 @@ function UserModal() {
               </div>
               <div className={css.userPhotoWrapper}>
                 <div className={css.userPhoto}>
-                  <img className={css.userPhotoImg} src={userUrl} alt="user" />
+                  <img
+                    className={css.userPhotoImg}
+                    src={userImage}
+                    alt="user photo"
+                  />
+                  <label className={css.inputContainer}>
+                    +
+                    <input
+                      type="file"
+                      id={fileInputId}
+                      name="userImage"
+                      className={css.fileInput}
+                      accept="image/*"
+                    />
+                  </label>
                 </div>
-                <button className={css.plusWrapper} type="button">
-                  <span className={css.plus}>+</span>
-                </button>
               </div>
               <input
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
                 type="text"
                 className={`input ${css.inputName}`}
                 placeholder="Name"
