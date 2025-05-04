@@ -54,16 +54,6 @@ function UserModal() {
     }
   };
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-
-    if (!/^[a-zA-Zа-яА-ЯіїІЇєЄґҐ' -]*$/.test(value)) {
-      setError("Error: You can add only letters");
-    } else {
-      setError("");
-    }
-  };
-
   const userImage = useSelector(selectUser).avatar;
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
@@ -126,7 +116,6 @@ function UserModal() {
                   className={`input ${css.inputName}`}
                   placeholder="Name"
                   name="name"
-                  onChange={handleChange}
                 />
 
                 {error && <p className={css.errorText}>{error}</p>}
