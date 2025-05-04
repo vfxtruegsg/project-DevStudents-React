@@ -143,6 +143,18 @@
   color: var(--light-gray);
 }
 
+.nameInputContainer {
+  position: relative;
+}
+
+.errorText {
+  position: absolute;
+  font-size: 10px;
+  color: var(--error);
+  top: 46px;
+  left: 18px;
+}
+
 .text {
   font-weight: 400;
   font-size: 24px;
@@ -183,6 +195,11 @@
 
   .text {
     font-size: 30px;
+  }
+
+  .errorText {
+    top: 43px;
+    left: 8px;
   }
 
   @media (-webkit-min-device-pixel-ratio: 2),

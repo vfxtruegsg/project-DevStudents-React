@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { showToastErrorMessage } from "../../utils/showToastErrorMessage.js";
+import { showToastSuccessMessage } from "../../utils/showToastSuccessMessage.js";
 import {
   backAPI,
   setAuthHeader,
@@ -89,6 +90,8 @@ export const userEditThunk = createAsyncThunk(
         },
         withCredentials: true,
       });
+
+      showToastSuccessMessage("User updated successfully!");
 
       return data.data;
     } catch (error) {

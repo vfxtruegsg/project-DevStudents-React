@@ -7,17 +7,29 @@ import { selectisAuthLoading, selectUser } from "../../redux/auth/selectors.js";
 import { Loader } from "../Loader/Loader.jsx";
 import { userEditThunk } from "../../redux/auth/operations.js";
 import { nanoid } from "nanoid";
+import { useState } from "react";
 
 function UserModal() {
+  const [error, setError] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const fileInputId = nanoid();
-
   const dispatch = useDispatch();
 
   const handleClickSave = async (e) => {
     e.preventDefault();
 
-    const name = e.target.elements.name.value;
+    const name = e.target.elements.name.value.trim();
     const image = e.target.elements.userImage.files[0];
+
+    if (!name) {
+      setError("Error: Name is required");
+      return;
+    }
+
+    if (!/^[a-zA-Zа-яА-ЯіїІЇєЄґҐ' -]*$/.test(name)) {
+      setError("Error: You can add only letters");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("name", name);
@@ -27,7 +39,29 @@ function UserModal() {
 
     dispatch(userEditThunk(formData))
       .unwrap()
-      .then(() => dispatch(closeModal()));
+      .then(() => {
+        dispatch(closeModal());
+        setSelectedImage(null);
+        setError("");
+      });
+  };
+
+  const imageOnChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setSelectedImage(imageURL);
+    }
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+
+    if (!/^[a-zA-Zа-яА-ЯіїІЇєЄґҐ' -]*$/.test(value)) {
+      setError("Error: You can add only letters");
+    } else {
+      setError("");
+    }
   };
 
   const userImage = useSelector(selectUser).avatar;
@@ -48,7 +82,10 @@ function UserModal() {
         >
           <div className={css.backdrop}>
             <button
-              onClick={() => dispatch(closeModal())}
+              onClick={() => {
+                dispatch(closeModal());
+                setSelectedImage(null);
+              }}
               id="menu-close"
               className={css.mobileMenuClose}
               aria-label="Close menu"
@@ -67,7 +104,7 @@ function UserModal() {
                 <div className={css.userPhoto}>
                   <img
                     className={css.userPhotoImg}
-                    src={userImage}
+                    src={selectedImage ? selectedImage : userImage}
                     alt="user photo"
                   />
                   <label className={css.inputContainer}>
@@ -78,20 +115,27 @@ function UserModal() {
                       name="userImage"
                       className={css.fileInput}
                       accept="image/*"
+                      onChange={imageOnChange}
                     />
                   </label>
                 </div>
               </div>
-              <input
-                type="text"
-                className={`input ${css.inputName}`}
-                placeholder="Name"
-                name="name"
-              />
+              <div className={css.nameInputContainer}>
+                <input
+                  type="text"
+                  className={`input ${css.inputName}`}
+                  placeholder="Name"
+                  name="name"
+                  onChange={handleChange}
+                />
+
+                {error && <p className={css.errorText}>{error}</p>}
+              </div>
               <button
                 className={`btn-gradient ${css.btn}`}
                 type="submit"
                 style={{ marginBottom: 20 }}
+                disabled={error}
               >
                 save
               </button>
