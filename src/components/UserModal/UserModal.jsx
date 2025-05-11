@@ -54,7 +54,7 @@ function UserModal() {
     }
   };
 
-  const userImage = useSelector(selectUser).avatar;
+  const userData = useSelector(selectUser);
   const isUserModalOpen = useSelector(selectIsUserModalOpen);
   const isLoading = useSelector(selectisAuthLoading);
 
@@ -94,7 +94,7 @@ function UserModal() {
                 <div className={css.userPhoto}>
                   <img
                     className={css.userPhotoImg}
-                    src={selectedImage ? selectedImage : userImage}
+                    src={selectedImage ? selectedImage : userData.avatar}
                     alt="user photo"
                   />
                   <label className={css.inputContainer}>
@@ -116,6 +116,7 @@ function UserModal() {
                   className={`input ${css.inputName}`}
                   placeholder="Name"
                   name="name"
+                  defaultValue={userData.name}
                 />
 
                 {error && <p className={css.errorText}>{error}</p>}

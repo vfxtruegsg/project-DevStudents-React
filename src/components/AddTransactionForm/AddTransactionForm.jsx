@@ -5,10 +5,12 @@ import DatePicker from "react-datepicker";
 import * as yup from "yup";
 import css from "./AddTransactionForm.module.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTransaction } from "../../redux/transactions/operations.js";
 import { closeModal } from "../../redux/modal/slice.js";
 import { getUserDataThunk } from "../../redux/auth/operations.js";
+import { selectUser } from "../../redux/auth/selectors.js";
+import { showToastErrorMessage } from "../../utils/showToastErrorMessage.js";
 
 const categories = [
   "Main expenses",
@@ -40,6 +42,7 @@ const schema = yup.object({
 
 const AddTransactionForm = ({ onCancel }) => {
   const dispatch = useDispatch();
+  const userBalance = useSelector(selectUser).balance;
   const [showDropdown, setShowDropdown] = useState(false);
 
   const {
@@ -71,6 +74,13 @@ const AddTransactionForm = ({ onCancel }) => {
   };
 
   const onSubmit = (payload) => {
+    if (type == "expense" && userBalance == 0) {
+      showToastErrorMessage(
+        "Before spending money, top up your balance, please!"
+      );
+      return;
+    }
+
     dispatch(addTransaction(payload))
       .unwrap()
       .then(() =>
