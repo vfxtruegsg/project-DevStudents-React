@@ -44,7 +44,12 @@ export const loginThunk = createAsyncThunk(
 
       return { ...data.data, ...dataUser.data };
     } catch (error) {
-      showToastErrorMessage(error.message);
+      if (error.status === 401 || error.status === 404) {
+        showToastErrorMessage("Something went wrong, please try again later!");
+        return thunkApi.rejectWithValue(
+          "Something went wrong, please try again later!"
+        );
+      }
 
       return thunkApi.rejectWithValue(error.message);
     }
@@ -69,7 +74,12 @@ export const logoutThunk = createAsyncThunk(
 
       return data;
     } catch (error) {
-      showToastErrorMessage(error.message);
+      if (error.status === 404) {
+        showToastErrorMessage("Something went wrong, please try again later!");
+        return thunkApi.rejectWithValue(
+          "Something went wrong, please try again later!"
+        );
+      }
 
       return thunkApi.rejectWithValue(error.message);
     } finally {
